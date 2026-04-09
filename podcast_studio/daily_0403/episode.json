@@ -1,0 +1,18 @@
+{
+  "topic": "AI daily briefing — April 3rd, 2026",
+  "episode": 3,
+  "date": "April 3rd, 2026",
+  "date_slug": "2026_04_03",
+  "language": "vi",
+  "format": "solo",
+  "duration_target_minutes": 20,
+  "host_name": "Trung",
+  "audience": "Engineering managers, product managers, AI solution builders",
+  "voice_style": {
+    "region": "south",
+    "pace": "medium_fast",
+    "energy": "warm_confident",
+    "style": ["news", "analysis", "authoritative"]
+  },
+  "guests": []
+}

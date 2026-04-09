@@ -1,0 +1,263 @@
+TITLE: AI Weekly Radar — Tuần từ ngày 1 đến ngày 7 tháng 4 năm 2026
+SUBTITLE: Khoảng cách tin tưởng lớn: năng lực AI đã rẻ rồi, nhưng niềm tin vào AI thì chưa.
+EPISODE: #2 | Ngày 7 tháng 4 năm 2026 | Host: Trung & An (Chuyên gia Chiến lược AI và Sản phẩm)
+
+[INTRO_MUSIC]
+
+[HOST] Ba mươi tỷ đô la Mỹ. Đó là doanh thu hằng năm quy đổi của Anthropic tính đến tuần này. Cuối năm ngoái là chín tỷ. Ba tháng. Gấp ba lần. Và con số đó không phải thứ anh muốn bắt đầu câu chuyện hôm nay.
+
+[GUEST] Chuẩn. Và em nghĩ những ai chỉ chú ý vào con số ba mươi tỷ đó sẽ bỏ lỡ điều quan trọng nhất của tuần. Vì ngay bên cạnh cái tin đó, có một vụ đánh cắp bốn terabyte dữ liệu từ một startup AI đang phục vụ OpenAI, Anthropic, và Meta cùng một lúc. Thông qua một thư viện Python mã nguồn mở. Chỉ trong một cửa sổ ba tiếng đồng hồ mà hầu hết đội bảo mật doanh nghiệp sẽ không kịp phát hiện. Vậy là bạn có nhà cung cấp AI lớn nhất lịch sử đang tăng trưởng gấp ba trong một quý, và cùng lúc đó nền tảng hạ tầng bên dưới nó vừa bị xâm phạm trong một khoảng thời gian mà không ai kịp phản ứng.
+
+[HOST] Đó là tuần này trong hai câu. Và khi anh nhìn lại bốn tin chuyển động nhiều nhất trong tuần, Gemma 4 của Google ra mắt như mô hình mã nguồn mở tốt nhất từ trước đến giờ, Gartner tuyên bố thời đại copilot đã qua, vụ tấn công mình vừa nhắc đến, và các doanh nghiệp vẫn tiếp tục thất bại khi mở rộng triển khai agent AI, trông như bốn tiêu đề riêng biệt. Nhưng chúng đều đang chỉ vào cùng một vấn đề cấu trúc.
+
+[GUEST] Khoảng cách tin tưởng. Chúng ta đã bỏ hai năm để xây lớp năng lực của AI, và lớp đó bây giờ thực sự xuất sắc và rẻ. Gemma 4 với ba mươi mốt tỷ tham số đang đứng thứ ba trên bảng xếp hạng Arena AI với giấy phép mã nguồn mở. Thứ ba. Trên phần lớn các mô hình độc quyền. Bài toán về mô hình về cơ bản đã được giải cho hầu hết các trường hợp kinh doanh. Điều chưa được giải là liệu bạn có thể tin tưởng AI để thực thi bất kỳ điều gì có hậu quả thực sự hay không, tại sao không, và cần làm gì để thay đổi điều đó.
+
+[HOST] Hôm nay chúng ta chạy qua các tin hàng đầu của tuần với lăng kính đó, làm phân loại Signal hay Noise trên các tiêu đề lớn, rồi CTO Decision Board cho những quyết định cụ thể bạn nên đưa ra trong tuần này, và cuối cùng là nhìn về hai đến bốn tuần tới. Chúng ta đang bao phủ giai đoạn từ ngày 1 đến ngày 7 tháng 4 năm 2026, và sẽ kéo dài tầm nhìn ra đến đầu tháng 5.
+
+[GUEST] Và nếu bạn chỉ lấy một điều từ hôm nay, thì đó là thế này. Tuần này không phải về AI trở nên thông minh hơn. Mà là về AI bị phơi bày. Lớp mô hình đã vượt qua ngưỡng. Lớp tin tưởng thì chưa. Sự bất cân xứng đó là nơi mười hai tháng tới sẽ được quyết định.
+
+[SEGMENT_BREAK: Tuần qua — Gemma 4 và Cái Chết của Lợi Thế Độc Quyền]
+
+[HOST] Tin đầu tiên, và theo anh là quan trọng nhất. Google DeepMind ra mắt Gemma 4 ngày 2 tháng 4. Mô hình ba mươi mốt tỷ tham số đứng thứ ba bảng xếp hạng Arena AI. Giấy phép Apache 2.0. Triển khai ở đâu cũng được, miễn phí.
+
+[GUEST] Đột phá kỹ thuật ở đây là hiệu quả, không chỉ là năng lực thuần túy. Mô hình hai mươi sáu tỷ tham số theo kiến trúc mixture of experts đứng thứ sáu trên bảng xếp hạng trong khi chỉ dùng một phần nhỏ các tham số đang kích hoạt so với một mô hình dày tương đương. Mô hình ba mươi mốt tỷ tham số dày đứng thứ ba, vượt trên các mô hình có kích thước lớn hơn gấp hai mươi lần theo công bố của Google. Và cả hai đều đi kèm với cửa sổ ngữ cảnh 256 nghìn token, xử lý hình ảnh và âm thanh tích hợp sẵn, gọi hàm, và đầu ra JSON có cấu trúc. Đó là toàn bộ bộ công cụ sản xuất agent AI trong một mô hình miễn phí.
+
+[HOST] Nhưng đây là điều nhiều người sẽ nói khi nghe tin này. Google đã ra mắt mô hình mã nguồn mở trước đây rồi. Gemma 1, Gemma 2. Và các doanh nghiệp đã không rời bỏ OpenAI hay Anthropic. Vậy lần này khác ở chỗ nào?
+
+[GUEST] Có hai lý do. Thứ nhất, khoảng cách chất lượng đã thu hẹp lại. Gemma 2 cạnh tranh được nhưng không đứng đầu bảng xếp hạng cho các tác vụ suy luận. Gemma 4 ở vị trí thứ ba với mô hình dày thì có. Điều đó xóa bỏ lập luận "cần chất lượng độc quyền" cho hầu hết các trường hợp sản xuất. Thứ hai, và đây là sự thay đổi sâu sắc hơn, hạ tầng triển khai đã trưởng thành. Cloudflare Workers AI đã hỗ trợ Gemma 4 trong vòng hai ngày kể từ khi ra mắt. vLLM công bố phiên bản hỗ trợ cùng ngày. Công cụ để chạy mô hình này trong môi trường sản xuất mà không cần tự xây dựng hạ tầng phục vụ đã có sẵn rồi.
+
+[GUEST] Hàm ý cạnh tranh rất đáng kể. Bất kỳ nhóm nào hiện đang dùng GPT hay Claude như lớp suy luận chính cho luồng công việc có khối lượng lớn, có cấu trúc nên dành tuần này để kiểm thử Gemma 4 trên tác vụ thực sự của mình. Không phải trên bài kiểm thử tổng hợp. Mà trên khối lượng công việc thực. Nếu nó đạt trong phạm vi năm phần trăm độ chính xác của mô hình hiện tại, họ có thể cắt giảm chi phí API xuống gần bằng không và xóa bỏ việc bị khóa vào nhà cung cấp chỉ trong một đêm.
+
+[HOST] Điều này có nghĩa gì với OpenAI và Anthropic? Họ vừa mất đi lập luận rằng mã nguồn mở không thể sánh được về chất lượng. Anthropic đang có ba mươi tỷ doanh thu nhưng câu hỏi bước vào nửa sau của năm 2026 là liệu doanh thu đó có bền vững hay không, hay nó sẽ bốc hơi ngay khi các doanh nghiệp nhận ra họ có thể chạy Gemma 4 trên Vertex AI miễn phí.
+
+[GUEST] Đó là câu hỏi đúng để giữ trong đầu, và chúng ta sẽ quay lại trong phần dự báo. Bây giờ, thông điệp cho builder đã rõ. Nếu bạn chưa kiểm thử Gemma 4 trong tuần này, đặt lịch cho sáng thứ Hai. Đây là thời điểm lập luận "mã nguồn mở không làm được điều này" tự mình nghỉ hưu.
+
+[SEGMENT_BREAK: Tuần qua — Anthropic 30 Tỷ Và Điều Nó Thực Sự Cho Bạn Biết]
+
+[HOST] Tin thứ hai. Anthropic tiết lộ trong tuần này rằng doanh thu hằng năm quy đổi của họ đã vượt ba mươi tỷ đô la Mỹ, tăng từ chín tỷ cuối năm 2025. Và họ công bố thỏa thuận điện toán TPU 3,5 gigawatt với Google và Broadcom, khoản đầu tư điện toán lớn nhất từ trước đến nay, dự kiến đưa vào hoạt động năm 2027.
+
+[GUEST] Con số doanh thu rất ấn tượng nhưng chi tiết quan trọng hơn là dữ liệu về phân khúc doanh nghiệp. Số lượng khách hàng doanh nghiệp chi hơn một triệu đô la Mỹ mỗi năm tại Anthropic đã tăng gấp đôi trong chưa đến hai tháng. Không phải một năm. Hai tháng. Điều đó phát tín hiệu về một động lực cụ thể. Các hợp đồng AI doanh nghiệp không còn là chu kỳ mua hàng chậm mười tám tháng nữa. Chúng đang đóng nhanh vì căn cứ kinh doanh đã đủ rõ để Giám đốc Tài chính có thể ký mà không cần thử nghiệm sáu tháng.
+
+[HOST] Vậy thỏa thuận điện toán 3,5 gigawatt cho chúng ta biết gì? Đây là Anthropic đang tự tin về nhu cầu? Hay là họ cần đầu tư quá mức vào điện toán vì chi phí huấn luyện mô hình tiếp tục leo thang?
+
+[GUEST] Đó là cả hai, và anh không nên tách chúng ra. Cược của họ là năng lực mô hình tiền tuyến sẽ tiếp tục cộng dồn, rằng sẽ có thế hệ Claude mới vào năm 2027 cần điện toán này để huấn luyện, và rằng các doanh nghiệp mua hôm nay sẽ muốn nâng cấp lên đó. Rủi ro là đến năm 2027, các mô hình trọng số mở bắt kịp đủ nhanh để mức phí ưu tiên tiền tuyến độc quyền tiếp tục co hẹp. Họ đang cược lớn vào một khoảng cách năng lực cứ tiếp tục tái xuất hiện.
+
+[GUEST] Với manager, đây là hàm ý ngay lập tức. Nếu tổ chức của bạn đang đàm phán hợp đồng AI ngay bây giờ hoặc dự kiến bắt đầu trong quý này, cửa sổ đòn bẩy đang đóng lại. Bạn đang đàm phán với một nhà cung cấp vừa tiết lộ họ có hơn một nghìn khách hàng chi hơn một triệu đô la Mỹ mỗi năm. Vị thế thương lượng của bạn hôm nay yếu hơn tháng Một. Thời điểm để đẩy cho hợp đồng dựa trên kết quả đầu ra, giảm giá theo khối lượng, và điều khoản chủ quyền dữ liệu là trước Google Cloud Next vào ngày 22 tháng 4, không phải sau đó.
+
+[HOST] Đó là lời khuyên rất cụ thể. Đàm phán trước đợt công bố doanh nghiệp tiếp theo. Rõ rồi. Còn góc độ Google và Broadcom thì sao?
+
+[GUEST] Ba phẩy năm gigawatt là thỏa thuận điện toán lớn nhất của Anthropic và nó được cấu trúc thông qua hạ tầng TPU của Google Cloud với Broadcom ở phía chip. Điều này làm sâu sắc thêm mối quan hệ giữa Google và Anthropic theo cách có hàm ý chiến lược với Amazon Web Services, vẫn là nhà cung cấp đám mây chính của Anthropic cho việc huấn luyện. Theo dõi xem liệu Amazon có phản ứng bằng một cam kết điện toán cạnh tranh trong sáu mươi ngày tới không sẽ là tín hiệu có ý nghĩa về ai kiểm soát lớp huấn luyện AI tiền tuyến.
+
+[SEGMENT_BREAK: Tuần qua — Gartner Tuyên Bố: Thời Đại Copilot Đã Qua]
+
+[HOST] Tin thứ ba. Gartner công bố dự báo ngày 2 tháng 4 nói rằng đến năm 2028, hơn một nửa tất cả các doanh nghiệp sẽ từ bỏ AI hỗ trợ, tức là các copilot và cố vấn thông minh, để chuyển sang các nền tảng cam kết kết quả luồng công việc với quyền thực thi được ủy quyền. Và họ bổ sung rằng các nhà cung cấp phần mềm chỉ chồng AI lên các ứng dụng cũ thay vì thiết kế lại cho thực thi dạng agent có nguy cơ mất tới tám mươi phần trăm biên lợi nhuận vào năm 2030.
+
+[GUEST] Đây là dự báo phân tích quan trọng nhất của tuần và có thể là cả quý, và anh muốn nói chính xác họ thực sự đang nói gì, vì dễ hiểu nhầm lắm. Họ không nói copilot là xấu hay thất bại. Họ đang nói rằng khi các doanh nghiệp có kinh nghiệm với AI hỗ trợ, những ai thấy kết quả sẽ chuyển sang các hệ thống thực sự có thể thực thi, không chỉ đưa ra lời khuyên. Sự khác biệt là quyền được ủy quyền. AI có thể kích hoạt một khoản thanh toán không? Có thể sửa đổi một bản ghi cơ sở dữ liệu không? Có thể nộp báo cáo tuân thủ không? Đó là thứ phân biệt AI hỗ trợ với AI thực thi.
+
+[HOST] Nhưng đây là phản biện mà nhiều doanh nghiệp sẽ đưa ra. Chỉ có mười lăm phần trăm người ra quyết định AI báo cáo có bất kỳ cải thiện EBITDA nào trong mười hai tháng qua theo Forrester. Vậy nếu chúng ta thậm chí không thể lấy giá trị từ AI hỗ trợ mà mình đang có, làm sao chúng ta được cho là sẽ lấy giá trị từ AI thực thi phức tạp hơn, rủi ro hơn, và khó quản trị hơn?
+
+[GUEST] Đó là phản biện đúng và chính xác là lý do tại sao dự báo này quan trọng. Mười lăm phần trăm thấy kết quả là những người đã không bắt đầu từ lớp AI. Họ bắt đầu từ lớp dữ liệu và quy trình. Goldman Sachs và Salesforce, cả hai đang chạy triển khai agent AI trong sản xuất, không đạt được điều đó bằng cách mua copilot. Họ đạt được bằng cách trước tiên chuẩn hóa luồng công việc của mình đến mức agent có thể vận hành trong đó một cách đáng tin cậy. Tám mươi lăm phần trăm còn lại đang thất bại vì họ đang yêu cầu AI điều hướng một hệ thống lộn xộn. Điều đó không hoạt động.
+
+[GUEST] Với manager, khung quyết định mà điều này tạo ra không phải là "liệu chúng ta có nên mua AI thực thi." Mà là "liệu các quy trình nội bộ của chúng ta có đủ gọn gàng để AI thực thi có thể vận hành trong đó một cách an toàn không." Nếu câu trả lời là không, thì copilot không phải vấn đề của bạn. Quản trị dữ liệu mới là vấn đề của bạn.
+
+[HOST] Vậy về cơ bản Gartner đang nói cuộc chuyển dịch năm 2028 sang AI thực thi sẽ được dẫn dắt bởi mười lăm phần trăm đã có nhà ngăn nắp, và tám mươi lăm phần trăm còn lại sẽ hoặc là theo sau hoặc là bị bỏ lại phía sau.
+
+[GUEST] Chính xác. Và mối đe dọa mất tám mươi phần trăm biên lợi nhuận với các nhà cung cấp cũ là có thực. Nếu sản phẩm của bạn không thể cam kết kết quả luồng công việc, bạn trở thành nhà cung cấp tính năng trong một thị trường đang trả tiền cho kết quả. Đó là vị thế rất nguy hiểm khi bước vào năm 2027. Và điều đáng chú ý là Gartner không chỉ nói về các công ty phần mềm. Họ đang nói về toàn bộ hệ sinh thái xây dựng trên mô hình kinh doanh hiện tại của AI. Mọi integrator, mọi nhà tư vấn triển khai, mọi nhà cung cấp dịch vụ quản lý AI, tất cả đều cần phải tái kiến trúc đề xuất giá trị của mình xung quanh kết quả thực sự thay vì giờ công hay giấy phép công cụ. Đó là sự thay đổi mô hình kinh doanh, không chỉ là thay đổi kỹ thuật.
+
+[HOST] Em có thể đưa ra một ví dụ cụ thể về cách điều này trông như thế nào trong thực tế không?
+
+[GUEST] Có. Hãy lấy một use case phổ biến, xử lý hóa đơn. Mô hình trợ lý cũ là AI đề xuất phân loại, con người phê duyệt, và hệ thống tính tiền theo giờ hoặc theo số hóa đơn được xử lý. Mô hình thực thi mới là AI tự phê duyệt các hóa đơn dưới một ngưỡng nhất định, escalate các trường hợp ngoại lệ, và hệ thống tính tiền theo phần trăm chi phí xử lý tiết kiệm được so với quy trình thủ công. Đó là sự thay đổi từ "chúng tôi cung cấp công cụ" sang "chúng tôi cam kết kết quả." Và những ai chuyển sang mô hình đó trước sẽ là những ai còn lại trên bàn vào năm 2028.
+
+[SEGMENT_BREAK: Tuần qua — Vụ Tấn Công LiteLLM và Chuỗi Cung Ứng Mà Không Ai Kiểm Tra]
+
+[HOST] Tin thứ tư. Và đây là tin mà nhiều người lướt qua, đó là một sai lầm. Một nhóm hacker tên TeamPCP đã xâm phạm hai phiên bản của LiteLLM, một thư viện Python mã nguồn mở được dùng rộng rãi với chín mươi bảy triệu lượt tải hằng tháng, bằng cách đăng các gói độc hại lên PyPI. Các gói này tồn tại trong khoảng ba tiếng đồng hồ. Trong cửa sổ đó, Mercor, một startup AI trị giá mười tỷ đô la Mỹ cung cấp dữ liệu huấn luyện AI cho OpenAI, Anthropic, và Meta, đã bị xâm phạm. Bốn terabyte dữ liệu bị đánh cắp. Trong đó có ba terabyte video phỏng vấn độ phân giải cao và dữ liệu sinh trắc học. Và Mercor trong thông báo công khai của họ nói rằng họ là trích dẫn "một trong hàng nghìn công ty bị ảnh hưởng."
+
+[GUEST] Đây là cuộc tấn công chuỗi cung ứng điển hình của kỷ nguyên AI, và nó hoàn toàn có thể dự đoán trước. LiteLLM hiện diện trong ba mươi sáu phần trăm môi trường đám mây theo phân tích vụ vi phạm. Đó là loại thư viện được thêm vào file requirements.txt một ngày nào đó và sau đó không bao giờ được kiểm tra lại. Ba tiếng trên PyPI là đủ để hàng nghìn pipeline triển khai tự động kéo gói bị xâm phạm mà không có bất kỳ con người nào xem xét.
+
+[HOST] Hãy làm rõ điều này. Nếu anh đang điều hành một nhóm kỹ thuật ngay bây giờ, mức độ rủi ro thực sự của tôi là gì? Tôi thậm chí có thể biết mình có bị ảnh hưởng không?
+
+[GUEST] Bạn kiểm tra ba thứ ngay lập tức. Thứ nhất, kiểm tra mọi dịch vụ trong stack của bạn đang sử dụng LiteLLM và xác nhận phiên bản. Các phiên bản bị xâm phạm là 1.82.7 và 1.82.8. Nếu bất kỳ dịch vụ sản xuất nào đã kéo một trong hai phiên bản đó trong mười ngày qua, bạn có một sự cố tiềm ẩn. Thứ hai, lấy cây phụ thuộc cho các dịch vụ AI của bạn và tìm kiếm bất kỳ gói nào được cập nhật tự động trong cửa sổ đó. Thứ ba, nếu bạn sử dụng bất kỳ nhà cung cấp chú thích dữ liệu AI hay huấn luyện bên thứ ba nào, đó là nơi Mercor nằm trong chuỗi cung ứng, hãy liên hệ với họ trực tiếp để lấy báo cáo tiết lộ vi phạm. Bạn có quyền biết liệu dữ liệu huấn luyện hay dữ liệu nhà thầu của mình có nằm trong phạm vi hay không.
+
+[GUEST] Hàm ý rộng hơn là cấu trúc. Cuộc tấn công này nhắm vào LiteLLM vì nó nằm ở nút thắt cổ chai trong stack ứng dụng AI. Những kẻ tấn công không nhắm vào bất kỳ công ty cụ thể nào. Họ nhắm vào lớp hạ tầng mà hầu hết các ứng dụng AI phụ thuộc vào. Đó là một mô hình mối đe dọa khác với những gì hầu hết các chương trình bảo mật doanh nghiệp được thiết kế để xử lý. Bạn cần công cụ phân tích thành phần phần mềm, không chỉ bảo mật vành đai.
+
+[HOST] Meta rõ ràng đã tạm dừng toàn bộ công việc với Mercor sau vụ vi phạm này. Điều đó có nghĩa là một trong những chương trình huấn luyện AI lớn nhất thế giới vừa gặp dấu hiệu dừng. Việc tạm dừng đó kéo dài bao lâu và nó sẽ làm mất bao nhiêu chi phí trong timeline huấn luyện mô hình của họ?
+
+[GUEST] Đó là câu hỏi tốt để giữ cho phần nhìn về phía trước. Câu trả lời ngắn gọn là chúng ta chưa biết, và đó là một phần của vấn đề. Các tiết lộ hạ nguồn vẫn chưa kết thúc. Mercor nói hàng nghìn công ty bị ảnh hưởng. Chúng ta mới chỉ nghe từ một công ty.
+
+[SEGMENT_BREAK: Phân tích — Khoảng Cách Tin Tưởng Lớn]
+
+[HOST] Nhìn lại bốn tin của tuần này cùng nhau, có một mẫu anh muốn đặt tên cho nó. Gemma 4 cho bạn chất lượng top ba miễn phí. Anthropic tăng gấp ba doanh thu trong một quý. Gartner nói thời đại copilot đang kết thúc. Và cuộc tấn công chuỗi cung ứng lớn nhất trong lịch sử AI tấn công các thư viện bên dưới tất cả. Sợi chỉ kết nối là gì?
+
+[GUEST] Lớp năng lực đã vượt qua ngưỡng. Gemma 4 chứng minh bài toán mô hình về cơ bản đã được giải cho hầu hết các trường hợp sử dụng thương mại. Mức tăng doanh thu của Anthropic chứng minh rằng các doanh nghiệp sẵn sàng trả tiền cho nó ở quy mô lớn. Nhưng phát hiện của Gartner và vụ tấn công LiteLLM đều chỉ vào cùng một khoảng trống. Chúng ta đã xây lớp trên cùng của stack một cách xuất sắc, và xây nó trên một nền tảng không thể hỗ trợ sự tin tưởng cần thiết cho quyền thực thi. Năng lực là có thật. Hạ tầng tin tưởng để triển khai nó một cách an toàn thì chưa có.
+
+[HOST] Có một phép loại suy lịch sử ở đây. Trong những năm đầu của kỷ nguyên đám mây, khoảng từ năm 2008 đến 2012, điện toán trở nên rẻ và dồi dào rất nhanh. Nhưng việc áp dụng của doanh nghiệp không đi theo năng lực. Nó đi theo sự tin tưởng. Nó đi theo các kiểm toán SOC 2, thỏa thuận lưu trữ dữ liệu nội địa, và bảo đảm thỏa thuận mức dịch vụ. Đám mây không thắng doanh nghiệp cho đến khi lớp tin tưởng bắt kịp lớp năng lực. Đây có phải là cùng một thời điểm đó với AI không?
+
+[GUEST] Gần như chính xác là cùng một thời điểm, và timeline nhanh hơn vì áp lực quy định mạnh hơn. Thời hạn thực thi Đạo luật AI EU là ngày 2 tháng 8 năm nay. Các hệ thống AI rủi ro cao, bao gồm AI được sử dụng trong nhân sự, chấm điểm tín dụng, chăm sóc sức khỏe, và giáo dục, cần có hệ thống quản lý rủi ro, tiêu chuẩn quản trị dữ liệu, và cơ chế giám sát của con người được đặt ra trong bốn tháng. Chỉ có mười lăm phần trăm công ty công nghệ châu Âu báo cáo sẵn sàng tuân thủ. Chúng ta đang tiến vào cửa sổ thực thi mà chưa xây xong nền tảng.
+
+[HOST] Nhưng có người sẽ nói điều này quá bi quan. Các doanh nghiệp đang mua AI nhanh hơn bao giờ hết, các câu chuyện ROI đang có ở Goldman và Salesforce, và dự báo của chính Gartner là cuộc chuyển dịch sang AI thực thi xảy ra vào năm 2028, không phải là nó thất bại. Khoảng cách tin tưởng có thực sự dừng việc áp dụng không, hay nó chỉ làm chậm nó và tạo ra những người thắng và kẻ thua?
+
+[GUEST] Nó tạo ra những người thắng và kẻ thua, và hồ sơ người thắng nhất quán đến mức đáng ngạc nhiên. Mọi triển khai AI doanh nghiệp thành công mà chúng ta có thể chỉ ra, Goldman Sachs về đối soát giao dịch, Salesforce về đăng ký khách hàng, Cisco về quản lý dịch vụ IT, đều chia sẻ một đặc điểm. Luồng công việc đã được chuẩn hóa trước khi AI được đưa vào. Lớp tin tưởng được xây dựng thủ công trước, và sau đó AI được đặt vào một hệ thống đã có quản trị. Hồ sơ người thua cũng nhất quán. Thêm AI vào một quy trình lộn xộn, thấy kết quả không nhất quán, mất niềm tin, trì hoãn giai đoạn tiếp theo, xem ROI bị đẩy sang năm 2027.
+
+[GUEST] Hàm ý trực tiếp cho ba mươi và sáu mươi ngày là rõ ràng. Nếu bạn đang lên kế hoạch triển khai agent trong quý 2, điều quan trọng nhất bạn có thể làm trong tháng này không phải là đánh giá các nhà cung cấp mô hình. Mà là kiểm tra quy trình của chính bạn. Lập bản đồ luồng công việc mà agent sẽ vận hành trong đó. Xác định mọi điểm mà con người hiện đang ra quyết định. Những điểm đó là các điểm kiểm soát quản trị mà bạn cần thiết kế trước khi thêm agent. Các nhóm bỏ qua bước này sẽ nằm trong nhóm tám mươi lăm phần trăm mười hai tháng từ bây giờ.
+
+[HOST] Còn tầm nhìn chín mươi ngày thì sao?
+
+[GUEST] Đến tháng 7, anh kỳ vọng cuộc trò chuyện về tuân thủ Đạo luật AI EU sẽ chuyển từ việc đánh dấu hộp kiểm tuân thủ sang trở thành tín hiệu bán hàng doanh nghiệp. Các công ty có thể chứng minh quản trị AI tuân thủ sẽ dùng nó để giành hợp đồng trong các ngành được quản lý. Nó trở thành một tính năng, không phải gánh nặng. Và điều thú vị là chính áp lực quy định đó có thể là cú hích mà nhiều nhóm cần để thực sự xây dựng lớp quản trị mà Gartner đang nói đến.
+
+[HOST] Nghe logic đó. Nhưng anh có một góc phản biện. Tuần này chúng ta có Gemma 4 ra mắt, Anthropic tăng gấp ba doanh thu, Gartner ra dự báo lớn, và một vụ tấn công chuỗi cung ứng lớn. Mỗi tuần đều có một tập hợp tin như vậy. Đến một lúc nào đó, tốc độ thay đổi không phải là signal nữa, nó trở thành nhiễu. Em có lo lắng rằng chúng ta đang bị cuốn vào một vòng lặp phân tích các tin mà không ai thực sự biết nên làm gì không?
+
+[GUEST] Đó là phản biện thật sự quan trọng và anh nói đúng. Có hai loại người xem AI news. Loại thứ nhất là những người xem để biết xu hướng và để nói chuyện tốt hơn trong cuộc họp. Loại thứ hai là những người xem để thay đổi quyết định cụ thể trong tuần tiếp theo. Chỉ loại thứ hai thực sự được hưởng lợi từ việc theo dõi tin tức này. Và đây là sự thật khó nói. Hầu hết các doanh nghiệp không có quy trình để chuyển từ tin tức AI sang quyết định. Họ đọc, gật đầu, rồi tiếp tục làm những gì đã làm. Khoảng cách đó, giữa việc biết và việc làm, là khoảng cách tin tưởng thứ hai mà ít ai nói đến.
+
+[HOST] Anh không hoàn toàn đồng ý điểm đó. Không phải mọi tổ chức đều vậy. Có những nhóm đang thực sự thay đổi cách họ làm việc mỗi tuần dựa trên thông tin mới. Ví dụ, vụ tấn công LiteLLM. Anh tin rằng vào cuối tuần này, có hàng nghìn nhóm kỹ thuật đang thực sự ngồi xuống kiểm tra danh sách phụ thuộc của mình vì đã nghe tin này.
+
+[GUEST] Anh nói có lý ở điểm đó, và anh đúng về phản ứng tức thì đối với sự kiện rõ ràng như vụ vi phạm. Nhưng em giữ rằng với các signal dài hạn hơn, như dự báo của Gartner hay quỹ đạo của Gemma 4, phần lớn tổ chức sẽ đọc, thảo luận, và sau đó không làm gì khác với những gì họ đã lên kế hoạch. Khoảng cách từ insight đến action là nơi phần lớn giá trị của việc theo dõi AI news bị rò rỉ. Đó là lý do tại sao phần CTO Decision Board quan trọng hơn bất kỳ phần phân tích nào khác trong chương trình này.
+
+[HOST] Điều chúng ta thực sự chưa biết ở đây là lớp hạ tầng tin tưởng thực sự được xây nhanh đến mức nào. Công cụ cho phân tích thành phần phần mềm, quản trị mô hình, nhật ký kiểm toán agent, nó tồn tại ở từng mảnh nhưng không có nền tảng tích hợp xử lý tất cả. Khoảng trống đó là một danh mục startup hoàn chỉnh, và cũng là khoảng trống có khả năng cao nhất tạo ra sự cố bảo mật doanh nghiệp lớn tiếp theo.
+
+[SEGMENT_BREAK: Signal vs Noise]
+
+[HOST] Phân loại nhanh Signal hay Noise cho các tiêu đề lớn của tuần. Mục đầu tiên. Gemma 4 đứng thứ ba bảng xếp hạng Arena AI dưới giấy phép miễn phí. Signal hay Noise?
+
+[GUEST] Signal. Rõ ràng là signal. Xếp hạng leaderboard dựa trên phiếu bầu ưu tiên của con người trong so sánh mù A và B, không phải trên bài kiểm thử được tài trợ. Đứng thứ ba dưới Apache 2.0 với cửa sổ ngữ cảnh 256 nghìn token là một ngưỡng chất lượng thực sự được vượt qua. Bất kỳ nhóm nào vẫn đang trả giá API cao cấp cho các tác vụ văn bản có cấu trúc nên kiểm thử trong tuần này. Và điều khiến nó đặc biệt là sự kiện này đến từ Google, người đang đồng thời cung cấp hạ tầng TPU cho Anthropic và cạnh tranh với Anthropic bằng mô hình mã nguồn mở. Google đang chơi tất cả các phía cùng một lúc, và Gemma 4 là bằng chứng rằng họ đang chiến thắng ở lớp hạ tầng bất kể ai chiến thắng ở lớp ứng dụng.
+
+[HOST] Doanh thu quy đổi hằng năm của Anthropic đạt ba mươi tỷ đô la Mỹ, gấp ba mức độ của bốn tháng trước. Signal hay Noise?
+
+[GUEST] Signal, nhưng đó là signal về vận tốc, không phải về lợi thế cạnh tranh bền vững. Doanh thu tăng gấp ba trong một quý là phi thường, nhưng nó cũng nén timeline trước khi các đối thủ cạnh tranh và các mô hình trọng số mở bắt đầu xói mòn cơ sở đó. Con số ba mươi tỷ là bằng chứng rằng AI doanh nghiệp là một thị trường thực sự. Nó không phải là bằng chứng rằng Anthropic đã giành chiến thắng vĩnh viễn. Và có một chi tiết quan trọng hơn con số tổng thể. Việc số khách hàng chi hơn một triệu đô la Mỹ mỗi năm tăng gấp đôi trong chưa đến hai tháng cho thấy AI đang đi vào ngân sách cốt lõi của doanh nghiệp, không còn là ngân sách thử nghiệm nữa. Khi một khoản chi tiêu đi vào ngân sách cốt lõi, nó trở nên khó cắt hơn và khó thay thế hơn. Đó là loại độ bền doanh thu mà Anthropic thực sự đang xây dựng, và nó quan trọng hơn con số tổng thể.
+
+[HOST] Gartner nói copilot sẽ bị từ bỏ bởi năm mươi phần trăm doanh nghiệp vào năm 2028. Signal hay Noise?
+
+[GUEST] Signal cấu trúc. Các dự báo của Gartner ở tầm nhìn thời gian này có tỷ lệ trúng hợp lý khi động lực cơ bản đã có thể nhìn thấy trong hành vi của những người áp dụng sớm. Sự chuyển dịch sang mua sắm AI dựa trên kết quả đầu ra đang diễn ra rồi trong các hợp đồng được đàm phán trong năm 2026. Năm 2028 là tham vọng nhưng hướng đi là đúng.
+
+[HOST] Cuộc tấn công chuỗi cung ứng LiteLLM. Signal hay Noise?
+
+[GUEST] Tín hiệu rõ nhất của tuần, và bị phản ứng ít nhất. Các cuộc tấn công chuỗi cung ứng vào thư viện AI mã nguồn mở sẽ trở nên thường xuyên khi các tác nhân đe dọa nhận ra rằng hạ tầng AI có độ vệ sinh phụ thuộc thấp. Đây không phải vấn đề của Mercor. Đó là vấn đề cấu trúc ngành. Mọi nhóm sử dụng thư viện AI mã nguồn mở mà không có công cụ phân tích thành phần phần mềm đang chạy một rủi ro chưa được đánh giá.
+
+[HOST] Các cựu nhân viên OpenAI ra mắt quỹ đầu tư mạo hiểm một trăm triệu đô la Mỹ gọi là Zero Shot. Signal hay Noise?
+
+[GUEST] Signal nhỏ nhưng có. Mô hình quen thuộc với đám mây và di động. Khi những người đã xây dựng nền tảng bắt đầu tài trợ cho lớp ứng dụng, nền tảng đã đủ trưởng thành cho các cược ứng dụng. Zero Shot đầu tư vào robot AI và tự động hóa luồng công việc cho bạn biết người trong cuộc tiền tuyến sớm nghĩ rằng đợt sóng giá trị tiếp theo tập trung ở đâu. Không phải ở các mô hình nền tảng. Mà ở các ứng dụng theo chiều dọc đòi hỏi kiến thức lĩnh vực mà các mô hình nền tảng thiếu.
+
+[HOST] Và cuối cùng. Thời hạn thực thi Đạo luật AI EU trong bốn tháng. Đề xuất Digital Omnibus có thể trì hoãn nó đến năm 2027. Signal hay Noise?
+
+[GUEST] Thời hạn là signal. Đề xuất gia hạn là noise cho đến khi được xác nhận. Các nhóm lên kế hoạch dựa trên gia hạn mà không nhận được nó sẽ phải đối mặt với mức phạt lên đến ba mươi lăm triệu euro hoặc bảy phần trăm doanh thu toàn cầu trong một cửa sổ bốn tháng. Xây dựng theo thời hạn ngày 2 tháng 8. Coi gia hạn là lợi nhuận thêm, không phải là giả định.
+
+[SEGMENT_BREAK: Nếu là CTO trước 5PM hôm nay]
+
+[HOST] Bài tập nhanh. Bây giờ là chiều thứ Sáu, trước năm giờ. Bạn là CTO. Chỉ được phép quyết định vài việc trong tuần này. Chọn gì?
+
+[GUEST] Quyết định thứ nhất. Kiểm tra phụ thuộc LiteLLM ngay lập tức. Lấy phiên bản trong mọi dịch vụ sản xuất. Nếu bất kỳ dịch vụ nào đã chạy phiên bản 1.82.7 hoặc 1.82.8 trong mười ngày qua, mở một sự cố. Đây không phải hạng mục của sprint tiếp theo. Đây là việc làm hôm nay. Vụ vi phạm vẫn đang diễn ra và nhiều tiết lộ hơn đang đến.
+
+[HOST] Thứ hai?
+
+[GUEST] Quyết định thứ hai. Lên lịch kiểm thử Gemma 4 trên ba trường hợp sử dụng AI hàng đầu của bạn trước cuối tuần tới. Không phải vì bạn nên chuyển đổi ngay. Mà vì thông tin về việc liệu bạn có thể chuyển đổi ngay lập tức thay đổi vị thế đàm phán của bạn với nhà cung cấp API hiện tại. Biết được các lựa chọn của bạn là đòn bẩy.
+
+[HOST] Thứ ba?
+
+[GUEST] Quyết định thứ ba. Nếu bạn có bất kỳ hệ thống AI nào đang vận hành trong nhân sự, chấm điểm tín dụng, chăm sóc sức khỏe, hoặc giáo dục và thị trường chính của bạn bao gồm châu Âu, bắt đầu phân loại rủi ro theo Đạo luật AI EU trong tuần này. Không phải tháng tới. Tuần này. Bạn cần biết liệu hệ thống của mình có rủi ro cao hay không. Xác định đó điều khiển mọi thứ tiếp theo và nó cần thời gian.
+
+[HOST] Thứ tư?
+
+[GUEST] Quyết định thứ tư. Nếu bạn đang triển khai một agent trong quý 2, đóng băng công việc kiến trúc agent trong một tuần và dành tuần đó để lập bản đồ luồng công việc mà agent sẽ vận hành trong đó. Ghi lại mọi quyết định phán xét của con người trong luồng công việc đó. Mỗi cái là một điểm kiểm soát quản trị mà bạn cần thiết kế. Các nhóm bỏ qua điều này tạo ra các agent hoạt động trong bản demo và thất bại trong sản xuất.
+
+[HOST] Thứ năm?
+
+[GUEST] Quyết định thứ năm. Có cuộc trò chuyện về hợp đồng dựa trên kết quả đầu ra với nhà cung cấp AI của bạn trước Google Cloud Next ngày 22 tháng 4. Sau sự kiện đó, Anthropic có khả năng công bố điều khoản và giá doanh nghiệp mới. Đòn bẩy của bạn cao nhất trước những công bố đó, không phải sau.
+
+[HOST] Anh muốn thêm một cái. Nếu bạn có một hạng mục ngân sách cho công cụ AI mà hiển thị số không về chỉ số đầu ra có thể đo lường, hoặc là xác định chỉ số đó trong tuần này hoặc là cắt ngân sách. Dữ liệu của Forrester nói hai mươi lăm phần trăm chi tiêu AI sẽ bị trì hoãn sang năm 2027 do khoảng cách nhận thức giá trị. Đừng là nhóm phát hiện ra vào thời điểm lên ngân sách rằng chi tiêu là vô hình.
+
+[GUEST] Đó là quyết định đúng. Chi tiêu AI vô hình trở thành mục ngân sách đầu tiên bị cắt khi áp lực ngân sách tiếp theo đến. Nếu bạn không thể đo lường nó, lãnh đạo sẽ giả định nó không có giá trị, bất kể điều đó có đúng hay không.
+
+[HOST] Trong sáu quyết định này, cái nào em nghĩ nhiều nhóm sẽ bỏ qua nhất?
+
+[GUEST] Quyết định thứ tư. Lập bản đồ luồng công việc trước khi triển khai agent. Đó là cái bị bỏ qua nhiều nhất vì nó không có cảm giác như là công việc kỹ thuật. Không ai trong nhóm engineering muốn dành một tuần để vẽ sơ đồ quy trình. Cảm giác chậm chạp so với việc viết code. Nhưng đó chính xác là lý do tại sao tám mươi lăm phần trăm triển khai agent thất bại. Người ta nhảy thẳng vào xây dựng và bỏ qua câu hỏi cơ bản nhất: quy trình này có đủ cấu trúc để agent có thể vận hành trong đó một cách đáng tin cậy không? Nếu câu trả lời là không, thêm agent vào chỉ làm cho quy trình tồi tệ hơn nhanh hơn mà thôi. Đó không phải là cải thiện, đó là tăng tốc thất bại.
+
+[HOST] Nghe như câu nói "đừng cho ghe máy vào kênh chưa vét đáy". Nhanh mà ngắc cũng vậy.
+
+[GUEST] Đúng bài luôn. Và sai lầm phổ biến nhất trong cái quyết định đó cụ thể hơn là các nhóm chỉ lập bản đồ trạng thái lý tưởng của quy trình. Họ vẽ cách quy trình nên hoạt động. Nhưng agent phải hoạt động trong quy trình thực tế, với tất cả các ngoại lệ, các trường hợp góc cạnh, và các điểm mà con người thường xuyên phải ra phán xét vì hệ thống thiếu dữ liệu. Nếu bạn không lập bản đồ những điểm đó, agent của bạn sẽ gặp chúng trong sản xuất và không biết phải làm gì. Và đó là khi bạn có một agent xử lý không đúng yêu cầu của khách hàng hoặc phê duyệt một giao dịch không nên được phê duyệt.
+
+[SEGMENT_BREAK: Forecast — Trọng Số Mở vs Độc Quyền: Ai Thắng 90 Ngày Tới]
+
+[HOST] Vào phần dự báo. Ba kịch bản cho hướng đi của mô hình trọng số mở so với mô hình độc quyền trong sáu mươi đến chín mươi ngày tới. Base, bull, bear. Ước tính xác suất như thế nào?
+
+[GUEST] Kịch bản base khoảng năm mươi lăm phần trăm. Kịch bản bull cho việc áp dụng trọng số mở khoảng hai mươi lăm phần trăm. Kịch bản bear cho việc trọng số mở bị đình trệ khoảng hai mươi phần trăm.
+
+[HOST] Kịch bản base trước.
+
+[GUEST] Kịch bản base. Gemma 4 và các mô hình trọng số mở khác thấy sự áp dụng mạnh của nhà phát triển nhưng migration doanh nghiệp hạn chế trong sáu mươi ngày tới. Các doanh nghiệp kiểm thử mô hình, thấy chất lượng, nhưng gặp ma sát về hạ tầng triển khai, đánh giá bảo mật, và bảo đảm hỗ trợ. Các nhà cung cấp API như OpenAI và Anthropic giữ các tài khoản doanh nghiệp của mình bằng cách cung cấp định giá dựa trên kết quả đầu ra và cam kết thỏa thuận mức dịch vụ mà các mô hình trọng số mở không thể đáp ứng mà không có đầu tư nội bộ đáng kể. Doanh thu cho các nhà cung cấp độc quyền tiếp tục tăng nhưng ở tốc độ chậm hơn. Với manager trong kịch bản này, bước đi là hoàn thành kiểm thử ngay bây giờ để bạn có lựa chọn sẵn sàng, nhưng không ép buộc migration nếu nhóm hạ tầng nội bộ của bạn chưa sẵn sàng sở hữu triển khai mô hình sản xuất. Với builder, đây là cửa sổ để thử nghiệm mô hình trọng số mở trên các dự án mới, không phải để di chuyển các hệ thống sản xuất hiện có.
+
+[HOST] Kịch bản bull?
+
+[GUEST] Kịch bản bull. Vụ tấn công LiteLLM và các lo ngại chuỗi cung ứng về các nhà cung cấp AI bên thứ ba thúc đẩy mong muốn của doanh nghiệp để chạy mô hình trên hạ tầng của chính họ nơi họ kiểm soát stack phụ thuộc. Gemma 4 trên Vertex AI hoặc tự triển khai trở thành con đường triển khai ưa thích cho các doanh nghiệp có ý thức bảo mật trong sáu mươi ngày. Tốc độ tăng trưởng doanh thu của Anthropic chậm lại khi một hoặc hai doanh nghiệp lớn công khai thông báo chuyển sang mô hình trọng số mở. Nếu điều này xảy ra, hãy xem OpenAI và Anthropic đẩy nhanh các lựa chọn triển khai tự triển khai và đám mây riêng tư của họ, vốn hiện không cạnh tranh tốt. Với các nhóm đang định vị cho kịch bản này, bước đi là bắt đầu cuộc trò chuyện nền tảng ML nội bộ ngay bây giờ để bạn không bị bắt không ngờ khi tín hiệu nhu cầu doanh nghiệp xác nhận.
+
+[HOST] Kịch bản bear. Nói thật đi.
+
+[GUEST] Kịch bản bear. Cuộc tấn công chuỗi cung ứng tạo ra phản ứng ngược lại với các phụ thuộc AI mã nguồn mở mà nghịch lý là có lợi cho các nhà cung cấp độc quyền. Các doanh nghiệp phản ứng với vụ tấn công LiteLLM bằng cách quyết định rằng các dịch vụ API được quản lý với thỏa thuận mức dịch vụ doanh nghiệp an toàn hơn các stack mã nguồn mở nơi họ sở hữu trách nhiệm bảo mật. Việc áp dụng trọng số mở đình trệ hoặc đảo chiều. Anthropic và OpenAI đẩy nhanh tăng trưởng doanh thu hơn nữa. Với các nhóm trong kịch bản này, bước đi phòng thủ là có quy trình phân tích thành phần phần mềm và kiểm tra phụ thuộc tại chỗ trước khi bạn áp dụng bất kỳ mô hình trọng số mở nào trong sản xuất, để lập luận bảo mật chống lại mã nguồn mở không áp dụng với bạn.
+
+[HOST] Nhóm nào có lợi nhất bất kể kịch bản nào xảy ra?
+
+[GUEST] Các nhóm có công cụ phân tích thành phần phần mềm và hạ tầng triển khai trọng số mở rõ ràng. Họ có thể di chuyển trong kịch bản bull vì họ có lớp bảo mật. Họ không bị tổn thương trong kịch bản bear vì họ đã giải quyết mối lo ngại. Các nhóm bị tổn thương bất kể kịch bản nào là những người không kiểm tra phụ thuộc mã nguồn mở của mình cũng không xây dựng con đường triển khai cho mô hình trọng số mở. Họ mắc kẹt trả chi phí API cao cấp mà không có lựa chọn.
+
+[HOST] Và các nhóm có khả năng bị tổn thương nhất?
+
+[GUEST] Các nhóm phản ứng với chất lượng của Gemma 4 bằng cách giả định họ có thể chuyển stack sản xuất của mình trong sprint tiếp theo mà không có đánh giá bảo mật. Đó là cách bạn đưa chính xác rủi ro chuỗi cung ứng mà chúng ta vừa thảo luận vào qua cửa trước thay vì để nó đến bất ngờ.
+
+[HOST] Em có nghĩ rằng có ai đó trong phòng họp của một công ty lớn đang đọc tin Gemma 4 và nói "thôi, mình cắt hợp đồng Claude rồi dùng cái này" không?
+
+[GUEST] Đang có cuộc trò chuyện đó ở nhiều nơi lắm, và hầu hết trong số đó sẽ không đi đến đâu trong quý 2 vì lý do em đã nói. Nhưng có một nhóm nhỏ, khoảng mười lăm đến hai mươi phần trăm những người đang xem xét nghiêm túc, sẽ thực sự kiểm thử và so sánh. Và nếu Gemma 4 đạt trong phạm vi năm phần trăm trên tác vụ của họ, quyết định đó sẽ đến. Nó sẽ không ồn ào. Nó sẽ xuất hiện trong số liệu sử dụng API của OpenAI và Anthropic vào tháng 6. Đó là lý do tại sao anh cần kiểm thử ngay bây giờ. Không phải để bạn là người đầu tiên chuyển đổi, mà để bạn biết liệu bạn có nên chuyển đổi hay không trước khi người khác ra quyết định đó cho bạn bằng cách chiếm thị phần.
+
+[HOST] Và với các nhà cung cấp API như Anthropic, họ đang nhìn thấy mối đe dọa này không?
+
+[GUEST] Rõ ràng là có, và thỏa thuận TPU 3,5 gigawatt là phản ứng của họ. Nếu bạn kiểm soát lớp điện toán và có thể đào tạo mô hình thế hệ tiếp theo nhanh hơn bất kỳ ai có thể sao chép nó trên cơ sở hạ tầng mã nguồn mở, bạn tái tạo khoảng cách chất lượng. Đó là canh bạc họ đang đặt. Và nó có thể hoạt động, vì lịch sử cho thấy trong các cuộc đua điện toán, người kiểm soát phần cứng thường thắng trong dài hạn. Câu hỏi là liệu chu kỳ phát hành của mô hình trọng số mở, bao gồm Gemma, Llama, và Mistral, có nhanh hơn chu kỳ đào tạo của các mô hình tiền tuyến độc quyền hay không.
+
+[GUEST] Một câu dự báo để mang từ phần này. Câu hỏi về mô hình trọng số mở so với độc quyền sẽ được quyết định trong quý 2 năm 2026 không phải bởi mô hình nào tốt hơn, mà là bởi nhóm nào đã xây dựng lớp quản trị để triển khai một trong hai một cách an toàn.
+
+[SEGMENT_BREAK: Tín hiệu tuần tới]
+
+[HOST] Trước khi khép lại, nhìn ra hai đến bốn tuần tới. Tín hiệu gì cần theo dõi?
+
+[GUEST] Tín hiệu thứ nhất. Google Cloud Next chạy ngày 22 và 23 tháng 4. Anthropic đang trình bày, và dựa trên thông báo điện toán của họ trong tuần này, họ có khả năng tiết lộ các tính năng luồng công việc agent doanh nghiệp mới và có thể là các cấu trúc định giá mới gắn với kết quả thực thi thay vì tiêu thụ token. Hãy xem cụ thể liệu họ có thông báo nhật ký kiểm toán cấp mô hình hay sản phẩm quản trị agent không. Điều đó sẽ xác nhận hướng đi mà Gartner gọi trong tuần này. Nếu họ thông báo, cuộc chuyển dịch doanh nghiệp từ copilot sang AI thực thi sẽ tăng tốc trước timeline năm 2028.
+
+[HOST] Tín hiệu thứ hai?
+
+[GUEST] Tín hiệu thứ hai. Các tiết lộ hạ nguồn từ vụ tấn công LiteLLM. Mercor nói họ là một trong hàng nghìn công ty bị ảnh hưởng. Trong hai đến ba tuần tới, khi phân tích pháp y hoàn tất, nhiều công ty hơn sẽ phát hành thông báo vi phạm. Hãy xem cụ thể liệu có tiết lộ nào liên quan đến việc xâm phạm dữ liệu huấn luyện AI hoặc trọng số mô hình từ chuỗi cung ứng của OpenAI, Anthropic, hoặc Meta không. Nếu có, phản ứng bảo mật trên toàn ngành sẽ định hình lại cách các nhóm doanh nghiệp kiến trúc stack phụ thuộc AI của họ gần như ngay lập tức. Đó là thị trường công cụ quản trị mười tỷ đô la Mỹ đang chờ được mở khóa.
+
+[HOST] Tín hiệu thứ ba?
+
+[GUEST] Tín hiệu thứ ba. Quyết định của Ủy ban châu Âu về Digital Omnibus. Ủy ban châu Âu dự kiến sẽ phán quyết về việc có gia hạn thời hạn thực thi hệ thống rủi ro cao của Đạo luật AI EU từ ngày 2 tháng 8 năm 2026 đến tháng 12 năm 2027 hay không. Nếu họ từ chối gia hạn, năm tháng nữa đột nhiên là một vách đá thực thi cho bất kỳ triển khai AI đối mặt với thị trường châu Âu nào trong nhân sự, chăm sóc sức khỏe, tín dụng, hoặc giáo dục. Hãy xem phán quyết của Ủy ban trong ba đến bốn tuần tới. Quyết định đơn lẻ đó thay đổi lộ trình tuân thủ cho hàng trăm chương trình AI doanh nghiệp.
+
+[HOST] Còn đường cong áp dụng Gemma 4?
+
+[GUEST] Thêm một cái nữa. Hãy xem các chỉ số sử dụng Cloudflare Workers AI và Vertex AI cho Gemma 4 trong ba mươi ngày tới. Nếu việc áp dụng nhanh hơn Gemma 2 ở cùng giai đoạn, đó là chỉ số dẫn đường của kịch bản bull cho migration trọng số mở. Nếu nó chậm hơn bất chấp bước nhảy chất lượng, điều đó cho thấy ma sát triển khai trong kịch bản base là có thật.
+
+[SEGMENT_BREAK: Kết]
+
+[HOST] Tuần này thiết lập điều gì đó quan trọng. Lập luận rằng AI không thể sánh được với chất lượng độc quyền trên một giấy phép mã nguồn mở đã xong. Gemma 4 kết thúc nó. Đồng thời, lập luận rằng hạ tầng AI đủ an toàn để tin tưởng với dữ liệu nhạy cảm nhất của bạn vừa bị giáng một đòn nghiêm trọng. LiteLLM trong ba mươi sáu phần trăm môi trường đám mây, bị xâm phạm trong một cửa sổ ba tiếng. Cả hai điều này đều đúng cùng một lúc, và cách duy nhất để vận hành một cách thông minh trong mâu thuẫn đó là đóng khoảng cách tin tưởng, không phải đợi nó tự đóng.
+
+[GUEST] Một điều tôi sẽ mang từ tuần này là các nhóm thắng trên AI không phải là những người có mô hình tốt nhất. Họ là những người đã xây dựng lớp quản trị trước khi làn sóng năng lực đến. Năng lực bây giờ dồi dào và rẻ. Điều hiếm có và quý giá là kỷ luật để triển khai nó một cách an toàn. Kỷ luật đó cần thời gian để xây dựng. Nó không có sẵn theo yêu cầu sau một vụ vi phạm.
+
+[HOST] Trước khi kết thúc, ba câu hỏi mở mà anh em mang vào cuộc họp tuần sau.
+
+[HOST] Câu một. Nếu các mô hình trọng số mở như Gemma 4 đã vượt qua ngưỡng chất lượng cho hầu hết các trường hợp sử dụng kinh doanh, lợi thế cạnh tranh trong AI có chuyển hoàn toàn sang dữ liệu, hạ tầng triển khai, và kiến trúc tin tưởng không, và nếu vậy, nhóm của bạn có đang xây dựng ở lớp đúng không?
+
+[HOST] Câu hai. Cuộc tấn công LiteLLM chỉ hiển thị trên PyPI trong ba tiếng. Bao nhiêu nhóm trong tổ chức của bạn có hạ tầng kiểm tra phụ thuộc để phát hiện một gói bị xâm phạm trong cửa sổ ba tiếng đồng hồ, và sẽ mất bao nhiêu chi phí để xây dựng khả năng đó trước cuộc tấn công tiếp theo?
+
+[HOST] Câu ba. Gartner nói thời đại copilot kết thúc vào năm 2028 và AI thực thi là tương lai. Nhưng nếu chỉ có mười lăm phần trăm doanh nghiệp đang thấy cải thiện EBITDA từ AI ngày nay, liệu chúng ta có đang thay thế một thứ không hoạt động bằng phiên bản tham vọng hơn của cùng một thứ đó không, hay thời đại AI thực thi thực sự khác vì nó buộc lớp quản trị mà các copilot cho phép bạn bỏ qua?
+
+[GUEST] Ba câu hỏi hay mà chưa có câu trả lời gọn gàng. Đó chính xác là nơi ngành đang đứng ngay bây giờ. Năng lực dồi dào. Sự tin tưởng chưa đủ. Và công việc của mười hai tháng tới là đóng khoảng cách đó trước khi các cơ quan quản lý đóng nó thay bạn.
+
+[HOST] Nước có lớn cỡ nào thì xuồng nào buộc dây chắc, biết coi con nước, xuồng đó đi xa.
+
+[OUTRO_MUSIC]
+
+SOURCES:
+1. Google DeepMind Blog — https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/ — ngày 2 tháng 4 năm 2026 — dẫn chứng thông số Gemma 4, xếp hạng leaderboard, giấy phép Apache 2.0
+2. Cloudflare Changelog — https://developers.cloudflare.com/changelog/post/2026-04-04-gemma-4-26b-a4b-workers-ai/ — ngày 4 tháng 4 năm 2026 — dẫn chứng Gemma 4 trên Workers AI
+3. The Register — https://www.theregister.com/2026/04/07/broadcom_google_chip_deal_anthropic_customer/ — ngày 7 tháng 4 năm 2026 — dẫn chứng doanh thu 30 tỷ Anthropic, hơn 1000 khách hàng doanh nghiệp, thỏa thuận TPU Google
+4. Anthropic — https://www.anthropic.com/news/google-broadcom-partnership-compute — ngày 6 tháng 4 năm 2026 — dẫn chứng chi tiết thỏa thuận TPU 3.5 GW
+5. Gartner — https://www.gartner.com/en/newsroom/press-releases/2026-04-02-gartner-expects-most-enterprises-to-abandon-assistive-ai-for-outcome-focused-workflow-by-2028 — ngày 2 tháng 4 năm 2026 — dẫn chứng dự báo từ bỏ copilot, rủi ro mất 80 phần trăm biên lợi nhuận
+6. The Register — https://www.theregister.com/2026/04/02/mercor_supply_chain_attack/ — ngày 2 tháng 4 năm 2026 — dẫn chứng vụ tấn công LiteLLM, tuyên bố Mercor, 36 phần trăm môi trường đám mây
+7. BusinessUpturn — https://www.businessupturn.com/technology/a-10-billion-ai-startup-that-works-with-openai-and-anthropic-just-had-4-terabytes-of-data-stolen-here-is-what-happened/ — dẫn chứng 4TB bị đánh cắp, chi tiết vụ vi phạm
+8. Observer — https://observer.com/2026/04/agentic-ai-operating-model-enterprise-adoption/ — ngày 3 tháng 4 năm 2026 — dẫn chứng mô hình thất bại triển khai agent
+9. Forrester — https://investor.forrester.com/news-releases/news-release-details/forrester-three-years-genai-enterprises-are-still-chasing-its — dẫn chứng 15 phần trăm cải thiện EBITDA, trì hoãn 25 phần trăm chi tiêu, chi phí tích hợp 40 đến 60 phần trăm OpEx
+10. TensorVue — https://tensorvue.com/article/eu-ai-act-countdown-five-months-until-the-worlds-most-ambitious-ai-regulation-hits-high-risk-systems — dẫn chứng thời hạn ngày 2 tháng 8 năm 2026, 15 phần trăm sẵn sàng tuân thủ, mức phạt
+11. TechCrunch — https://techcrunch.com/2026/04/06/openai-alums-have-been-quietly-investing-from-a-new-potentially-100m-fund/ — ngày 6 tháng 4 năm 2026 — dẫn chứng quỹ Zero Shot, đầu tư Foundry Robotics
+12. Anthropic — https://www.anthropic.com/events/anthropic-at-google-cloud-next-2026 — dẫn chứng trình bày Google Cloud Next ngày 22 đến 23 tháng 4

@@ -1,0 +1,23 @@
+{
+  "episode": 3,
+  "date": "April 3rd, 2026",
+  "date_slug": "2026_04_03",
+  "format": "solo",
+  "language": "vi",
+  "host": "Trung",
+  "duration_min": 17.4,
+  "script_words": 3621,
+  "host_turns": 37,
+  "files": {
+    "brief": "brief.md",
+    "script_en": "script_en.txt",
+    "script_vi": "script_vi.txt",
+    "final_mp3": "exports/daily_2026_04_03_vi_final.mp3"
+  },
+  "top_stories": [
+    "Google Gemma 4: 31B model ranks #3 globally, Apache 2.0, 256K context — Google DeepMind",
+    "Microsoft MAI Models: MAI-Transcribe-1 2.5x faster at $0.36/hr, breaking from OpenAI — TechCrunch",
+    "Mercor LiteLLM supply chain attack: 4TB stolen, 36% of cloud AI environments affected — Fortune/The Register"
+  ],
+  "analyst_theme": "AI infrastructure is commoditizing in capability while simultaneously becoming a concentrated and under-defended security attack surface"
+}

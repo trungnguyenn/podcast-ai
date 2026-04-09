@@ -1,0 +1,690 @@
+{
+  "enabled": true,
+  "provider": "vieneu",
+  "engine_mode_requested": "standard",
+  "segments_total": 45,
+  "segments_generated": 45,
+  "attempt_count": 45,
+  "tts_runtime_seconds": 819.521,
+  "audio_duration_seconds_generated": 1080.976,
+  "rtf": 0.7581,
+  "generated_at": "2026-04-09T10:12:37",
+  "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/exports/daily_0409_vi_final.mp3",
+  "records": [
+    {
+      "idx": 0,
+      "speaker": "HOST",
+      "chars": 463,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 19.328
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0000_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 1,
+      "speaker": "HOST",
+      "chars": 444,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 18.318
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0001_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 2,
+      "speaker": "HOST",
+      "chars": 91,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 3.797
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0002_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 3,
+      "speaker": "HOST",
+      "chars": 487,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 28.301
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0003_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 4,
+      "speaker": "HOST",
+      "chars": 699,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 33.983
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0004_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 5,
+      "speaker": "HOST",
+      "chars": 876,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 40.831
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0005_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 6,
+      "speaker": "HOST",
+      "chars": 81,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 3.412
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0006_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 7,
+      "speaker": "HOST",
+      "chars": 343,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 13.546
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0007_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 8,
+      "speaker": "HOST",
+      "chars": 564,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 23.34
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0008_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 9,
+      "speaker": "HOST",
+      "chars": 708,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 28.065
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0009_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 10,
+      "speaker": "HOST",
+      "chars": 103,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 5.412
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0010_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 11,
+      "speaker": "HOST",
+      "chars": 566,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 22.722
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0011_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 12,
+      "speaker": "HOST",
+      "chars": 343,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 15.416
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0012_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 13,
+      "speaker": "HOST",
+      "chars": 455,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 21.757
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0013_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 14,
+      "speaker": "HOST",
+      "chars": 70,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 2.706
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0014_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 15,
+      "speaker": "HOST",
+      "chars": 576,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 25.885
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0015_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 16,
+      "speaker": "HOST",
+      "chars": 654,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 29.875
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0016_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 17,
+      "speaker": "HOST",
+      "chars": 359,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 16.729
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0017_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 18,
+      "speaker": "HOST",
+      "chars": 102,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 4.895
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0018_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 19,
+      "speaker": "HOST",
+      "chars": 234,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 10.28
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0019_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 20,
+      "speaker": "HOST",
+      "chars": 473,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 20.256
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0020_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 21,
+      "speaker": "HOST",
+      "chars": 349,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 16.62
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0021_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 22,
+      "speaker": "HOST",
+      "chars": 68,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 3.329
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0022_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 23,
+      "speaker": "HOST",
+      "chars": 669,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 29.983
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0023_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 24,
+      "speaker": "HOST",
+      "chars": 777,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 39.123
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0024_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 25,
+      "speaker": "HOST",
+      "chars": 351,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 15.179
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0025_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 26,
+      "speaker": "HOST",
+      "chars": 576,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 23.682
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0026_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 27,
+      "speaker": "HOST",
+      "chars": 88,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 3.306
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0027_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 28,
+      "speaker": "HOST",
+      "chars": 473,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 20.296
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0028_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 29,
+      "speaker": "HOST",
+      "chars": 468,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 22.113
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0029_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 30,
+      "speaker": "HOST",
+      "chars": 454,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 23.037
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0030_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 31,
+      "speaker": "HOST",
+      "chars": 56,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 2.422
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0031_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 32,
+      "speaker": "HOST",
+      "chars": 482,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 22.38
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0032_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 33,
+      "speaker": "HOST",
+      "chars": 510,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 26.268
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0033_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 34,
+      "speaker": "HOST",
+      "chars": 574,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 25.862
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0034_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 35,
+      "speaker": "HOST",
+      "chars": 613,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 26.168
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0035_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 36,
+      "speaker": "HOST",
+      "chars": 52,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 2.379
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0036_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 37,
+      "speaker": "HOST",
+      "chars": 53,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 2.648
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0037_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 38,
+      "speaker": "HOST",
+      "chars": 528,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 26.822
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0038_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 39,
+      "speaker": "HOST",
+      "chars": 482,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 20.512
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0039_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 40,
+      "speaker": "HOST",
+      "chars": 494,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 20.941
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0040_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 41,
+      "speaker": "HOST",
+      "chars": 34,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 1.417
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0041_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 42,
+      "speaker": "HOST",
+      "chars": 444,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 16.895
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0042_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 43,
+      "speaker": "HOST",
+      "chars": 571,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 23.184
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0043_HOST_vieneu_s120.mp3"
+    },
+    {
+      "idx": 44,
+      "speaker": "HOST",
+      "chars": 330,
+      "cached": false,
+      "ok": true,
+      "attempts": [
+        {
+          "engine_mode": "standard",
+          "ok": true,
+          "elapsed_s": 16.101
+        }
+      ],
+      "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments/seg_0044_HOST_vieneu_s120.mp3"
+    }
+  ]
+}

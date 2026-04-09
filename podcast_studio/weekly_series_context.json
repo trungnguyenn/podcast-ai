@@ -1,0 +1,6 @@
+{
+  "_readme": "Series memory for weekly-ai-podcast. Written only by weekly-ai-podcast episodes. Safe to run in parallel with daily_series_context.json.",
+  "covered_stories": [],
+  "open_forecasts": [],
+  "running_themes": []
+}

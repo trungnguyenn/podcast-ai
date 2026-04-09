@@ -1,0 +1,44 @@
+{
+  "workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407",
+  "episode": "weekly_0407",
+  "request": "",
+  "episode_config": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/episode.json",
+  "scripts": {
+    "selected": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/script_en.txt",
+    "english": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/script_en.txt",
+    "vietnamese": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/script_vi.txt"
+  },
+  "research": {
+    "merged": "",
+    "dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/research"
+  },
+  "prompts_dir": "",
+  "logs_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/logs",
+  "cache": {
+    "segments_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/cache/segments"
+  },
+  "shared_resources": {
+    "produce_audio_script": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/scripts/produce_audio.py",
+    "voice_config": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/voice_config.json",
+    "assets_dir": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets",
+    "music_assets": {
+      "outro": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/outro.mp3",
+      "intro": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/intro.mp3"
+    },
+    "transition_asset": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/transition.mp3"
+  },
+  "render": {
+    "tts_provider": "edge_tts",
+    "vieneu_engine_mode": "",
+    "speech_total": 107,
+    "speech_generated": 107,
+    "speaker_counts": {
+      "HOST": 58,
+      "GUEST": 49
+    },
+    "sfx_total": 10,
+    "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/exports/weekly_0407_en_final.mp3"
+  },
+  "request_summary": {},
+  "updated_at": "2026-04-07T19:42:08"
+}

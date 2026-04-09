@@ -1,0 +1,68 @@
+{
+  "episode": "ep17_ai_weekly_radar_forecast",
+  "title": "",
+  "tts_provider": "vieneu",
+  "vieneu_engine_mode": "standard",
+  "voices": {
+    "HOST": {
+      "voice_id": "Vinh",
+      "name": "Trung",
+      "profile": "host",
+      "region": "south",
+      "pace": "fast",
+      "energy": "warm_confident",
+      "vieneu_profile": "host_default",
+      "pace_profile": "host_broadcast_fast",
+      "vieneu_request": {
+        "temperature": 0.82,
+        "top_k": 40,
+        "max_chars": 185,
+        "silence_p": 0.08,
+        "crossfade_p": 0.035
+      },
+      "ref_audio": "",
+      "ref_text": "",
+      "ref_codes": null,
+      "selection_method": "config"
+    },
+    "GUEST": {
+      "voice_id": "Doan",
+      "name": "An",
+      "role": "AI Market & Product Strategist",
+      "profile_id": "female_expert",
+      "profile_description": "Confident, expert, warm",
+      "region": "south",
+      "pace": "medium_fast",
+      "energy": "warm_firm",
+      "vieneu_profile": "guest_expert",
+      "pace_profile": "guest_conversational_fast",
+      "vieneu_request": {
+        "temperature": 0.8,
+        "top_k": 38,
+        "max_chars": 190,
+        "silence_p": 0.085,
+        "crossfade_p": 0.035
+      },
+      "ref_audio": "",
+      "ref_text": "",
+      "ref_codes": null,
+      "selection_method": "explicit:female_expert"
+    }
+  },
+  "segments": {
+    "speech": {
+      "total": 258,
+      "generated": 258,
+      "by_speaker": {
+        "HOST": 136,
+        "GUEST": 122
+      }
+    },
+    "music": 2,
+    "sfx": 10
+  },
+  "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/ep17_ai_weekly_radar_forecast/exports/ep17_ai_weekly_radar_forecast_vi_final.mp3",
+  "date": "2026-04-03",
+  "workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/ep17_ai_weekly_radar_forecast",
+  "cache_segments_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/ep17_ai_weekly_radar_forecast/cache/segments"
+}

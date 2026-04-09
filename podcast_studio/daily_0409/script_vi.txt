@@ -1,0 +1,109 @@
+TITLE: AI Daily — Ngày 9 tháng 4 năm 2026
+SUBTITLE: Anthropic xây dựng một AI tìm ra lỗi mà con người bỏ sót suốt 27 năm, rồi quyết định nó quá nguy hiểm để phát hành công khai. Đây là ý nghĩa của nó đối với hệ thống legacy và lộ trình của bạn.
+EPISODE: #6 | 2026-04-09 | Host: Trung
+
+[INTRO_MUSIC]
+
+[HOST] 77,8 phần trăm. Đó là điểm số của Claude Mythos trên SWE Bench Pro, bài kiểm tra kỹ nghệ phần mềm khắt khe nhất mà chúng ta hiện có. Kỷ lục trước đó thuộc về Claude Opus 4.6, với 53,4 phần trăm. Một bước nhảy 24 điểm trong một thế hệ model duy nhất, lớn nhất từng được ghi nhận. Và Anthropic đã nhìn vào model này rồi nói: chúng tôi sẽ không phát hành nó cho công chúng. Quyết định đó, hơn bất kỳ con số benchmark nào, mới chính là câu chuyện của bản tin hôm nay.
+
+[HOST] Hôm nay là ngày 9 tháng 4 năm 2026. Tôi là Trung, và đây là AI Daily. Trong 20 phút tới, bạn sẽ hiểu tại sao model viết code mạnh nhất từng được tạo ra lại bị giữ sau cánh cửa đóng kín, điều đó có ý nghĩa gì với 1,68 nghìn tỷ đô la mà thế giới đang chi để bảo trì các hệ thống legacy, và tại sao y tế là lĩnh vực mà tất cả những điều này hội tụ thành một quyết định bạn cần đưa ra trong quý này. Ba câu chuyện, một mẫu hình chung. Bắt đầu thôi.
+
+[SEGMENT_BREAK: Tin số 1 — Anthropic Mythos: Model quá nguy hiểm để phát hành]
+
+[HOST] Hãy để tôi trình bày toàn bộ bức tranh về Mythos, bởi vì các con số benchmark đơn thuần không cho bạn biết điều bạn cần biết. SWE Bench Pro: 77,8 phần trăm, tăng từ 53,4. SWE Bench Verified: 93,9, tăng từ 80,8. SWE Bench Multimodal: 59, tăng từ 27,1, gấp hơn hai lần. Terminal Bench 2.0: 82, tăng từ 65,4. GPQA Diamond cho suy luận khoa học: 94,6. Humanity's Last Exam: 56,8, tăng từ 40. Trên mọi hạng mục benchmark, đây không phải là cải tiến tuần tự. Đây là một bước nhảy phi liên tục.
+
+[HOST] Nhưng đây là chỗ câu chuyện thực sự trở nên quan trọng. Trên các benchmark an toàn thông tin, Mythos đạt 100 phần trăm trên Cybench CTF và 83,1 trên CyberGym, tăng từ 66,6. Nó đạt tỷ lệ thành công 72,4 phần trăm trong việc tạo ra các exploit hoạt động được cho lỗ hổng zero day. Tỷ lệ của Opus 4.6 trên cùng bài kiểm tra đó gần như bằng không. Trong quá trình thử nghiệm với Project Glasswing, liên minh gồm 12 đối tác phát hành đầu tiên của Anthropic bao gồm AWS, Apple, Microsoft, Google, NVIDIA và CrowdStrike, model đã phát hiện hàng ngàn lỗ hổng zero day có mức nghiêm trọng cao trên mọi hệ điều hành và trình duyệt web lớn. Hơn 99 phần trăm các lỗ hổng đó chưa được vá tại thời điểm phát hiện.
+
+[HOST] Tôi sẽ đưa ra ba ví dụ cụ thể để bạn hiểu mức độ suy luận mà chúng ta đang nói đến. Thứ nhất: một lỗi null pointer dereference 27 năm tuổi trong cài đặt TCP SACK của OpenBSD. Đây là một lỗi mạng đã tồn tại trong một trong những hệ điều hành được kiểm tra bảo mật kỹ lưỡng nhất thế giới suốt gần ba thập kỷ. Mythos đã tìm ra nó. Thứ hai: một lỗi ghi ngoài biên heap 16 năm tuổi trong codec H.264 của FFmpeg, một phần mềm được sử dụng bởi hàng tỷ thiết bị. Thứ ba, và đây là cái khiến tôi phải ngồi thẳng dậy: một lỗ hổng thực thi mã từ xa 17 năm tuổi trong NFS của FreeBSD, nơi Mythos đã tự chủ phát triển một chuỗi ROP hoàn chỉnh xuyên qua nhiều gói tin mạng. Điều đó có nghĩa là model không chỉ tìm ra lỗi. Nó đã thiết kế một chuỗi exploit đa bước vượt qua ranh giới nhiều gói tin. Điều này đòi hỏi phải suy luận đồng thời qua bố cục bộ nhớ, giao thức mạng và luồng thực thi.
+
+[SEGMENT_BREAK: Xác nhận từ chuyên gia và quyết định của Anthropic]
+
+[HOST] Các chuyên gia bảo mật đã xác nhận độ chính xác: 89 phần trăm báo cáo lỗi của Mythos khớp chính xác với đánh giá mức nghiêm trọng của các nhà nghiên cứu bảo mật chuyên nghiệp. Đây không phải model ảo giác ra các CVE. Đây là một model đang làm công việc mà trước đây đòi hỏi các đội nghiên cứu bảo mật hàng đầu phải bỏ ra nhiều tháng tập trung.
+
+[HOST] Và đây là lý do Anthropic đưa ra quyết định mà họ đã đưa ra. Họ tuyên bố rõ ràng rằng Mythos, tôi trích dẫn nguyên văn, "quá nguy hiểm cho việc phát hành thương mại rộng rãi" do hậu quả nghiêm trọng tiềm tàng đối với nền kinh tế, an toàn công cộng và an ninh quốc gia. Thay vào đó, họ tạo ra Project Glasswing, cam kết tới 100 triệu đô la tín dụng sử dụng và 4 triệu đô la tài trợ trực tiếp cho các tổ chức bảo mật mã nguồn mở. Quyền truy cập bị giới hạn cho 12 đối tác phát hành cùng khoảng 40 tổ chức bổ sung chịu trách nhiệm bảo trì hạ tầng phần mềm quan trọng.
+
+[HOST] Đối với các engineering manager, tín hiệu cạnh tranh ở đây rất rõ ràng. Các tổ chức bên trong Project Glasswing giờ đây có lợi thế đi trước 3 đến 6 tháng trong việc kiểm toán bảo mật và phân tích code legacy bằng AI ở mức năng lực không tồn tại cách đây hai tuần. Nếu bạn nằm ngoài nhóm đó, việc xây dựng quan hệ với Anthropic không còn là công việc mua sắm nữa. Nó là ưu tiên chiến lược. Và nếu bạn đang đánh giá tư thế bảo mật của chính mình, hãy hiểu điều này: nếu một model có thể tìm ra lỗi 27 năm tuổi trong OpenBSD, câu hỏi không phải là liệu code legacy của bạn có lỗ hổng tương tự không. Câu hỏi là khi nào ai đó có quyền truy cập vào model như thế này, dù phòng thủ hay tấn công, sẽ tìm thấy chúng.
+
+[SEGMENT_BREAK: Tin số 2 — Hệ thống Legacy: Bài toán 1,68 nghìn tỷ đô la mà AI sắp phá vỡ]
+
+[HOST] Câu chuyện Mythos kết nối trực tiếp với một trong những vấn đề cấu trúc lớn nhất trong công nghệ doanh nghiệp: bảo trì hệ thống legacy. Đây là những con số cần đóng khung tư duy của bạn. Các tổ chức doanh nghiệp chi khoảng 72 phần trăm ngân sách CNTT để duy trì các hệ thống cũ. Trên toàn cầu, đó là 1,68 nghìn tỷ đô la mỗi năm cho việc bảo trì ứng dụng, tăng 15 đến 20 phần trăm mỗi năm đối với các framework hết vòng đời. Chỉ còn 28 phần trăm ngân sách CNTT dành cho đổi mới. Đó là khoản thuế mà tổ chức của bạn đang trả cho code được viết cách đây 10, 15, 20 năm.
+
+[HOST] Cách tiếp cận truyền thống cho hiện đại hóa legacy rất tàn khốc. Viết lại toàn bộ tốn từ 500 nghìn đến 2 triệu đô la hoặc hơn, mất 12 đến 24 tháng, và có tỷ lệ thất bại 70 phần trăm. Tỷ lệ thất bại đó là lý do hầu hết các tổ chức chọn sống chung với nợ kỹ thuật thay vì giải quyết nó. Rủi ro đơn giản là quá cao so với lợi ích không chắc chắn.
+
+[HOST] Nhưng kinh tế học đã thay đổi đáng kể trong năm 2026. Các đội AI first giờ đây có thể nén 6 tháng viết lại xuống còn 8 đến 12 tuần với chi phí thấp hơn 75 phần trăm. Đội ngũ 3 kỹ sư được tăng cường bởi AI đang thay thế vai trò mà trước đây cần 8 người. Nghiên cứu của IBM cho thấy giảm 74 phần trăm chi phí CNTT nhờ hiện đại hóa có hỗ trợ AI. AWS báo cáo giảm 66 phần trăm chi phí hạ tầng. Thời gian đưa tính năng mới ra thị trường cải thiện 43 phần trăm.
+
+[SEGMENT_BREAK: Khi năng lực Mythos gặp bài toán legacy]
+
+[HOST] Bây giờ hãy xếp chồng năng lực cấp Mythos lên trên những con số đó. Một model đạt 93,9 phần trăm trên SWE Bench Verified và có thể tự chủ điều hướng các codebase không có tài liệu để tìm lỗi ẩn suốt 27 năm, model đó không chỉ viết code mới. Nó đọc code cũ. Nó hiểu các hệ thống mà không ai trong đội ngũ hiện tại của bạn đã xây dựng. Nó lập bản đồ dependency trong các kiến trúc monolithic mà một kỹ sư con người sẽ mất hàng tuần để truy vết. Rào cản khiến việc viết lại legacy rất rủi ro, tức là không ai hiểu đầy đủ hệ thống cũ, đang được các model này giải quyết trực tiếp.
+
+[HOST] Đối với các manager, đây là khung ra quyết định. Hãy lấy ba hệ thống legacy tốn kém nhất của bạn. Tính toán chi phí thực sự hàng năm: bảo trì trực tiếp, lương chuyên gia ở mức 150 đến 300 đô la mỗi giờ cho các chuyên gia COBOL hoặc tương đương, chi phí cơ hội của 72 phần trăm ngân sách mà chúng tiêu tốn, và rủi ro bảo mật ở mức trung bình 1,9 triệu đô la cho mỗi vụ vi phạm. Nếu tổng đó vượt quá 750 nghìn đô la mỗi năm, mà với hầu hết hệ thống doanh nghiệp thì đúng là vậy, một dự án thí điểm hiện đại hóa với hỗ trợ AI gần như chắc chắn có NPV dương trong Q3 năm 2026. Những dự án bạn hoãn lại trong năm 2025 vì rủi ro quá cao giờ đây có thể khả thi.
+
+[HOST] Đối với các builder, điểm khởi đầu có tỷ suất hoàn vốn cao nhất không phải là viết lại toàn bộ. Mà là lập bản đồ dependency và tạo bộ kiểm thử tự động. Đây là hai tác vụ mà các model AI vượt trội trên code legacy và việc có kết quả đầu ra sẽ giảm đáng kể rủi ro cho công việc tái cấu trúc tiếp theo. Hãy bắt đầu từ đó. Chứng minh giá trị. Rồi mở rộng phạm vi.
+
+[SEGMENT_BREAK: Tin số 3 — Agentic AI trong Y tế: Nơi code legacy gặp quyết định sinh tử]
+
+[HOST] Bây giờ hãy nhìn vào lĩnh vực mà tất cả những điều này hội tụ cấp bách nhất: y tế. Và tôi chọn y tế cụ thể vì nó kết hợp ba lực lượng chúng ta đã thảo luận: hạ tầng legacy khổng lồ, năng lực agentic AI, và áp lực pháp lý đặc biệt cao.
+
+[HOST] Ngành y tế vận hành trên một số phần mềm phân mảnh và lỗi thời nhất trong bất kỳ ngành nào. Epic nắm giữ khoảng 36 phần trăm thị trường hồ sơ bệnh án điện tử Hoa Kỳ, và nhiều triển khai đang chạy trên các giao diện được thiết kế cách đây hàng thập kỷ. HL7 phiên bản 2, tiêu chuẩn nhắn tin phổ biến nhất, được xuất bản lần đầu năm 1988. Vấn đề khả năng liên thông trong y tế không phải là vấn đề công nghệ. Nó là vấn đề hạ tầng legacy được bọc trong sự phức tạp về quy định.
+
+[HOST] Agentic AI giờ đang tiến vào không gian này với tốc độ nhanh chóng. 61 phần trăm các lãnh đạo y tế đã đang xây dựng hoặc đã có ngân sách cho các sáng kiến agentic AI. 85 phần trăm kỳ vọng giá trị từ trung bình đến đáng kể trên các chức năng lâm sàng, kinh doanh và văn phòng trong năm 2026. Đây không còn là thử nghiệm nữa. Đây là đầu tư chiến lược.
+
+[SEGMENT_BREAK: Kết quả thực chiến và rào cản pháp lý]
+
+[HOST] Kết quả từ những người tiên phong rất thuyết phục. Greenway Health ra mắt Novare vào tháng 3 năm 2026, được mô tả là nền tảng AI native đầu tiên được xây dựng để tái tạo hệ thống hồ sơ bệnh án điện tử legacy. Kết quả thí điểm: tiết kiệm 14.000 giờ mỗi năm cho mỗi cơ sở y tế, tương đương với 5 giờ ít hơn mỗi bác sĩ mỗi ngày khi tương tác với hệ thống EHR. Điều đó chuyển thành khoảng 6.000 lượt khám bệnh bổ sung mỗi năm và lên đến 1 triệu đô la cải thiện chu kỳ doanh thu. Một hệ thống AI đa ngôn ngữ riêng biệt tích hợp với EHR legacy đã giảm 35 phần trăm thời gian tiếp nhận bệnh nhân, tăng 22 phần trăm lượt tái khám, và cắt giảm 40 phần trăm công việc hành chính.
+
+[HOST] Nhưng đây là thực tế pháp lý khiến y tế trở nên phức tạp đặc biệt cho agentic AI. Vào ngày 16 tháng 2 năm 2026, Bộ Y tế và Dịch vụ Nhân sinh Hoa Kỳ đã hoàn thiện các bản cập nhật cho Quy tắc Bảo mật HIPAA, lần đầu tiên giải quyết rõ ràng vấn đề AI agent xử lý thông tin y tế được bảo vệ. Đây là một sự thay đổi mô hình. Các quy tắc mới yêu cầu phân tích rủi ro đặc thù cho AI, bao gồm các hạng mục không tồn tại trong các quy định trước đây: rủi ro ảo giác, lỗ hổng prompt injection, rò rỉ dữ liệu huấn luyện, và vượt phạm vi, tức là AI làm nhiều hơn những gì được ủy quyền. Mức phạt tối đa có thể lên đến 2,13 triệu đô la cho mỗi hạng mục vi phạm mỗi năm. Luật AB 489 của California đã có hiệu lực, và hơn 10 tiểu bang khác đang có các dự luật AI y tế tương tự đang chờ xử lý.
+
+[HOST] Đối với các engineering manager trong y tế: diện tích bề mặt pháp lý cho agentic AI lớn gấp 3 đến 5 lần so với phần mềm truyền thống. Bạn cần các đội kỹ thuật tuân thủ chuyên biệt, không chỉ là các kỹ sư sản phẩm. Người chiến thắng trong không gian này sẽ là những tổ chức coi kiến trúc tuân thủ là lợi thế cạnh tranh, không phải là ô đánh dấu cho có.
+
+[HOST] Đối với các builder: chiến lược không phải là thay thế các hệ thống EHR legacy. Đó là một trận chiến thua chắc đã tiêu tốn hàng tỷ đô la và nhiều năm nỗ lực trên toàn ngành. Chiến lược là xây dựng các lớp vỏ agentic an toàn, có thể kiểm toán được bao quanh hạ tầng hiện có. Hãy nghĩ về nó như một middleware nói HL7 ở một phía và FHIR ở phía kia, với một lớp suy luận AI ở giữa có thể điều phối các quy trình lâm sàng phức tạp trong khi duy trì một hệ thống theo dõi kiểm toán bất biến cho việc tuân thủ. Cơ hội nằm ở điều phối và trí tuệ, không phải ở việc xây lại đường ống.
+
+[SEGMENT_BREAK: Phân tích — Khi AI trở thành bác sĩ phẫu thuật cho code cũ]
+
+[HOST] Hãy để tôi lùi lại khỏi ba câu chuyện riêng lẻ và cho bạn biết mẫu hình tôi thấy chạy xuyên suốt mọi tin tức hôm nay. Chúng ta đang chứng kiến một sự thay đổi cơ bản trong mục đích sử dụng AI. Trong ba năm qua, câu chuyện chủ đạo là AI như một công cụ để tạo ra thứ mới: code mới, nội dung mới, sản phẩm mới. Mythos đại diện cho một luận điểm hoàn toàn khác. Năng lực giá trị nhất của các model AI tiên tiến không phải là tạo code mới. Mà là thấu hiểu code chúng ta đã xây.
+
+[HOST] Hãy nghĩ về nó qua lăng kính của ba câu chuyện hôm nay. Mythos tìm ra lỗ hổng tồn tại qua 27 năm review code của con người. Các đội AI đang nén việc viết lại legacy từ 6 tháng xuống 8 tuần. Các tổ chức y tế đang dùng agentic AI để kết nối các hệ thống không bao giờ được thiết kế để nói chuyện với nhau. Trong cả ba trường hợp, AI không tạo ra thứ gì từ đầu. Nó đang điều hướng, thấu hiểu và vận hành bên trong sự phức tạp tích lũy của hàng thập kỷ kỹ thuật con người.
+
+[HOST] Điều này nhắc tôi nhớ đến một mẫu hình từ lịch sử công nghệ. Vào đầu những năm 2010, phong trào DevOps không xây dựng hạ tầng mới từ đầu. Nó xây dựng các công cụ để hiểu, tự động hóa và quản lý hạ tầng lộn xộn, không đồng nhất đã tồn tại. Docker, Kubernetes, Terraform: các công cụ này không thay thế các máy chủ legacy. Chúng trừu tượng hóa và điều phối chúng. Chúng ta đang bước vào thời điểm tương đương của AI. Hãy gọi nó là "AI Ops cho code legacy."
+
+[SEGMENT_BREAK: Hàm ý và khung quyết định]
+
+[HOST] Dòng thời gian hàm ý: trong 30 ngày tới, hãy kỳ vọng các đối tác của Project Glasswing bắt đầu công bố các case study về kiểm toán bảo mật được Mythos hỗ trợ. Trong 60 ngày, kỳ vọng các nhà cung cấp AI doanh nghiệp bắt đầu định vị sản phẩm của họ xung quanh hiện đại hóa legacy như use case chính, không phải phụ. Trong 90 ngày, kỳ vọng làn sóng đầu tiên của các dự án viết lại legacy có hỗ trợ AI cho thấy dữ liệu ROI đo lường được, thay đổi cuộc hội thoại ở cấp hội đồng quản trị.
+
+[HOST] Khung quyết định cho manager tuần này: câu hỏi không còn là "liệu chúng ta có đủ khả năng hiện đại hóa hệ thống legacy không?" Câu hỏi là "liệu chúng ta có đủ khả năng để không làm không?" Với AI nén timeline xuống 75 phần trăm và giảm yêu cầu quy mô đội ngũ hơn một nửa, rào cản tài chính bảo vệ hiện trạng đã sụp đổ. Nếu tổ chức của bạn có một hệ thống đang tốn hơn 750 nghìn đô la mỗi năm gồm chi phí bảo trì, rủi ro bảo mật và chi phí cơ hội, hãy đưa nó vào chương trình nghị sự kế hoạch Q3 trong tuần này.
+
+[HOST] Khung quyết định cho builder: nếu bạn đang xây dựng sản phẩm AI, hãy cân nhắc điều này. Thị trường cho "AI viết code mới" đang trở nên đông đúc nhanh chóng. Mọi nhà cung cấp model đều đưa ra giải pháp đó. Thị trường cho "AI hiểu và vận hành bên trong code cũ" vẫn còn rộng mở và nhu cầu là 1,68 nghìn tỷ đô la mỗi năm. Đó là nơi giá trị phòng thủ được đang xây dựng ngay bây giờ. Lập bản đồ dependency, tạo bộ kiểm thử tự động, pipeline tái cấu trúc an toàn, lớp vỏ tuân thủ cho hệ thống legacy: đây là những sản phẩm mà người mua doanh nghiệp sẽ trả giá cao trong năm 2026.
+
+[HOST] Điều chúng ta chưa biết: liệu các model như Mythos có đủ khả năng tiếp cận để thúc đẩy việc áp dụng đại trà hiện đại hóa legacy hay không, hay chúng sẽ vẫn bị giới hạn trong các quan hệ đối tác tinh hoa. Giá của Anthropic cho tier Capybara, ước tính cao gấp 2 đến 3 lần Opus, có thể giới hạn việc áp dụng chỉ cho các doanh nghiệp lớn. Nếu điều đó xảy ra, khoảng cách giữa các tổ chức có khả năng chi trả cho hiện đại hóa bằng AI tiên tiến và những tổ chức không có khả năng sẽ ngày càng rộng, tạo ra một dạng phân chia kỹ thuật số mới không dựa trên quyền truy cập internet mà dựa trên quyền truy cập năng lực AI.
+
+[SEGMENT_BREAK: Tín hiệu & Quyết định]
+
+[HOST] Trước khi kết thúc, ba điều cần mang theo từ hôm nay.
+
+[HOST] Thứ nhất, tín hiệu bảo mật. Nếu Mythos có thể tìm ra lỗ hổng zero day mà con người bỏ sót suốt 27 năm với tỷ lệ thành công exploit 72,4 phần trăm, mọi hệ thống legacy hiện đang trong production đều có tuổi thọ ngắn hơn bạn nghĩ. Hàm ý: hãy tăng tốc kiểm toán bảo mật cho hạ tầng cũ nhất của bạn. Đừng chờ đến khi các model cấp Mythos phổ biến rộng rãi. Cửa sổ phòng thủ đang thu hẹp vì các tác nhân tấn công cũng đang tiến bộ. Nếu bạn có hệ thống hơn 10 năm tuổi trong production, hãy đưa chúng vào danh sách rà soát bảo mật Q2.
+
+[HOST] Thứ hai, tín hiệu hiện đại hóa legacy. Các đội AI first đang nén 6 tháng viết lại xuống 8 đến 12 tuần với chi phí thấp hơn 75 phần trăm, đây không phải dự đoán tương lai. Nó đang xảy ra ngay bây giờ. Hàm ý: hãy đánh giá lại mọi dự án hiện đại hóa legacy mà bạn đã hoãn trong năm 2025. Chạy lại bài tính ROI cập nhật với giả định đội ngũ được AI tăng cường. Nếu NPV chuyển sang dương, và với nhiều dự án giờ đây nó sẽ như vậy, hãy nhanh chóng thí điểm trước khi ngân sách Q3 bị khóa.
+
+[HOST] Thứ ba, tín hiệu y tế. 61 phần trăm các lãnh đạo y tế đã đang xây dựng agentic AI, nhưng các quy tắc HIPAA 2026 đã tạo ra một lợi thế tuân thủ ưu tiên những người tiên phong đầu tư vào kiến trúc, không chỉ năng lực. Hàm ý: nếu bạn đang xây dựng trong y tế, đầu tư kỹ thuật tuân thủ của bạn nên ít nhất bằng đầu tư năng lực AI. Các đội xây dựng lớp vỏ agentic tuân thủ HIPAA, có thể kiểm toán được bao quanh hệ thống EHR legacy trong năm 2026 sẽ nắm giữ vị thế phòng thủ mạnh nhất trong AI y tế.
+
+[SEGMENT_BREAK: Kết]
+
+[HOST] Hai câu hỏi tôi để mở, vì câu trả lời rất quan trọng và chúng ta chưa có chúng. Thứ nhất: nếu AI có thể tìm ra lỗ hổng mà con người bỏ sót suốt 27 năm, điều đó ngụ ý gì về tư thế bảo mật của mọi hệ thống legacy hiện đang trong production, và ai chịu trách nhiệm pháp lý khi một lỗ hổng được AI phát hiện bị khai thác trước khi nó được vá? Đây không phải giả thuyết. Hơn 99 phần trăm những gì Mythos tìm thấy chưa được vá. Đồng hồ đang tích tắc.
+
+[HOST] Thứ hai: trong y tế, khi một agentic AI đưa ra quyết định lâm sàng dựa trên dữ liệu được trích xuất từ một hệ thống hồ sơ bệnh án điện tử legacy chưa được xác thực trong 15 năm, ai chịu trách nhiệm pháp lý? Nhà cung cấp AI? Bệnh viện? Nhà sản xuất EHR đã ngừng bảo trì giao diện đó cách đây một thập kỷ? Các quy tắc HIPAA 2026 giải quyết rủi ro đặc thù AI, nhưng chúng không trả lời câu hỏi trách nhiệm pháp lý này. Và với 61 phần trăm lãnh đạo y tế đã đang xây dựng agentic AI, câu trả lời sẽ được xác định bởi ai bị kiện trước, không phải bởi ai viết quy định tốt nhất.
+
+[HOST] Hôm nay là ngày 9 tháng 4 năm 2026. Model viết code có năng lực nhất từng được tạo ra đã tồn tại, và nó đang ở sau cánh cửa khóa chặt. Các hệ thống legacy mà bạn luôn sợ phải đụng vào đang bị phơi bày nhiều hơn bạn nghĩ. Và cuộc đua trong y tế không còn là ai xây AI giỏi nhất. Mà là ai xây AI tuân thủ nhất. Hãy xây dựng theo đó.
+
+[OUTRO_MUSIC]
+
+SOURCES:
+1. TechCrunch — https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/ — 2026-04-07 — cited for Mythos preview, Project Glasswing launch
+2. VentureBeat — https://venturebeat.com/technology/anthropic-says-its-most-powerful-ai-cyber-model-is-too-dangerous-to-release — 2026-04-07 — cited for Anthropic's decision not to release publicly, $100M commitment
+3. The Register — https://www.theregister.com/2026/04/07/anthropic_all_your_zerodays_are_belong_to_us/ — 2026-04-07 — cited for specific vulnerability examples (OpenBSD, FFmpeg, FreeBSD)
+4. Anthropic — https://www.anthropic.com/glasswing — 2026-04-07 — cited for Project Glasswing partner list and initiative details
+5. Anthropic system card — https://www.anthropic.com/claude-mythos-preview-risk-report — 2026-04-07 — cited for safety assessment, autonomous saboteur risk
+6. OfficeChai — https://officechai.com/ai/claude-mythos-preview-benchmarks-swe-bench-pro/ — 2026-04-07 — cited for comprehensive benchmark data
+7. UpdateCode.ai — https://updatecode.ai/blog/roi-legacy-software-modernization-2026 — 2026-04 — cited for legacy modernization ROI data
+8. Ajentik — https://www.ajentik.com/insights/hipaa-compliance-ai-agents-2026 — 2026-04 — cited for HIPAA 2026 updates
+9. Greenway Health — https://www.prnewswire.com/news-releases/greenway-health-launches-novare — 2026-04 — cited for Novare results
+10. Simbo AI — https://www.simbo.ai/blog/integration-strategies-for-ai-agents-with-legacy-electronic-health-record-systems — 2026-04 — cited for healthcare AI integration

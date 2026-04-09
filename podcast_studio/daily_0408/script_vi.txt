@@ -1,0 +1,121 @@
+TITLE: AI Daily — ngày 8 tháng 4 năm 2026
+SUBTITLE: Cuộc phân tầng lớn trong AI — ba tầng đang hình thành, và bạn đang xây dựng trên tầng nào sẽ quyết định chi phí của bạn trong hai năm tới
+EPISODE: #4 | 08/04/2026 | Host: Trung
+
+[INTRO_MUSIC]
+
+[HOST] Mười ba trên mười sáu. Đó là số lượng benchmark AI lớn mà Google Gemini 3.1 Pro hiện đang dẫn đầu, và nó làm được điều đó với chi phí API chỉ bằng một phần ba so với GPT-5.4. Nếu bạn vẫn đang mặc định dùng OpenAI cho các workload production của mình, rất có thể bạn đang trả gấp ba lần mức cần thiết. Đó là con số mở đầu cho bản tin hôm nay, và trong vòng hai mươi phút tới, bạn sẽ có ba quyết định có thể thực hiện ngay tuần này để ngừng lãng phí ngân sách.
+
+[HOST] Hôm nay là ngày 8 tháng 4 năm 2026. Tôi là Trung, và đây là AI Daily — phân tích sắc bén, có thể hành động được về những gì đã dịch chuyển trong thế giới AI hôm nay và ý nghĩa của nó với các đội đang xây dựng và vận hành trong lĩnh vực này. Không có thứ gì lan man. Bắt đầu thôi.
+
+[SEGMENT_BREAK: Tin số 1 — Gemini 3.1 Pro dẫn 13 trên 16 benchmark với chi phí bằng một phần ba]
+
+[HOST] Hãy để tôi phác thảo toàn bộ bức tranh về Gemini 3.1 Pro, vì đây không chỉ là câu chuyện về benchmark. Đây là câu chuyện về chi phí, và nó thay đổi cách bạn nên suy nghĩ về ngân sách API cho phần còn lại của năm 2026.
+
+[HOST] Gemini 3.1 Pro của Google hiện dẫn đầu 13 trong số 16 benchmark AI lớn. Trên Artificial Analysis Intelligence Index, bộ benchmark toàn diện nhất giữa các phòng lab hiện tại, nó xếp ngang với GPT-5.4 Pro. Từ khóa ở đây là ngang bằng, không phải gần bằng, không phải đứng thứ hai. Ngang bằng ở đỉnh. Và nó làm được điều đó với mức giá API khoảng một phần ba so với GPT-5.4.
+
+[HOST] Cùng ngày đó, Google cũng phát hành Gemini 3.1 Flash-Lite. Với 25 cent cho mỗi triệu token đầu vào, đây là một trong những model có khả năng rẻ nhất trên thị trường. Tốc độ phản hồi nhanh hơn 2.5 lần và tốc độ tạo ra output nhanh hơn 45 phần trăm so với thế hệ Flash trước. Với các workload inference khối lượng lớn như phân loại, tóm tắt, trích xuất, định tuyến, đây là model mà đội hạ tầng của bạn nên bắt đầu kiểm thử ngay hôm nay.
+
+[HOST] Vậy điều này có ý nghĩa gì với các manager và builder? Tôi sẽ nói thẳng. Nếu đội của bạn đang chạy production workload trên GPT-5.4 và chưa thực hiện so sánh benchmark nghiêm túc với Gemini 3.1 trong 30 ngày qua, bạn đang đưa ra quyết định tài chính bằng cách không hành động. Khoảng cách benchmark từng biện hộ cho mức giá premium của OpenAI trong năm qua đã không còn nữa.
+
+[HOST] Với builder: migration không phải là trivial, nhưng cũng không phải dự án 6 tháng. Chi phí lớn nhất của bạn sẽ là prompt re-tuning. Các prompt được engineer cho hành vi GPT-5.4, đặc biệt là về phong cách tuân theo hướng dẫn và định dạng output có cấu trúc, có thể không chuyển sang được một cách sạch sẽ. Hãy dự trù 2 đến 4 tuần thời gian kỹ thuật cho các endpoint có khối lượng lớn nhất của bạn. Nhưng nếu bạn đang xử lý hàng triệu token mỗi ngày, ROI có thể đo lường được trong một chu kỳ thanh toán duy nhất.
+
+[HOST] Với manager: điều này thay đổi baseline chi phí AI của bạn khi bước vào Q3. Nếu các giả định ngân sách của bạn được tính theo mức giá OpenAI, bạn có thể có đến 60 phần trăm dư địa mà bạn chưa tính đến. Đó có thể là ngân sách tiết kiệm được, hoặc là năng lực tái đầu tư cho các tính năng AI khối lượng cao hơn mà bạn đã phải hoãn lại. Hãy chạy con số này trong tuần này.
+
+[HOST] Tín hiệu cạnh tranh ở đây cũng quan trọng. Google rõ ràng sẵn sàng giành chiến thắng về chi phí trong khi vẫn cạnh tranh về chất lượng. Đó là một tư thế cạnh tranh khác với 12 tháng trước, khi Gemini đang cố gắng bắt kịp về benchmark. Giờ họ đã ở ngang bằng và đang phá giá. Điều đó không xảy ra nếu họ không tự tin vào sản phẩm. Đây không phải giảm giá. Đây là nước cờ giành thị phần.
+
+[SEGMENT_BREAK: Tin số 2 — MCP vượt 97 triệu lượt cài đặt và chuyển sang quản trị mở dưới Linux Foundation]
+
+[HOST] Câu chuyện thứ hai hôm nay là về hạ tầng, và các câu chuyện hạ tầng quan trọng hơn câu chuyện model về lâu dài, vì hạ tầng tạo ra lock-in. Model Context Protocol của Anthropic, hay MCP, đã vượt qua 97 triệu lượt cài đặt trong tháng 3 năm 2026.
+
+[HOST] Với những ai đến với MCP muộn: đây là giao thức định nghĩa cách các AI model kết nối với các tool bên ngoài. Đây là tiêu chuẩn quy định cách AI agent của bạn nói chuyện với cơ sở dữ liệu, lịch, API nội bộ, và các dịch vụ bên thứ ba của bạn. Hãy nghĩ đến nó như tiêu chuẩn USB cho AI integration. Trước USB, mỗi thiết bị có đầu kết nối riêng. Sau USB, mọi thứ đều hoạt động ngay. MCP đang cố gắng làm điều đó cho việc AI sử dụng tool.
+
+[HOST] Điểm mới trong tuần này: Linux Foundation thông báo họ sẽ đưa MCP vào quản trị mở. Đây là tổ chức foundation giống như quản lý Linux, Kubernetes, và hàng chục dự án hạ tầng quan trọng khác. Trong thực tế, điều này có nghĩa là MCP không còn là giao thức của Anthropic mà mọi người đã áp dụng. Giờ đây nó là tiêu chuẩn trung lập với nhà cung cấp. Không có công ty nào kiểm soát roadmap.
+
+[HOST] Tại sao điều này quan trọng với quyết định của bạn? Vì sự khác biệt giữa tiêu chuẩn độc quyền và tiêu chuẩn mở chính là sự khác biệt giữa phụ thuộc vào nhà cung cấp và đầu tư hạ tầng. Nếu MCP vẫn là sản phẩm của Anthropic, có lý do hợp lý để trì hoãn việc áp dụng, chờ xem nó có trở thành người chiến thắng không. Lý do đó giờ yếu hơn nhiều rồi. Quản trị của Linux Foundation có nghĩa là thứ này sẽ tồn tại tối thiểu 10 đến 15 năm.
+
+[HOST] Mọi nhà cung cấp AI lớn hiện đều có tooling tương thích MCP. OpenAI, Google, Microsoft, Anthropic, Mistral, tất cả. Khi tất cả đối thủ cạnh tranh đều có tooling tương thích cho một giao thức, thì giao thức đó đã thắng.
+
+[HOST] Với builder: nếu bạn có API nội bộ cho việc truy xuất dữ liệu, thực thi tool, tích hợp hệ thống, mà chưa tương thích MCP, bạn đang xây dựng một lớp tích hợp độc quyền sẽ trở thành technical debt trong 12 đến 18 tháng. Bắt đầu migration ngay bây giờ. Đầu tư không lớn. Việc expose một interface tương thích MCP cho hầu hết các REST API tốn vài ngày làm việc, không phải vài tháng. Nhưng cửa sổ để bạn làm điều này một cách chủ động, trước khi nó trở nên cấp bách, đang đóng lại.
+
+[HOST] Với manager: thêm khả năng tương thích MCP vào yêu cầu trong RFP đánh giá AI vendor tiếp theo của bạn. Nếu một vendor không thể chứng minh tích hợp tool tương thích MCP, đó là dấu hiệu về sự phù hợp kiến trúc dài hạn của họ. Đến năm 2027, khả năng tương thích MCP sẽ là điều hiển nhiên trong mua sắm AI doanh nghiệp giống như hỗ trợ REST API ngày nay. Bạn muốn bắt đầu đặt kỳ vọng đó với vendor ngay bây giờ, không phải trong 18 tháng nữa.
+
+[HOST] Cửa sổ cơ hội ở đây là 6 đến 12 tháng. Các đội xây dựng các pattern tích hợp native MCP ngay bây giờ sẽ là những người định nghĩa các tiêu chuẩn kiến trúc agentic trong tổ chức của mình. Đó là một vị thế chiến lược đáng để nắm lấy.
+
+[SEGMENT_BREAK: Tin số 3 — Claude Mythos được xác nhận: training hoàn thành, ưu tiên an ninh mạng, chưa có ngày phát hành]
+
+[HOST] Câu chuyện thứ ba hôm nay là câu chuyện được mong đợi nhất nhưng lại có ít hành động tức thì nhất. Tuy nhiên bạn cần hiểu nó, vì nó sẽ ảnh hưởng đến horizon kế hoạch của bạn. Claude Mythos của Anthropic đã được xác nhận.
+
+[HOST] Vào ngày 26 tháng 3, một tài liệu nội bộ của Anthropic đã bị rò rỉ. Nó mô tả Claude Mythos là, và tôi trích dẫn trực tiếp: "cho đến nay là model AI mạnh nhất chúng tôi từng phát triển." Anthropic xác nhận vụ rò rỉ, xác nhận quá trình training đã hoàn tất, và xác nhận early access đang diễn ra với các đối tác tập trung vào lĩnh vực an ninh mạng trước tiên. Chưa có ngày phát hành công khai.
+
+[HOST] Hãy phân tích việc phát hành ưu tiên an ninh mạng trước, vì nó nói lên điều quan trọng về nơi Anthropic thấy giá trị tức thì. An ninh mạng là một trong những ứng dụng có rủi ro cao nhất cho các reasoning model, bao gồm adversarial reasoning, red-teaming, phân tích lỗ hổng, code review bảo mật. Nếu Mythos bắt đầu từ đó, điều đó cho thấy model này có sự cải thiện đột phá về adversarial reasoning và complex multi-step reasoning. Đó là profile năng lực rất khác với "tốt hơn mọi thứ."
+
+[HOST] Điều này có ý nghĩa gì với bạn trong tuần này? Nếu bạn đang xây dựng trong lĩnh vực an ninh mạng, red-teaming tool, security analysis pipeline, compliance automation thì nên đăng ký early access cho Claude Mythos của Anthropic ngay hôm nay. Cửa sổ đăng ký cho đợt đầu tiên có khả năng đã mở rồi. Có access sớm hơn 30 đến 90 ngày so với general availability là lợi thế đáng kể trong một không gian sẽ di chuyển rất nhanh khi Mythos ra mắt.
+
+[HOST] Với tất cả mọi người, đây là hướng dẫn lập kế hoạch: đừng dừng roadmap để chờ Mythos. Đó sẽ là sai lầm. Nhưng hãy bắt đầu lập kế hoạch kịch bản cho những gì các tác vụ AI phức tạp nhất của bạn trông như thế nào nếu chất lượng reasoning tăng thêm 30 đến 50 phần trăm. Những tác vụ nào đột nhiên trở nên khả thi mà hiện tại chưa khả thi? Những ngưỡng chất lượng nào hiện tại đòi hỏi human review có thể được vượt qua? Việc lập kế hoạch kịch bản đó đáng làm ngay bây giờ, trước khi model ra mắt, để bạn không phải cuống cuồng khi nó đến.
+
+[HOST] Timeline thực tế cho việc phát hành rộng rãi, dựa trên các pattern rollout lịch sử của Anthropic, là 3 đến 6 tháng từ khi training xác nhận đến general access. Vậy chúng ta có khả năng đang nói đến đâu đó giữa cuối tháng 6 và đầu tháng 10 năm 2026. Hãy đánh dấu điều đó trên roadmap của bạn.
+
+[HOST] Và thêm một điều về Mythos: hãy chú ý rằng Anthropic đang giới thiệu một tier cao hơn Opus. Điều đó có nghĩa là họ đang báo hiệu rằng các use case có nhu cầu cao nhất, những use case hiện đang đẩy đến giới hạn của Claude Opus, sắp có một lựa chọn mới. Nếu đội của bạn thường xuyên chạm đến giới hạn chất lượng với các model tier Opus trên các tác vụ reasoning phức tạp, thì giới hạn đó sắp được nâng lên.
+
+[HOST] Tôi cũng muốn chú ý đến một điểm phụ nhưng quan trọng: việc phát hành ưu tiên với các đối tác an ninh mạng cho thấy Anthropic đang có một chiến lược rollout rất khác biệt so với trước đây. Thay vì phát hành rộng rãi ngay lập tức cho tất cả khách hàng API như họ đã làm với các phiên bản Claude trước, lần này họ đang xây dựng một pipeline đánh giá có kiểm soát, bắt đầu từ các đối tác có thể đưa ra phản hồi chất lượng cao về các trường hợp sử dụng có rủi ro cao. Đó là tín hiệu về độ trưởng thành trong cách Anthropic quản lý việc triển khai các model frontier. Nó cũng cho chúng ta biết rằng khi Mythos cuối cùng đến tay chúng ta, nó sẽ đã được kiểm tra thực chiến trong các môi trường khắt khe nhất có thể.
+
+[SEGMENT_BREAK: Phân tích chủ đề — Cuộc phân tầng lớn: bạn đang xây dựng trên tầng nào?]
+
+[HOST] Bây giờ tôi muốn lùi lại khỏi ba câu chuyện riêng lẻ và nói cho bạn nghe pattern tôi thấy chạy xuyên suốt toàn bộ tin tức hôm nay. Vì khi bạn nhìn thấy Gemini 3.1 ở một phần ba chi phí của GPT-5.4, và bạn thấy Llama 4 Maverick với 400 tỷ tham số chạy miễn phí trên hạ tầng của chính bạn, và bạn thấy Claude Mythos xuất hiện như một tier vượt trên Opus, điều bạn thực sự đang chứng kiến là thị trường model AI đang phân tầng thành ba tầng riêng biệt.
+
+[HOST] Tầng một là lớp commodity. Đây là các mô hình open-weight như Llama 4 Maverick của Meta với 400 tỷ tham số và cửa sổ context 10 triệu token, DeepSeek V3.2, và những mô hình khác. Chúng miễn phí để chạy trên hạ tầng của chính bạn. Chất lượng thực sự cạnh tranh với các model độc quyền từ 12 tháng trước. Nếu bạn chạy workload nội bộ với khả năng chịu đựng latency thấp và đang xử lý khối lượng đủ cao, kinh tế học của việc self-hosting đã thay đổi căn bản. Open source không còn là sự đánh đổi về hiệu suất.
+
+[HOST] Tầng hai là lớp cloud tối ưu chi phí. Đây là nơi Gemini 3.1 Flash-Lite sống với 25 cent mỗi triệu token, nơi Claude Haiku sinh sống, nơi các biến thể hiệu quả của tất cả các model lớn đứng. Đây là nơi đa số workload production doanh nghiệp nên đặt trong năm 2026. Nhanh, rẻ, đủ khả năng cho phần lớn tác vụ kinh doanh, và chạy trên hạ tầng quản lý có SLA đảm bảo.
+
+[HOST] Tầng ba là ranh giới năng lực. Đây là nơi Claude Mythos sẽ sống, nơi GPT-5.4 Thinking đang sống, nơi Grok 5 sẽ đặt chân cuối năm nay. Giá premium. Reasoning tối đa. Được thiết kế cho các tác vụ mà trần chất lượng quan trọng hơn chi phí: phân tích pháp lý phức tạp, tạo code tiên tiến, reasoning khoa học đa bước, nghiên cứu lỗ hổng bảo mật.
+
+[HOST] Sai lầm chiến lược mà hầu hết các đội mắc phải ngay bây giờ là sử dụng model tầng ba cho các tác vụ tầng hai. Họ mặc định dùng model mạnh nhất họ biết, trả giá frontier, và để lại khoảng dư khổng lồ về chi phí không được tận dụng. Câu hỏi bạn nên đặt ra cho mỗi tính năng AI bạn phát hành trong năm 2026 là: tác vụ này thực sự cần tầng nào?
+
+[HOST] Phân loại, trích xuất, tóm tắt, hỏi đáp đơn giản, định tuyến, định dạng, đây là các tác vụ tầng hai. Tầng một trong nhiều trường hợp. Bạn không cần Claude Opus hay GPT-5.4 cho những thứ này. Bạn cần Gemini Flash-Lite hay Claude Haiku.
+
+[HOST] Tổng hợp nghiên cứu sâu, debug code phức tạp, adversarial reasoning, phân tích pháp lý đa tài liệu, đây là các tác vụ tầng ba. Đây là nơi khoảng cách chất lượng giữa các model là thực sự và có thể đo lường, và nơi trả giá frontier là hợp lý.
+
+[HOST] Các đội chiến thắng trong năm 2026 sẽ là những đội có chiến lược routing nghiêm ngặt: mặc định workload vào tầng rẻ nhất đáp ứng yêu cầu chất lượng, và leo thang lên tầng tiếp theo chỉ khi tác vụ đòi hỏi. Đó không chỉ là tối ưu hóa chi phí. Đó là pattern kiến trúc cho phép bạn scale các tính năng AI tích cực hơn trong cùng một ngân sách.
+
+[HOST] Bức tranh lớn hơn ở đây là gì? Chúng ta đang ở giai đoạn bình thường hóa thị trường AI. Hai năm trước, toàn bộ thị trường về cơ bản là một tầng duy nhất: bạn dùng GPT-4 hoặc không dùng AI. Một năm trước, có hai tầng thực sự: flagship và các model nhỏ hơn rẻ hơn. Bây giờ, với sự trưởng thành của open-source, sự cạnh tranh về giá từ Google, và sự xuất hiện của các model vượt trội như Mythos, thị trường đã phát triển thành ba tầng rõ ràng với logic kinh tế riêng biệt cho từng tầng. Đây là dấu hiệu lành mạnh. Nó có nghĩa là thị trường đang bắt đầu hoạt động như một thị trường công nghệ trưởng thành, không phải như một cuộc chạy đua vũ trang của một người chiếm lĩnh toàn bộ.
+
+[HOST] Và có một hệ quả thực tế quan trọng: khi ba tầng này trở nên rõ ràng hơn, công việc architect của bạn sẽ ngày càng trở thành công việc thiết kế routing, không phải công việc lựa chọn model. Câu hỏi không còn là "chúng ta nên dùng model nào" mà là "chúng ta nên định tuyến loại request này đến tầng nào, với ngưỡng chất lượng nào, và khi nào chúng ta leo thang." Đó là một tư duy hoàn toàn khác. Và các đội bắt đầu xây dựng với tư duy đó ngay bây giờ sẽ có lợi thế cấu trúc so với những đội vẫn đang nghĩ về AI theo kiểu chọn một model duy nhất.
+
+[SEGMENT_BREAK: Tín hiệu và Quyết định — Những gì bạn nên làm trong tuần này]
+
+[HOST] Hãy để tôi kết thúc với các quyết định cụ thể. Tôi đã nói từ đầu rằng bạn sẽ có ba quyết định có thể thực hiện trong tuần này. Đây là chúng.
+
+[HOST] Quyết định một: benchmark Gemini 3.1 Pro so với provider hiện tại của bạn trong tuần này. Chọn ba endpoint API có khối lượng cao nhất. Chạy 500 input đại diện qua cả hai model. Chấm điểm theo tiêu chí chất lượng của bạn. Nếu Gemini khớp với provider hiện tại của bạn, và dựa trên dữ liệu benchmark thì xác suất cao là như vậy, bạn có cuộc trò chuyện về giảm chi phí cần có với leadership team. Đây là dự án một tuần với tác động tài chính Q3 có thể đáng kể.
+
+[HOST] Quyết định hai: audit stack AI của bạn về khả năng tương thích MCP. Lập bản đồ mọi điểm tích hợp nơi hệ thống AI của bạn kết nối với tool hoặc nguồn dữ liệu bên ngoài. Với mỗi điểm đó, hãy hỏi: đây có tương thích MCP không, hay là tích hợp tùy chỉnh? Nếu câu trả lời là tùy chỉnh, thêm nó vào backlog technical debt. Sau đó nhìn vào lần đánh giá vendor tiếp theo của bạn và thêm khả năng tương thích MCP làm yêu cầu. Bạn không phải migrate mọi thứ ngay bây giờ, nhưng bạn cần biết mình đang đứng ở đâu.
+
+[HOST] Quyết định ba: nếu bạn đang làm việc trong an ninh mạng, security tooling, hay compliance automation, hãy đăng ký early access cho Claude Mythos của Anthropic ngay hôm nay. Cửa sổ đăng ký cho đợt đầu tiên có khả năng đã mở rồi. Có access sớm hơn 30 đến 90 ngày so với general availability là khởi đầu có ý nghĩa trong một không gian sẽ di chuyển rất nhanh khi Mythos ra mắt.
+
+[HOST] Và quyết định rộng hơn cho mọi manager và mọi builder trong bản tin này: hãy nghiêm túc về tier routing. Mặc định luôn dùng model mạnh nhất bạn biết đang tốn của đội bạn tiền thật. Hãy chạy cost audit về chi tiêu AI API, phân loại workload theo tầng, và thiết lập chiến lược routing trước khi Q3 planning được khóa lại.
+
+[HOST] Tôi cũng muốn thêm vào đây một quyết định thứ tư, ít thấy hơn nhưng có tác động lớn về dài hạn: đầu tư vào năng lực đo lường chất lượng model cho từng use case cụ thể của bạn. Lý do các đội không di chuyển giữa các tầng model không phải vì sự khác biệt về chi phí là không rõ ràng, mà vì họ không có hệ thống để đo lường xem model rẻ hơn có đáp ứng ngưỡng chất lượng của mình không. Xây dựng một test suite đơn giản với 100 đến 200 ví dụ được gán nhãn cho mỗi use case quan trọng của bạn, sau đó bạn có thể benchmark bất kỳ model mới nào trong vài giờ. Đây là năng lực kỹ thuật cho phép bạn phản ứng với thay đổi thị trường nhanh chóng, thay vì đưa ra quyết định dựa trên trực giác hoặc benchmark của người khác không phù hợp với dữ liệu của bạn.
+
+[SEGMENT_BREAK: Kết — Hai câu hỏi thực sự chưa được giải đáp]
+
+[HOST] Hai câu hỏi tôi để mở, vì câu trả lời quan trọng và chúng tôi chưa có chúng.
+
+[HOST] Đầu tiên: khi Claude Mythos ra mắt công khai, nó sẽ có sẵn rộng rãi với mức giá hợp lý, hay sẽ được dành riêng cho các tier doanh nghiệp và đối tác của Anthropic? Lịch sử của Anthropic với Opus cho thấy họ sẵn sàng tính phí cao hơn đáng kể cho các model có khả năng cao nhất. Nếu Mythos đến với mức giá chỉ các doanh nghiệp lớn mới có thể biện hộ, điều đó thay đổi câu chuyện về dân chủ hóa AI đáng kể. Hãy theo dõi thông báo giá cả một cách kỹ lưỡng như bạn theo dõi benchmark năng lực.
+
+[HOST] Thứ hai: Linux Foundation đã đưa MCP vào quản trị mở. Nhưng các tiêu chuẩn quản trị chỉ hoạt động khi thị trường thực thi chúng. Các lab AI lớn có thực sự tuân theo các quyết định roadmap của Linux Foundation không, hay họ sẽ fork và duy trì các biến thể MCP riêng của mình? Google, Microsoft và Meta đều có động lực mạnh mẽ để duy trì ảnh hưởng đối với tiêu chuẩn giao thức agentic. Mười hai tháng tới về hành vi quản trị MCP sẽ cho chúng ta biết liệu đây là hạ tầng mở thực sự hay một liên minh sẽ vỡ vụn dưới áp lực cạnh tranh.
+
+[HOST] Đó là hai câu hỏi tôi sẽ theo dõi trong những ngày tới. Hôm nay là ngày 8 tháng 4 năm 2026. Ngày mai bức tranh lại thay đổi. Xây dựng thông minh, xây dựng nhanh, và tôi sẽ gặp bạn trong bản tin tiếp theo.
+
+[OUTRO_MUSIC]
+
+SOURCES:
+1. Artificial Analysis — artificialanalysis.ai — tháng 4 năm 2026 — kết quả benchmark Gemini 3.1 Pro, điểm ngang bằng với GPT-5.4 trên Intelligence Index
+2. Google DeepMind Blog — blog.google/products/gemini — tháng 4 năm 2026 — giá và thông số hiệu suất Gemini 3.1 Flash-Lite
+3. Anthropic Blog / The Verge / Reuters — ngày 26 tháng 3 năm 2026 — rò rỉ tài liệu nội bộ Claude Mythos và xác nhận từ Anthropic
+4. Anthropic Blog — anthropic.com — tháng 3 năm 2026 — cột mốc 97 triệu lượt cài đặt MCP
+5. Linux Foundation — linuxfoundation.org — tháng 4 năm 2026 — thông báo quản trị mở MCP
+6. Forbes / The Information — tháng 4 năm 2026 — doanh thu hàng năm 25 tỷ USD của OpenAI, tín hiệu IPO
+7. Reuters / Bloomberg — tháng 4 năm 2026 — doanh thu hàng năm 19 tỷ USD của Anthropic
+8. WSJ / Bloomberg — tháng 4 năm 2026 — Oracle cắt giảm 20.000 đến 30.000 nhân viên, chuyển hướng 8 đến 10 tỷ USD sang hạ tầng AI
+9. Reuters — tháng 4 năm 2026 — luật cho phép AI gia hạn đơn thuốc ở Utah
+10. Meta AI Blog — tháng 4 năm 2026 — Llama 4 Maverick 400 tỷ tham số, cửa sổ context 10 triệu token

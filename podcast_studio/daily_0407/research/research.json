@@ -1,0 +1,112 @@
+{
+  "date": "April 7th, 2026",
+  "stories": [
+    {
+      "headline": "Microsoft launches 3 proprietary MAI models to reduce OpenAI dependence — built by teams of fewer than 10 engineers each",
+      "source": "TechCrunch / Forbes / Microsoft AI Blog",
+      "url": "https://techcrunch.com/2026/04/02/microsoft-takes-on-ai-rivals-with-three-new-foundational-models/",
+      "date": "April 2, 2026",
+      "key_number": "3 models (MAI-Transcribe-1, MAI-Voice-1, MAI-Image-2); teams <10 engineers per model; MAI-Transcribe-1 has 3.8% average word error rate, 2.5x faster than previous Azure; MAI-Voice-1 generates 60 sec audio in 1 sec",
+      "why_it_matters": "Microsoft restructured its partnership with OpenAI in October 2025 to remove contractual barriers on building AGI independently. These models directly compete with OpenAI Whisper, GPT, and DALL-E on Microsoft's own infrastructure, reducing COGS for Copilot at massive scale. Built with far fewer GPU resources than competing models — a signal that efficiency-first design is beating brute-force scaling.",
+      "audience_relevance": "both"
+    },
+    {
+      "headline": "OpenAI shuts down Sora video platform and acquires tech talk show TBPN in a strategic pivot toward IPO-readiness and narrative control",
+      "source": "WIRED / Deadline / NYT",
+      "url": "https://www.wired.com/story/openai-acquires-tbpn-buys-positive-news-coverage/",
+      "date": "April 2, 2026",
+      "key_number": "Sora burned $10M/day; TBPN expected to generate $30M+ revenue in 2026; Disney deal signed 3 months before Sora shutdown",
+      "why_it_matters": "OpenAI is shedding consumer AI 'side projects' that burn cash without strategic leverage — Sora was the highest-profile casualty. Simultaneously, acquiring TBPN (the 'ESPN of tech') gives OpenAI direct media influence over the narrative shaping AI investment, regulation, and enterprise adoption. Wired calls it 'buying positive coverage.'",
+      "audience_relevance": "manager"
+    },
+    {
+      "headline": "Agentic AI governance crisis: 'shadow agents' in enterprise environments are outpacing security teams' ability to track them",
+      "source": "Kai Waehner Blog / Trend Micro / Deloitte",
+      "url": "https://www.kai-waehner.de/blog/2026/04/06/enterprise-agentic-ai-landscape-2026-trust-flexibility-and-vendor-lock-in/",
+      "date": "April 6, 2026",
+      "key_number": "EU AI Act enforcement starts August 2026; ~40% efficiency boost for governed agents vs ungoverned swarms; organizations report deployment outrunning security governance",
+      "why_it_matters": "Enterprises that deployed agentic workflows in 2025 are now discovering their agents operate outside IAM frameworks designed for humans. Shadow agents — built by employees using personal accounts and unvetted APIs — are the primary vector. With EU AI Act enforcement beginning August 2026, the gap between deployment and governance has become a compliance and liability crisis.",
+      "audience_relevance": "both"
+    },
+    {
+      "headline": "Microsoft Cursor 3 emerges as dominant agentic software development platform for enterprise engineering teams",
+      "source": "searchcans.com / Medium",
+      "url": "https://www.searchcans.com/blog/ai-model-releases-april-2026-v2/",
+      "date": "April 2026",
+      "key_number": "Cursor 3 enables multi-step coding tasks via agents; emerging as go-to for software development teams",
+      "why_it_matters": "The shift from code autocomplete to multi-step agentic coding represents a qualitative change in how engineering teams are structured. Cursor 3's adoption signals that AI-assisted development has crossed a threshold where individual developer productivity is less important than team-level orchestration of AI agents.",
+      "audience_relevance": "builder"
+    },
+    {
+      "headline": "AI infrastructure investment to reach $2.9 trillion through 2028 as outcome-based pricing replaces token pricing",
+      "source": "Morgan Stanley / Deloitte State of AI Enterprise 2026",
+      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
+      "date": "2026 Q1",
+      "key_number": "$2.9 trillion data center build-out projected through 2028; shift from pay-per-token to outcome-based pricing",
+      "why_it_matters": "The shift to outcome-based pricing is a structural change in how enterprises contract for AI. Instead of paying per API call, they will pay for business outcomes — shifting risk from enterprise to AI vendor. This changes the build vs. buy calculus for managers significantly.",
+      "audience_relevance": "manager"
+    },
+    {
+      "headline": "International AI Safety Report 2026 published: nations struggling with fragmented regulation while AI capabilities accelerate",
+      "source": "Inside Privacy",
+      "url": "https://www.insideprivacy.com/artificial-intelligence/international-ai-safety-report-2026-examines-ai-capabilities-risks-and-safeguards/",
+      "date": "2026",
+      "key_number": "EU AI Act enforcement August 2026; cyber insurance now conditioning coverage on AI red-teaming documentation",
+      "why_it_matters": "The gap between AI capability advancement and regulatory coherence is widening. Nations are moving toward sovereign AI frameworks, and insurance carriers are now demanding documented adversarial testing as a condition of coverage — meaning AI risk management is no longer optional.",
+      "audience_relevance": "manager"
+    }
+  ],
+  "signals": [
+    {
+      "signal": "AI infrastructure commoditization accelerating: model performance parity driving cost/workflow competition",
+      "evidence": "Performance gap between GPT-5.4, Claude Sonnet 4.6, and Gemini 3.1 Pro has narrowed to the point where cost-efficiency and workflow integration are now primary adoption drivers, not benchmark scores",
+      "implication": "In the next 30-90 days, managers should stop evaluating AI vendors by model benchmarks alone and start evaluating by total cost of integration + outcome quality. The era of 'best model wins' is over.",
+      "source": "searchcans.com",
+      "url": "https://www.searchcans.com/blog/ai-model-releases-april-2026-v2/"
+    },
+    {
+      "signal": "Sovereign AI replacing hyperscaler dependency as enterprise priority",
+      "evidence": "Organizations investing in local infrastructure, data residency, and proprietary contextual datasets to align with national security frameworks",
+      "implication": "For builders in regulated industries: the next 60 days are a window to position your product around local-first or data-residency-compliant AI deployment — before competitors who are still cloud-dependent face compliance blockers.",
+      "source": "Deloitte State of AI Enterprise 2026",
+      "url": "https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html"
+    },
+    {
+      "signal": "Agentic AI moving from 'single big agents' to multi-agent ecosystems with role separation",
+      "evidence": "Organizations abandoning monolithic agent architectures in favor of coordinated multi-agent systems with shared context and human-in-the-loop controls",
+      "implication": "Builders designing agent architectures today should build for orchestration, not monoliths. The winning architecture in 2026 is a coordinator + specialist model, not a single do-everything agent.",
+      "source": "Deloitte / Unframe AI",
+      "url": "https://www.unframe.ai/blog/enterprise-ai-trends-for-2026"
+    },
+    {
+      "signal": "AI proficiency becoming a baseline hiring requirement, with 'AI-free' skills assessments emerging to test independent judgment",
+      "evidence": "Companies implementing AI-free assessments specifically to ensure candidates can think without AI assistance — concern about cognitive atrophy at scale",
+      "implication": "Engineering managers should redesign their hiring processes in Q2 2026: you now need to test both AI collaboration skills AND independent judgment. The two are separate and both matter.",
+      "source": "Deloitte State of AI Enterprise 2026",
+      "url": "https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html"
+    }
+  ],
+  "challenges": [
+    {
+      "challenge": "Shadow agents creating untracked liability: employees deploying autonomous workflows outside IT governance",
+      "evidence": "Shadow agents built via low-code platforms and personal API accounts are operating without audit trails or lifecycle management in enterprise environments — discovered post-deployment",
+      "decision_implication": "Managers: before deploying more agents, audit what's already running. If you don't have a registry of all AI agents in your org, you have a governance gap that will become a legal liability when EU AI Act enforcement begins August 2026.",
+      "source": "Trend Micro / Kai Waehner",
+      "url": "https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/from-anarchy-to-authority-closing-the-governance-gap-in-agentic-ai"
+    },
+    {
+      "challenge": "Data poisoning and adversarial attacks targeting AI agent training pipelines",
+      "evidence": "Attackers injecting subtle malicious data into agent training pipelines causing misclassification and biased decisions — damage is cumulative and hard to detect",
+      "decision_implication": "Builders: your agent's training data is now an attack surface. If you're fine-tuning models on business data, you need adversarial red-teaming as part of your deployment pipeline, not an afterthought.",
+      "source": "SecurityScorecard",
+      "url": "https://securityscorecard.com/blog/ai-is-reshaping-cyber-risk-in-2026-why-boards-must-take-ownership-now/"
+    },
+    {
+      "challenge": "OpenAI's TBPN acquisition raising conflict-of-interest questions about AI media independence",
+      "evidence": "WIRED headline: 'OpenAI Acquires Tech Talk Show TBPN — and Buys Itself Some Positive News Coverage'; editorial independence pledged but structure is under scrutiny",
+      "decision_implication": "Managers sourcing AI market intelligence: the consolidation of AI companies into media assets changes the information landscape. Diversify your AI news sources and weight company-owned media accordingly.",
+      "source": "WIRED",
+      "url": "https://www.wired.com/story/openai-acquires-tbpn-buys-positive-news-coverage/"
+    }
+  ]
+}

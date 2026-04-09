@@ -1,0 +1,103 @@
+{
+  "research_date": "2026-04-08",
+  "stories": [
+    {
+      "id": "s1",
+      "title": "Claude Mythos: Anthropic's most powerful model confirmed — cybersecurity first, no public date",
+      "summary": "A data leak on March 26, 2026 exposed internal Anthropic docs describing Claude Mythos as 'by far the most powerful AI model we have ever developed,' positioned above the Opus tier. Anthropic confirmed training is complete and it is being trialed with cybersecurity-focused early access partners first. No public release date has been announced.",
+      "key_facts": [
+        "Training complete as of late March 2026",
+        "First deployment focus: cybersecurity partners",
+        "Positioned above existing Opus tier",
+        "Confirmed via internal document leak March 26, 2026",
+        "No public release date announced"
+      ],
+      "relevance": "frontier_model",
+      "urgency": "high"
+    },
+    {
+      "id": "s2",
+      "title": "Gemini 3.1 Pro leads 13 of 16 major benchmarks at one-third the API cost of GPT-5.4",
+      "summary": "Google's Gemini 3.1 Pro now leads 13 of 16 major AI benchmarks and ties GPT-5.4 Pro on the Artificial Analysis Intelligence Index — at roughly one-third the API cost. Google also released Gemini 3.1 Flash-Lite at $0.25/M input tokens, delivering 2.5x faster response times and 45% faster output generation than previous efficiency models.",
+      "key_facts": [
+        "Gemini 3.1 Pro: leads 13/16 major benchmarks",
+        "Ties GPT-5.4 Pro on Artificial Analysis Intelligence Index",
+        "API cost: ~1/3 of GPT-5.4",
+        "Flash-Lite: $0.25/M input tokens",
+        "Flash-Lite: 2.5x faster responses, 45% faster output"
+      ],
+      "relevance": "model_comparison_cost",
+      "urgency": "high"
+    },
+    {
+      "id": "s3",
+      "title": "MCP crosses 97 million installs; Linux Foundation takes it under open governance",
+      "summary": "Anthropic's Model Context Protocol crossed 97 million installs in March 2026. Every major AI provider now ships MCP-compatible tooling. The Linux Foundation announced it will take MCP under open governance — making it a vendor-neutral standard for agentic AI tool integration.",
+      "key_facts": [
+        "97 million installs in March 2026",
+        "All major AI providers now ship MCP-compatible tooling",
+        "Linux Foundation adopts MCP under open governance",
+        "De facto standard for agentic AI tool integration"
+      ],
+      "relevance": "agentic_infrastructure",
+      "urgency": "high"
+    },
+    {
+      "id": "s4",
+      "title": "OpenAI surpasses $25B annualized revenue; Anthropic at $19B; IPO signals emerging",
+      "summary": "OpenAI has crossed $25 billion in annualized revenue and is reportedly taking early steps toward a public listing, potentially as soon as late 2026. Anthropic approaches $19 billion. GPT-5.4 Thinking scored 83% on GDPVal — a benchmark measuring performance on economically valuable tasks at or above human expert level.",
+      "key_facts": [
+        "OpenAI: $25B+ annualized revenue",
+        "Anthropic: ~$19B annualized revenue",
+        "OpenAI IPO potentially late 2026",
+        "GPT-5.4 Thinking: 83% on GDPVal (human expert threshold)"
+      ],
+      "relevance": "market_business",
+      "urgency": "medium"
+    },
+    {
+      "id": "s5",
+      "title": "Oracle cuts 20,000–30,000 employees to redirect $8–10B toward AI infrastructure",
+      "summary": "Oracle announced plans to cut 20,000 to 30,000 employees and redirect $8 to $10 billion toward AI infrastructure investment. This is the clearest signal yet of legacy enterprise tech companies restructuring headcount to fund the AI transition.",
+      "key_facts": [
+        "Oracle: 20,000–30,000 layoffs planned",
+        "$8–10B redirected to AI infrastructure",
+        "Pattern: legacy tech restructuring for AI pivot"
+      ],
+      "relevance": "enterprise_ai_transition",
+      "urgency": "medium"
+    },
+    {
+      "id": "s6",
+      "title": "Utah grants AI authority to autonomously renew drug prescriptions",
+      "summary": "Utah became the first US state to grant AI systems the authority to autonomously renew drug prescriptions — moving beyond diagnostic assistance to actual treatment decisions. This represents a regulatory threshold crossing for AI in healthcare.",
+      "key_facts": [
+        "First US state to authorize AI for prescription renewal",
+        "Autonomous renewal, not just diagnostic assistance",
+        "Regulatory milestone for AI in healthcare"
+      ],
+      "relevance": "regulatory_ai_healthcare",
+      "urgency": "medium"
+    },
+    {
+      "id": "s7",
+      "title": "Meta Llama 4 Maverick: 400B params, 10M context — free open-weight frontier",
+      "summary": "Meta's Llama 4 Maverick (400B parameters, 10 million token context window) is the strongest open-weight model available and runs free on your own infrastructure. Open source is no longer a performance compromise versus proprietary APIs.",
+      "key_facts": [
+        "400B parameters",
+        "10M token context window",
+        "Runs on own infrastructure, no API cost",
+        "Competes seriously with proprietary flagship models"
+      ],
+      "relevance": "open_source_models",
+      "urgency": "medium"
+    }
+  ],
+  "signals": [
+    "Agentic AI has moved from demo to production across all major labs",
+    "Open-source model quality now challenges proprietary closed APIs — cost economics shifting",
+    "AI revenue at frontier labs growing faster than headcount: OpenAI $25B, Anthropic $19B",
+    "MCP becoming the 'USB standard' for AI tool integration — vendor neutrality now confirmed",
+    "First regulatory crossing in healthcare AI: Utah autonomous prescriptions"
+  ]
+}

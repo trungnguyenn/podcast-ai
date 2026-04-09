@@ -1,0 +1,167 @@
+{
+  "week": "2026-04-07",
+  "stories": [
+    {
+      "headline": "Google DeepMind releases Gemma 4 — open models that outcompete models 20x their size",
+      "source": "Google DeepMind Blog",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
+      "date": "2026-04-02",
+      "key_number": "31B model ranks #3 on Arena AI leaderboard, 26B MoE ranks #6",
+      "why_it_matters": "Gemma 4 ships four sizes (2B to 31B) under Apache 2.0, with 256K context, native vision+audio, 140+ languages, and function calling — making high-capability models genuinely free to deploy on-premise. This collapses the cost barrier for builders who previously needed proprietary APIs for agentic reasoning tasks.",
+      "audience_relevance": "both"
+    },
+    {
+      "headline": "Anthropic reveals $30B revenue run rate and signs 3.5-gigawatt TPU deal with Google and Broadcom",
+      "source": "The Register / Anthropic",
+      "url": "https://www.theregister.com/2026/04/07/broadcom_google_chip_deal_anthropic_customer/",
+      "date": "2026-04-07",
+      "key_number": "$30B run rate (up from $9B end-2025), 1,000+ enterprise customers spending $1M+ annually",
+      "why_it_matters": "Anthropic's 3x revenue growth in one quarter signals that enterprise AI spending is compressing — big deals closing fast, not slow 18-month cycles. The 3.5GW compute deal locks in massive capacity for 2027, betting that model capability will continue to drive demand.",
+      "audience_relevance": "manager"
+    },
+    {
+      "headline": "Gartner: Over half of enterprises will abandon assistive AI (copilots) for outcome-focused execution AI by 2028",
+      "source": "Gartner",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-04-02-gartner-expects-most-enterprises-to-abandon-assistive-ai-for-outcome-focused-workflow-by-2028",
+      "date": "2026-04-02",
+      "key_number": ">50% of enterprises shifting by 2028; vendors layering AI on legacy apps risk 80% margin compression by 2030",
+      "why_it_matters": "This is Gartner calling time of death on the copilot era. The shift from 'AI that advises' to 'AI that executes with delegated authority' changes procurement criteria, integration architecture, and the entire ROI calculus for enterprise software.",
+      "audience_relevance": "manager"
+    },
+    {
+      "headline": "Mercor breach: 4TB of AI training data stolen in LiteLLM supply chain attack affecting thousands of companies",
+      "source": "The Register / BusinessUpturn",
+      "url": "https://www.theregister.com/2026/04/02/mercor_supply_chain_attack/",
+      "date": "2026-04-02",
+      "key_number": "4TB stolen including 3TB biometric data; LiteLLM present in 36% of cloud environments",
+      "why_it_matters": "A single compromised open-source package (LiteLLM) became a vector into AI training pipelines at OpenAI, Anthropic, and Meta simultaneously. This is the canonical supply chain risk for AI-era infrastructure — most teams building with open-source AI libraries are exposed.",
+      "audience_relevance": "both"
+    },
+    {
+      "headline": "Agentic AI deployments failing at scale: enterprises struggle with data readiness, fragmentation, and governance",
+      "source": "Observer / TechTarget",
+      "url": "https://observer.com/2026/04/agentic-ai-operating-model-enterprise-adoption/",
+      "date": "2026-04-03",
+      "key_number": "Only 15% of AI decision-makers reported an EBITDA lift in past 12 months (Forrester); integration costs = 40-60% of total AI OpEx",
+      "why_it_matters": "The gap between 'we deployed an agent' and 'agents drive measurable business outcomes' is widening. Enterprises that skip data readiness and governance are burning budget without return — but the few who get it right (Goldman Sachs, Salesforce) are pulling ahead.",
+      "audience_relevance": "manager"
+    },
+    {
+      "headline": "OpenAI alumni launch Zero Shot — a $100M fund investing in AI startups from inside the ecosystem",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/04/06/openai-alums-have-been-quietly-investing-from-a-new-potentially-100m-fund/",
+      "date": "2026-04-06",
+      "key_number": "$100M fund; invested in Foundry Robotics and Worktrace AI",
+      "why_it_matters": "Ex-OpenAI insiders are now bankrolling the next layer of the stack — robotics and workflow automation. This signals where the frontier-model alumni believe value will concentrate: applied, domain-specific AI applications rather than foundation models.",
+      "audience_relevance": "both"
+    },
+    {
+      "headline": "EU AI Act August 2026 enforcement deadline looms — only 15% of European firms are compliance-ready",
+      "source": "TechLaw / TensorVue",
+      "url": "https://tensorvue.com/article/eu-ai-act-countdown-five-months-until-the-worlds-most-ambitious-ai-regulation-hits-high-risk-systems",
+      "date": "2026-04-01",
+      "key_number": "August 2, 2026 deadline; €35M or 7% global turnover fine; 15% compliance readiness",
+      "why_it_matters": "Five months to enforcement and most teams haven't started. High-risk categories (HR, healthcare, credit, education) face immediate exposure. The 'Digital Omnibus' proposal to delay deadlines to Dec 2027 is not confirmed — building assuming the extension is a gamble.",
+      "audience_relevance": "manager"
+    },
+    {
+      "headline": "Anthropic's three security incidents in five days expose authorization failures in AI pipeline CI/CD",
+      "source": "Milwaukee Journal Sentinel / EnforceAuth",
+      "url": "https://www.jsonline.com/press-release/story/171487/enforceauth-identifies-authorization-failures-as-root-cause-of-anthropics-three-security-incidents-in-five-days/",
+      "date": "2026-03-31",
+      "key_number": "500,000+ lines of Claude Code source code leaked to public npm; 3 incidents in 5 days",
+      "why_it_matters": "Even top AI labs are failing basic CI/CD authorization hygiene. The accidental exposure of 500K+ lines of proprietary source code through an npm pipeline misconfiguration is a wake-up call for any team deploying AI models with automated pipelines.",
+      "audience_relevance": "builder"
+    }
+  ],
+  "signals": [
+    {
+      "signal": "Outcome-based AI procurement replacing tool-based licensing",
+      "evidence": "Gartner April 2, 2026: >50% of enterprises to abandon assistive AI by 2028; vendors risk 80% margin compression by 2030 if they don't shift to agentic execution",
+      "implication": "Managers need to renegotiate AI contracts now with outcome clauses, not seat licenses. Builders need to ensure their products can report measurable KPI impact, not just feature usage.",
+      "source": "Gartner",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-04-02-gartner-expects-most-enterprises-to-abandon-assistive-ai-for-outcome-focused-workflow-by-2028"
+    },
+    {
+      "signal": "Open-weight models reaching proprietary parity changes build-vs-buy calculus",
+      "evidence": "Gemma 4 31B ranks #3 on Arena leaderboard under Apache 2.0; Llama and Mistral families making similar advances",
+      "implication": "The cost justification for proprietary API-only architectures is weakening fast. Teams building in 2026 should architect with open-weight option paths to avoid vendor lock-in.",
+      "source": "Google DeepMind Blog / vLLM",
+      "url": "https://vllm.ai/blog/gemma4"
+    },
+    {
+      "signal": "AI revenue acceleration compressing enterprise buying cycles",
+      "evidence": "Anthropic revenue 3x in one quarter ($9B → $30B run rate); 1,000+ customers spending $1M+ annually doubling in under 2 months",
+      "implication": "Enterprise AI budget allocation is moving fast — teams waiting for 'the right moment' are already 2 quarters behind. The Q2 2026 window is critical for locking in contract terms before prices rise.",
+      "source": "Anthropic / The Register",
+      "url": "https://www.theregister.com/2026/04/07/broadcom_google_chip_deal_anthropic_customer/"
+    },
+    {
+      "signal": "AI infrastructure supply chain is an unpriced risk in most enterprise security models",
+      "evidence": "LiteLLM present in 36% of cloud environments; single compromised package breached Mercor (serving OpenAI, Anthropic, Meta); Mercor says it was 'one of thousands' affected",
+      "implication": "Any team using open-source AI libraries without software composition analysis (SCA) and dependency pinning is exposed. This needs to become a line item in Q2 security reviews.",
+      "source": "The Register",
+      "url": "https://www.theregister.com/2026/04/02/mercor_supply_chain_attack/"
+    },
+    {
+      "signal": "Forrester: 25% of planned AI spend will be delayed into 2027 due to value realization gaps",
+      "evidence": "Only 15% of AI decision-makers report EBITDA lift; integration costs consuming 40-60% of total AI OpEx; enterprises building 'agentlakes' to manage fragmentation",
+      "implication": "Budget cycles tightening. Teams that can show concrete ROI before Q3 will defend their AI spend; teams that can't will see 2027 budgets cut before they get started.",
+      "source": "Forrester",
+      "url": "https://investor.forrester.com/news-releases/news-release-details/forrester-three-years-genai-enterprises-are-still-chasing-its"
+    }
+  ],
+  "challenges": [
+    {
+      "challenge": "LiteLLM supply chain attack: open-source AI library vector into training pipelines",
+      "evidence": "TeamPCP compromised LiteLLM 1.82.7/1.82.8 on PyPI for ~3 hours; Mercor confirmed 4TB stolen; Lapsus$ claimed responsibility; Meta paused all Mercor work",
+      "decision_implication": "Pin all open-source AI library versions immediately. Audit dependency chains for any LiteLLM version 1.82.7 or 1.82.8. Implement SCA tooling if not already in place. Review third-party AI data vendors' security posture.",
+      "source": "The Register",
+      "url": "https://www.theregister.com/2026/04/02/mercor_supply_chain_attack/"
+    },
+    {
+      "challenge": "Anthropic CI/CD authorization failures: 500K+ lines of proprietary code leaked via npm",
+      "evidence": "3 security incidents in 5 days (March 26-31, 2026): CMS misconfiguration, CI/CD pipeline error, concurrent supply chain RAT injection",
+      "decision_implication": "Even best-in-class AI labs have basic pipeline hygiene failures. Teams should audit their own CI/CD authorization flows, especially around npm publish permissions and model artifact registries.",
+      "source": "EnforceAuth / Milwaukee Journal Sentinel",
+      "url": "https://www.jsonline.com/press-release/story/171487/enforceauth-identifies-authorization-failures-as-root-cause-of-anthropics-three-security-incidents-in-five-days/"
+    },
+    {
+      "challenge": "EU AI Act compliance gap: 85% of European firms not ready with 5 months to deadline",
+      "evidence": "August 2, 2026 deadline for high-risk AI systems; only 15% compliance readiness; technical standards and guidance delayed; 'Digital Omnibus' extension not confirmed",
+      "decision_implication": "Don't assume the deadline extension. Start risk classification now. HR tools, credit scoring, and education AI systems face highest exposure. Non-compliance = up to €35M or 7% global turnover.",
+      "source": "TensorVue / TechLaw",
+      "url": "https://tensorvue.com/article/eu-ai-act-countdown-five-months-until-the-worlds-most-ambitious-ai-regulation-hits-high-risk-systems"
+    }
+  ],
+  "forward": [
+    {
+      "signal": "EU AI Act high-risk system enforcement goes live",
+      "timeframe": "August 2, 2026",
+      "trigger_to_watch": "European Commission ruling on Digital Omnibus extension — if rejected, companies have 4 months to achieve compliance. Key sectors: HR AI, healthcare AI, credit scoring AI.",
+      "source": "TensorVue",
+      "url": "https://tensorvue.com/article/eu-ai-act-countdown-five-months-until-the-worlds-most-ambitious-ai-regulation-hits-high-risk-systems"
+    },
+    {
+      "signal": "Google Cloud Next 2026 Anthropic enterprise AI announcements",
+      "timeframe": "April 22-23, 2026",
+      "trigger_to_watch": "Anthropic presenting at Google Cloud Next — likely to announce new Claude enterprise workflows and agentic deployment features. Watch for pricing changes tied to outcome-based contracts.",
+      "source": "Anthropic",
+      "url": "https://www.anthropic.com/events/anthropic-at-google-cloud-next-2026"
+    },
+    {
+      "signal": "LiteLLM attack post-mortems and downstream breach disclosures",
+      "timeframe": "By end of April 2026",
+      "trigger_to_watch": "Mercor said it was 'one of thousands' — more companies will disclose over the next 2-3 weeks as breach investigation closes. Watch for OpenAI, Anthropic, or Meta disclosures about whether training data or model weights were compromised.",
+      "source": "The Register",
+      "url": "https://www.theregister.com/2026/04/02/mercor_supply_chain_attack/"
+    },
+    {
+      "signal": "Gemma 4 integration wave in enterprise open-source deployments",
+      "timeframe": "April-May 2026",
+      "trigger_to_watch": "Cloudflare Workers AI already supports Gemma 4 26B A4B. Watch for enterprise Vertex AI and on-premise adoption metrics. If Gemma 4 drives 20%+ reduction in API spend for builder teams, it will accelerate the copilot-to-agent architectural shift.",
+      "source": "Cloudflare / Google Cloud",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-04-04-gemma-4-26b-a4b-workers-ai/"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+TITLE: AI Daily — ngày 7 tháng 4 năm 2026
+SUBTITLE: Microsoft vừa chứng minh bạn không cần OpenAI để xây dựng AI đẳng cấp thế giới, và điều đó thay đổi toàn bộ cấu trúc của ngành.
+EPISODE: #3 | ngày 7 tháng 4 năm 2026 | Host: Trung
+
+[INTRO_MUSIC]
+
+[HOST] Ba thông báo. Dưới 10 kỹ sư cho mỗi mô hình. Sáu mươi giây âm thanh được tạo ra trong đúng một giây. Đó là cách tuần làm việc của Microsoft bắt đầu, và khi chúng ta kết thúc bản tin hôm nay, bạn sẽ hiểu tại sao điều này báo hiệu sự kết thúc của một kỷ nguyên mà hầu hết mọi người chưa kịp nhận ra là đã bắt đầu.
+
+[HOST] Bản tin hôm nay có ba câu chuyện mà nhìn bề ngoài có vẻ hoàn toàn khác nhau. Microsoft ra mắt các mô hình AI của riêng mình. OpenAI đóng cửa Sora và mua một công ty truyền thông. Và cuộc khủng hoảng quản trị AI trong các doanh nghiệp lớn mà không ai đang nói to đủ mức. Nhưng cả ba đều đang chỉ về cùng một điều. Cấu trúc quyền lực tập trung của ngành AI đang vỡ vụn, và sự vỡ vụn đó có hậu quả trực tiếp đối với mọi quyết định về AI mà bạn đang đưa ra trong quý này.
+
+[SEGMENT_BREAK: Tin số 1 — Microsoft MAI: Xây dựng độc lập AI với đội nhỏ]
+
+[HOST] Bắt đầu bằng con số. Ngày 2 tháng 4 năm 2026, Microsoft công bố ba mô hình AI nền tảng mang thương hiệu MAI. MAI Transcribe 1 đạt tỷ lệ lỗi từ trung bình 3,8 phần trăm trong nhận dạng giọng nói, vượt trội so với Whisper large v3 của chính OpenAI, đồng thời nhanh hơn 2,5 lần so với dịch vụ Azure trước đây của Microsoft. MAI Voice 1 chuyển văn bản thành giọng nói ở tốc độ tạo ra sáu mươi giây âm thanh chỉ trong một giây. MAI Image 2 xếp hạng đầu trên bảng xếp hạng Arena AI và tạo ảnh nhanh gấp đôi so với phiên bản tiền nhiệm. Mỗi mô hình trong số này được xây dựng bởi một đội dưới 10 kỹ sư.
+
+[HOST] Đây là tín hiệu kỹ thuật quan trọng nhất. Các mô hình này không chỉ được xây dựng hiệu quả mà còn sử dụng ít tài nguyên GPU hơn đáng kể so với các mô hình cạnh tranh. Đó không phải là kết quả bài kiểm thử. Đó là lợi thế cấu trúc. Nó có nghĩa là Microsoft đã tìm ra cách đạt được hiệu suất ở cấp độ hàng đầu với quy mô mô hình thành phần mà không cần tính toán bạo lực. Tác động đến chi phí suy luận ở quy mô Copilot, tức là hàng trăm triệu người dùng trên khắp Office 365, là rất lớn.
+
+[HOST] Điều này trở nên khả thi nhờ một sự tái cơ cấu quan hệ đối tác với OpenAI vào tháng 10 năm 2025. Thỏa thuận ban đầu có những rào cản hợp đồng ngăn Microsoft độc lập theo đuổi phát triển AGI hay trí tuệ siêu việt. Những rào cản đó đã được gỡ bỏ. Microsoft hiện tự xây dựng các mô hình frontier của riêng mình trong khi vẫn duy trì quyền truy cập công nghệ của OpenAI cho đến năm 2032. Điều đó giống như một nhà sản xuất ô tô lớn chấm dứt hợp đồng nhà cung cấp động cơ độc quyền trong khi vẫn có thể đặt hàng động cơ khi cần thiết.
+
+[HOST] Nếu bạn là engineering manager đang đánh giá Azure AI hay Microsoft Copilot cho nửa sau năm 2026, điều này có nghĩa là gì? Cấu trúc chi phí vừa được cải thiện đáng kể. Bạn không còn trả cho Microsoft một khoản lợi nhuận chồng lên lợi nhuận của OpenAI cho mỗi lần gọi API về giọng nói, phiên âm và tạo ảnh nữa. Chi phí sản xuất của các tính năng Copilot vừa giảm, và Microsoft có cả động cơ lẫn khả năng để chuyển điều đó thành giá cạnh tranh hơn. Nếu bạn có các cuộc đàm phán mua sắm sắp tới, đây là đòn bẩy.
+
+[HOST] Và đối với các builder cụ thể hơn: kỷ nguyên mà mọi khả năng Azure AI đều được ủy thác qua OpenAI đang kết thúc. Các mô hình MAI hiện có sẵn để sử dụng thương mại qua Microsoft Foundry. Nếu bạn đang xây dựng ứng dụng liên quan đến giọng nói, phiên âm hay tạo ảnh cho khách hàng doanh nghiệp lớn, những người ngày càng quan tâm đến lưu trữ dữ liệu nội địa, hãy đánh giá MAI trực tiếp so với các sản phẩm của OpenAI và Google. Các chuẩn đánh giá hiệu suất là thật và giá được thiết kế để cạnh tranh nhất trong số các nhà cung cấp đám mây lớn.
+
+[SEGMENT_BREAK: Tin số 2 — OpenAI đóng cửa Sora, mua TBPN: Cuộc xoay trục sang kiểm soát câu chuyện]
+
+[HOST] Mười triệu đô la mỗi ngày. Đó là chi phí đốt tiền của Sora, nền tảng tạo video AI của OpenAI, khi OpenAI đóng cửa nó vào cuối tháng 3 năm 2026. Và thời điểm thật đáng chú ý. OpenAI đã ký thỏa thuận cấp phép ba năm với Disney chỉ ba tháng trước khi đóng cửa, thỏa thuận cho phép người dùng tạo nội dung sử dụng nhân vật của Disney, Pixar, Marvel và Star Wars. Họ ký thỏa thuận, rồi dừng sản phẩm luôn.
+
+[HOST] Lý do là bài toán IPO. OpenAI đang tối ưu hóa danh mục sản phẩm trước khi niêm yết công khai, và Sora không có lộ trình rõ ràng để đạt quy mô doanh thu đủ để biện hộ cho tỷ lệ đốt tiền của nó. Tạo video là một bài toán kỹ thuật thực sự khó với cạnh tranh khốc liệt. Thị trường người tiêu dùng cho nó vẫn chưa hình thành ở mức giá cần thiết để bù đắp chi phí tính toán. Dừng một sản phẩm đốt mười triệu đô mỗi ngày, kể cả khi đã có IP của Disney, là quyết định hợp lý khi bạn chuẩn bị niêm yết.
+
+[HOST] Bước đi thú vị hơn về mặt chiến lược là TBPN. Ngày 2 tháng 4, OpenAI thông báo mua lại Technology Business Programming Network, một chương trình streaming hàng ngày được gọi là "ESPN của công nghệ", dự kiến tạo ra hơn 30 triệu đô la doanh thu trong năm 2026. Show đã có sự xuất hiện của Sam Altman, Mark Zuckerberg, James Cameron. Lý do OpenAI đưa ra là "công thức truyền thông thông thường không áp dụng được cho một công ty đang tạo ra sự thay đổi công nghệ ở quy mô này."
+
+[HOST] Tiêu đề của WIRED thẳng thắn hơn: "OpenAI mua lại chương trình talk show TBPN, và tự mua cho mình tin tức tích cực." Cam kết về độc lập biên tập là thật theo nghĩa TBPN sẽ tiếp tục tự chọn khách mời. Nhưng giờ đây nó hoạt động dưới tổ chức Chiến lược của OpenAI, báo cáo cho Giám đốc Sự vụ Toàn cầu Chris Lehane. Mối quan hệ cấu trúc đó tạo ra các động lực tồn tại độc lập với ý định.
+
+[HOST] Đối với manager: đây là thời điểm để hiệu chỉnh lại cách bạn đánh giá trọng số thông tin tình báo thị trường AI từ các kênh truyền thông hiện đang nằm một phần bên trong hệ sinh thái mà họ đưa tin. TBPN chỉ là một tài sản, nhưng mô hình nó đại diện rộng hơn thế. Các công ty AI đang mua truyền thông, tài trợ nghiên cứu, và tuyển dụng các chuyên gia phân tích tạo ra các khung tư duy mà doanh nghiệp dùng để đưa ra quyết định đầu tư AI. Đó không phải là âm mưu mà là cấu trúc động lực. Hãy đa dạng hóa các nguồn thông tin AI của bạn và áp dụng tư duy phản biện phù hợp với bất kỳ phân tích nào đến từ các tổ chức có lợi ích tài chính trong các quyết định áp dụng AI của bạn.
+
+[SEGMENT_BREAK: Tin số 3 — Khủng hoảng Shadow Agent: AI trong tổ chức bạn đang chạy mà không có ai giám sát]
+
+[HOST] Đây là một con số mà mọi engineering manager trong khán giả này nên để tâm: tháng 8 năm 2026. Đó là khi EU AI Act bắt đầu được thực thi, tức là bốn tháng nữa. Và dựa trên những gì đang được báo cáo từ các công ty bảo mật doanh nghiệp bao gồm Trend Micro, Deloitte, và phân tích của Kai Waehner đăng ngày 6 tháng 4 vừa qua, một số lượng đáng kể các tổ chức sẽ không kịp chuẩn bị.
+
+[HOST] Vấn đề cụ thể được gọi là shadow agent, tức là các quy trình làm việc AI tự động được nhân viên xây dựng bằng tài khoản API cá nhân, nền tảng low code, hay các công cụ bên thứ ba chưa được kiểm định. Chúng đang chạy trong tổ chức của bạn ngay lúc này, xử lý các tác vụ thật, truy cập dữ liệu thật, và chúng không có nhật ký kiểm toán, không có kiểm soát IAM, không có quản lý vòng đời, và không có người chịu trách nhiệm. Các khung quản lý danh tính và quyền truy cập truyền thống được thiết kế cho người dùng là con người. Chúng không xử lý được các agent tự động tạm thời xuất hiện, thực hiện hành động, rồi biến mất. Đây là khoảng trống thiết kế mang tính hệ thống, không phải lỗi cấu hình đơn thuần, và hầu hết các nhóm bảo mật hiện chưa có công cụ phù hợp để phát hiện và kiểm soát chúng một cách hiệu quả.
+
+[HOST] Khoảng cách giữa triển khai và quản trị là thật và đang nới rộng. Nghiên cứu nhất quán cho thấy triển khai AI trong doanh nghiệp năm 2025 đã đi nhanh hơn đáng kể so với khả năng đánh giá và kiểm soát của các nhóm bảo mật. Các agent mà công ty xây dựng để đạt được 40 phần trăm hiệu suất trong các luồng công việc cụ thể đã được tiếp nối bởi các agent mà nhân viên tự xây dựng. Loại thứ hai mới là trách nhiệm pháp lý.
+
+[HOST] Phản ứng kỹ thuật đang hình thành là khái niệm "agentic identity", tức là đối xử với AI agent như các thực thể bảo mật hạng nhất với thông tin xác thực có thể kiểm chứng, token tạm thời theo nhiệm vụ, và khả năng theo dõi toàn bộ chuỗi ủy quyền. Model Context Protocol đang trở thành tiêu chuẩn cho kết nối giữa agent và công cụ, nhưng nó cũng tạo ra bề mặt tấn công riêng. Danh sách OWASP MCP Top 10 hiện là khung thực tế mà các nhóm quản trị đang ánh xạ vào. Các công ty bảo hiểm không gian mạng hiện đang đặt điều kiện bảo hiểm dựa trên tài liệu kiểm thử đối nghịch có hệ thống cho các hệ thống AI. Đây không còn là rủi ro lý thuyết nữa.
+
+[HOST] Với các builder đang thiết kế kiến trúc agent ngày hôm nay: mô hình thiết kế chiến thắng trong năm 2026 là mô hình điều phối kết hợp với các agent chuyên biệt, không phải một agent monolithic làm tất cả mọi thứ. Hệ thống đa agent với phân tách vai trò rõ ràng, giao thức chia sẻ ngữ cảnh, và các điểm kiểm tra có sự tham gia của con người tại các quyết định quan trọng vừa hiệu quả hơn vừa dễ quản trị hơn. Các tổ chức làm đúng điều này trong quý 2 năm 2026 sẽ có lợi thế bền vững. Những tổ chức không làm vậy sẽ phải thêm các biện pháp kiểm soát quản trị trong điều kiện áp lực từ cơ quan quản lý.
+
+[SEGMENT_BREAK: Phân tích — Tự chủ AI và Hệ sinh thái đang vỡ vụn]
+
+[HOST] Bây giờ hãy nhìn vào điều mà ba câu chuyện này đang tập thể cho chúng ta biết. Có một mô hình ở đây quan trọng hơn bất kỳ thông báo đơn lẻ nào.
+
+[HOST] Microsoft đang xây dựng các mô hình nền tảng của riêng mình. OpenAI đang thoát khỏi các sản phẩm tiêu dùng và mua lại tầm ảnh hưởng truyền thông. Các tổ chức doanh nghiệp đang phát hiện ra rằng các AI agent của họ hoạt động trong bóng tối. Ba lĩnh vực hoàn toàn khác nhau, nhưng đây là triệu chứng của cùng một sự chuyển dịch cấu trúc. Cấu trúc quyền lực tập trung, lấy OpenAI làm trung tâm, đã chi phối ngành AI năm 2023 và 2024, đang tan vỡ, và mọi người đang tranh giành để kiểm soát vị trí của riêng mình trong cấu hình mới.
+
+[HOST] Hãy nghĩ về nơi chúng ta đứng 18 tháng trước. OpenAI đặt ra nhịp độ, mọi người khác đi theo. Các khả năng AI của Azure phần lớn là khả năng của OpenAI. Hệ thống AI doanh nghiệp đơn giản. OpenAI API, có thể thêm một lớp bọc, có thể thêm một chút tăng cường truy xuất. Sự đơn giản đó đã qua. Microsoft giờ là một công ty AI độc lập vẫn có quan hệ với OpenAI. Google, Meta và Anthropic đều có các thế mạnh khả năng riêng biệt. Các tổ chức doanh nghiệp đang triển khai kiến trúc đa nhà cung cấp, đa agent. Và truyền thông định hình cách lãnh đạo hiểu tất cả những điều này ngày càng được sở hữu bởi chính những người chơi trong cuộc chơi.
+
+[HOST] Có một tương tự lịch sử cho điều này: cuộc chiến đám mây giai đoạn 2014 đến 2016. Hãy nhớ lại khi AWS quá thống trị đến mức câu hỏi không phải là "đám mây nào" mà là "khi nào bạn chuyển sang AWS." Rồi Google Cloud và Azure bắt đầu cạnh tranh mạnh mẽ về giá, Microsoft gói đám mây vào các thỏa thuận doanh nghiệp, và đột nhiên các doanh nghiệp có chiến lược ba nhà cung cấp đám mây dù họ có muốn hay không. Lớp tính toán trở thành hàng hóa phổ thông và giá trị chuyển sang các dịch vụ bên trên nó. Đó chính xác là điều đang xảy ra với lớp mô hình AI ngay bây giờ.
+
+[HOST] Trong 30 ngày tới: hãy kỳ vọng Microsoft tiếp tục mở rộng MAI sang các lĩnh vực khả năng bổ sung, các mô hình ngôn ngữ là bước hợp lý tiếp theo sau giọng nói và ảnh. Trọng tâm của OpenAI sẽ chuyển sang API doanh nghiệp và củng cố nền tảng, không phải sản phẩm người tiêu dùng. Các nhà cung cấp công cụ quản trị AI sẽ có quý tốt nhất khi các doanh nghiệp chạy nước rút để đáp ứng thời hạn EU AI Act tháng 8.
+
+[HOST] Trong 60 đến 90 ngày tới: sự chuyển dịch sang mô hình định giá dựa trên kết quả mà Morgan Stanley và Deloitte đang theo dõi sẽ bắt đầu xuất hiện trong các hợp đồng doanh nghiệp thực tế. Thay vì trả tiền theo lần gọi API, bạn sẽ được đề nghị mức giá gắn với kết quả kinh doanh đo lường được. Điều đó thay đổi hoàn toàn hồ sơ rủi ro của đầu tư AI, và bạn cần để nhóm mua sắm và pháp lý suy nghĩ về điều này ngay bây giờ, không phải khi hợp đồng đầu tiên đặt lên bàn bạn.
+
+[HOST] Câu hỏi cho manager tuần này là: bạn có đang quản lý một sự phụ thuộc AI đơn nhà cung cấp mà giờ đây đã có lựa chọn thay thế không? Các mô hình MAI của Microsoft, có sẵn qua Foundry ngay hôm nay, có nghĩa là nếu tổ chức của bạn đang cam kết nặng nề với Azure cho khối lượng công việc AI, bạn hiện có nhiều đòn bẩy hơn trong các cuộc đàm phán gia hạn với Microsoft. Hãy sử dụng nó. Và nếu bạn chưa bắt đầu kiểm toán quản trị agent, bạn còn khoảng 90 ngày trước khi EU AI Act bắt đầu thực thi. Việc kiểm toán đó bắt đầu bằng một câu hỏi: bạn có biết mọi AI agent đang chạy trong tổ chức của mình không, ai sở hữu nó và nó chạm vào dữ liệu gì không?
+
+[HOST] Với người đang build, câu hỏi sắc nét hơn: bạn có đang xây dựng trên nền tảng đúng đắn cho một thế giới nơi lớp mô hình AI đang trở thành hàng hóa phổ thông không? Các builder sẽ chiến thắng trong năm 2026 không phải là những người có khả năng tích hợp API tốt nhất với một nhà cung cấp mô hình duy nhất. Họ là những người đã xây dựng lớp trừu tượng cho phép hoán đổi mô hình, đã thiết kế quản trị vào kiến trúc agent của họ từ ngày đầu, và đã đặt giá trị sản phẩm của họ ở lớp luồng công việc và kiến thức ngành, không phải ở khả năng AI thuần túy mà Microsoft, Google và Anthropic đang chạy đua giảm giá.
+
+[HOST] Điều chúng ta chưa biết, và điều quan trọng là phải thành thật về điều này, là liệu chiến lược MAI của Microsoft có thực sự thực hiện được mục tiêu đã đề ra là đạt độc lập hoàn toàn vào năm 2032 hay không. Xây dựng một mô hình ngôn ngữ lớn frontier ở quy mô GPT 5 đòi hỏi không chỉ năng lực kỹ thuật mà còn dữ liệu huấn luyện, hạ tầng tính toán, và vòng phản hồi từ hàng trăm triệu người dùng. Microsoft có hạ tầng tính toán qua Azure. Dữ liệu huấn luyện và vòng phản hồi người dùng là những câu hỏi còn ngỏ.
+
+[SEGMENT_BREAK: Tín hiệu & Quyết định]
+
+[HOST] Trước khi kết thúc, ba điều cần mang theo từ hôm nay.
+
+[HOST] Thứ nhất: việc Microsoft ra mắt MAI không chỉ là thông báo sản phẩm. Đây là sự khởi đầu của sự kết thúc kỷ nguyên mô hình AI đơn nhà cung cấp. Nếu chiến lược AI của tổ chức bạn được xây dựng dựa trên giả định rằng chỉ có hai hay ba công ty AI thực sự để lựa chọn, giả định đó đã lỗi thời rồi. Số lượng nhà cung cấp mô hình AI đáng tin cậy, sẵn sàng sản xuất sắp tăng đáng kể, và cán cân quyền mua đang chuyển về phía người mua doanh nghiệp.
+
+[HOST] Thứ hai: vấn đề shadow agent là thật và đồng hồ tuân thủ đang chạy. Các tổ chức sẽ gặp rắc rối vào tháng 8 không phải là những tổ chức đã triển khai AI agentic một cách thiếu thận trọng. Đó là những tổ chức đã để nhân viên tự xây dựng agent mà không có khả năng hiển thị của IT. Hãy bắt đầu kiểm toán ngay bây giờ. Khung đơn giản là: mỗi agent cần một chủ sở hữu, một phạm vi được xác định, một nhật ký kiểm toán, và một quy trình tắt. Bốn thứ. Nếu bất kỳ điều nào trong số đó còn thiếu, agent đó là trách nhiệm pháp lý.
+
+[HOST] Thứ ba: bức tranh truyền thông xung quanh AI đang thay đổi theo những cách ảnh hưởng đến nguồn thông tin của bạn. TBPN chỉ là một thương vụ mua lại, nhưng mô hình rộng hơn: các công ty AI đang đầu tư vào truyền thông, nghiên cứu, và hệ sinh thái chuyên gia phân tích ảnh hưởng đến quyết định mua AI của doanh nghiệp. Hãy áp dụng tư duy phê phán nguồn đối với phân tích ngành AI theo cách bạn làm với bất kỳ nghiên cứu nào được tạo ra bởi một bên có lợi ích tài chính trong kết luận.
+
+[SEGMENT_BREAK: Kết]
+
+[HOST] Hai câu hỏi tôi để lại chưa có lời giải hôm nay. Thứ nhất: khi Microsoft hoàn thành mô hình ngôn ngữ frontier của riêng mình và đạt được độc lập hoàn toàn khỏi OpenAI, với mục tiêu năm 2032, điều gì xảy ra với hàng nghìn khách hàng doanh nghiệp đã xây dựng tích hợp sâu dựa trên giả định về sự ổn định của quan hệ phụ thuộc Microsoft và OpenAI? Sự gián đoạn từ việc Microsoft độc lập có tạo ra sự bất ổn lớn hơn rủi ro phụ thuộc OpenAI mà nó được thiết kế để giảm thiểu không? Tôi không có câu trả lời. Nhưng các doanh nghiệp đang đặt cược hạ tầng AI 5 năm ngày hôm nay cần phải đặt câu hỏi này.
+
+[HOST] Thứ hai: nếu các lab AI sở hữu truyền thông, và AI ngày càng định hình quy trình nghiên cứu và nội dung của các nhà báo đưa tin về họ, ai cung cấp phân tích độc lập thực sự về ngành AI? Sự tập trung ảnh hưởng truyền thông AI vào tay các công ty đang thúc đẩy phát triển AI là hiệu ứng bậc hai của việc thương mại hóa AI mà chúng ta chưa tính đủ vào. Sự vắng mặt của phân tích AI độc lập đáng tin cậy tạo ra bất cân xứng thông tin có lợi cho người trong cuộc và gây bất lợi cho các khách hàng doanh nghiệp, nhà hoạch định chính sách và kỹ sư là những người cần tín hiệu chính xác nhất.
+
+[HOST] Thứ duy nhất chắc chắn hôm nay là tốc độ thay đổi trong AI hiện nhanh hơn tốc độ mà hầu hết các tổ chức có thể đưa ra và thực hiện các quyết định về nó. Khoảng cách giữa những gì có thể về mặt kỹ thuật và những gì tổ chức bạn đã quyết định làm với nó đang ngày càng nới rộng, không thu hẹp lại. Công việc của bạn là thu hẹp khoảng cách đó. Và bước đầu tiên là biết điều gì thực sự đang xảy ra, không phải những gì các công ty liên quan muốn bạn tin là đang xảy ra.
+
+[OUTRO_MUSIC]
+
+SOURCES:
+1. TechCrunch — https://techcrunch.com/2026/04/02/microsoft-takes-on-ai-rivals-with-three-new-foundational-models/ — ngày 2 tháng 4 năm 2026 — cited for MAI model launch details
+2. Forbes — https://www.forbes.com/sites/janakirammsv/2026/04/02/microsoft-builds-its-own-ai-model-stack-to-reduce-openai-dependence/ — ngày 2 tháng 4 năm 2026 — cited for Microsoft independence strategy
+3. Microsoft AI Blog — https://microsoft.ai/news/today-were-announcing-3-new-world-class-mai-models-available-in-foundry/ — ngày 2 tháng 4 năm 2026 — cited for MAI model technical specifications
+4. WIRED — https://www.wired.com/story/openai-acquires-tbpn-buys-positive-news-coverage/ — tháng 4 năm 2026 — cited for TBPN acquisition and conflict-of-interest analysis
+5. Deadline — https://deadline.com/2026/04/openai-acquires-streaming-series-tbpn-1236772434/ — tháng 4 năm 2026 — cited for TBPN revenue and editorial details
+6. NYT — https://www.nytimes.com/2026/03/24/technology/openai-shutting-down-sora.html — ngày 24 tháng 3 năm 2026 — cited for Sora shutdown details
+7. Kai Waehner Blog — https://www.kai-waehner.de/blog/2026/04/06/enterprise-agentic-ai-landscape-2026-trust-flexibility-and-vendor-lock-in/ — ngày 6 tháng 4 năm 2026 — cited for enterprise agentic governance landscape
+8. Trend Micro — https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/from-anarchy-to-authority-closing-the-governance-gap-in-agentic-ai — cited for shadow agent governance analysis
+9. Deloitte State of AI Enterprise 2026 — https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html — cited for enterprise AI adoption and workforce trends
+10. Morgan Stanley AI Market Trends 2026 — https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026 — cited for infrastructure projection and outcome-based pricing

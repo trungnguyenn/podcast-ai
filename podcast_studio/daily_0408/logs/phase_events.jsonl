@@ -1,0 +1,2 @@
+{"time": "2026-04-08T07:24:04", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0408"}}
+{"time": "2026-04-08T07:38:03", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0408/exports/daily_0408_vi_final.mp3", "speech_generated": 51}}

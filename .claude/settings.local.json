@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(source .env)",
+      "Bash(python3 -c \"import requests, pydub; print\\(''deps: OK''\\)\")",
+      "Bash(pip install:*)",
+      "Bash(ffmpeg -version)",
+      "WebSearch",
+      "Edit(/.claude/skills/tech-radar-podcast/**)",
+      "Bash(cp /Users/trungnguyen/Working/PodcastAI/.claude/skills/tech-radar-podcast/scripts/produce_audio.py /Users/trungnguyen/Working/PodcastAI/.podcast_output/ep1_antigravity_design_philosophy/produce_audio.py)",
+      "Bash(python3 -m py_compile /Users/trungnguyen/Working/PodcastAI/.podcast_output/ep1_antigravity_design_philosophy/produce_audio.py)",
+      "Bash(python3 produce_audio.py)",
+      "Read(//Users/trungnguyen/.claude/**)",
+      "Bash(python3:*)",
+      "Bash(GUEST_VOICE_PROFILE=male_analytical python3 produce_audio.py)",
+      "Skill(tech-radar-podcast)",
+      "Skill(tech-radar-podcast:*)",
+      "Read(//Users/trungnguyen/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/bin/**)",
+      "Bash(curl -s http://127.0.0.1:8001/docs)",
+      "Bash(curl -s http://127.0.0.1:8001/health)",
+      "Bash(curl -s http://127.0.0.1:8001/openapi.json)",
+      "Bash(PODCAST_LANG=en python3 produce_audio.py)",
+      "Bash(rm -rf segments/)",
+      "Bash(PODCAST_LANG=vi python3 produce_audio.py)",
+      "Bash(echo \"EXIT_CODE=$?\")"
+    ],
+    "additionalDirectories": [
+      "/Users/trungnguyen/Working/PodcastAI/.claude/skills/tech-radar-podcast/scripts"
+    ]
+  }
+}

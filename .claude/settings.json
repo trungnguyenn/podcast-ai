@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la *_vi_final.mp3)",
+      "Bash(ls -la *_final.mp3)",
+      "Bash(ls -lhS segments/*.mp3)",
+      "Bash(ls segments/*.mp3)",
+      "Bash(ls -lh /Users/trungnguyen/Working/PodcastAI/podcast_list/ep12_hiro_crew*.mp3)"
+    ]
+  }
+}

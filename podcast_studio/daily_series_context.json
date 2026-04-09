@@ -1,0 +1,38 @@
+{
+  "_readme": "Series memory for daily-ai-podcast. Written only by daily-ai-podcast episodes. Safe to run in parallel with weekly_series_context.json.",
+  "covered_stories": [
+    {
+      "slug": "anthropic-mythos-preview-77-8-swe-bench-pro-too-dangerous-to",
+      "headline": "Anthropic Mythos Preview: 77.8% SWE-Bench Pro, Too Dangerous to Release Publicly",
+      "date": "2026-04-09"
+    },
+    {
+      "slug": "legacy-system-modernization-roi-shifts-ai-teams-compress-6-m",
+      "headline": "Legacy System Modernization ROI Shifts: AI Teams Compress 6-Month Rewrites to 8-12 Weeks",
+      "date": "2026-04-09"
+    },
+    {
+      "slug": "healthcare-agentic-ai-61-of-leaders-building-hipaa-2026-crea",
+      "headline": "Healthcare Agentic AI: 61% of Leaders Building, HIPAA 2026 Creates New Compliance Frontier",
+      "date": "2026-04-09"
+    }
+  ],
+  "open_forecasts": [
+    {
+      "slug": "if-ai-can-find-vulnerabilities-that-humans-missed-for-27-yea",
+      "text": "If AI can find vulnerabilities that humans missed for 27 years, what does that imply about the security of every legacy system currently in production — and who bears liability when an AI-discovered vulnerability is exploited before it's patched?",
+      "raised": "2026-04-09"
+    },
+    {
+      "slug": "in-healthcare-when-an-agentic-ai-makes-a-clinical-decision-b",
+      "text": "In healthcare, when an agentic AI makes a clinical decision based on data extracted from a legacy EHR system that hasn't been validated in 15 years, who is legally responsible — the AI vendor, the hospital, or the EHR manufacturer who stopped maintaining that interface?",
+      "raised": "2026-04-09"
+    }
+  ],
+  "running_themes": [
+    {
+      "date": "2026-04-09",
+      "theme": "AI is crossing the threshold from \"tool for new code\" to \"autonomous agent for old code\" — and the implications cascade through every industry running on legacy infrastructure, from enterprise IT to healthcare. The common thread is that models like Mythos can now navigate, understand, and operate within systems that were built decades ago without documentation, while the regulatory and safety frameworks are racing to keep up. We are entering an era where the most valuable AI capability isn't generating new content — it's understanding the mess we already built."
+    }
+  ]
+}

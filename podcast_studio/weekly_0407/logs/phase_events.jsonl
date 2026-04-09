@@ -1,0 +1,9 @@
+{"time": "2026-04-07T17:54:35", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407"}}
+{"time": "2026-04-07T17:55:17", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407"}}
+{"time": "2026-04-07T17:57:41", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/exports/weekly_0407_vi_final.mp3", "speech_generated": 0}}
+{"time": "2026-04-07T17:58:23", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/exports/weekly_0407_vi_final.mp3", "speech_generated": 0}}
+{"time": "2026-04-07T18:00:25", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407"}}
+{"time": "2026-04-07T18:32:29", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/exports/weekly_0407_vi_final.mp3", "speech_generated": 121}}
+{"time": "2026-04-07T19:35:28", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407"}}
+{"time": "2026-04-07T19:35:56", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407"}}
+{"time": "2026-04-07T19:42:47", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/exports/weekly_0407_en_final.mp3", "speech_generated": 107}}

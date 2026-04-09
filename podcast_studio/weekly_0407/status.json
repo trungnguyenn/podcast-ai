@@ -1,0 +1,15 @@
+{
+  "workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407",
+  "current_phase": "audio_render",
+  "updated_at": "2026-04-07T19:42:47",
+  "phases": {
+    "audio_render": {
+      "status": "completed",
+      "updated_at": "2026-04-07T19:42:47",
+      "details": {
+        "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/weekly_0407/exports/weekly_0407_en_final.mp3",
+        "speech_generated": 107
+      }
+    }
+  }
+}

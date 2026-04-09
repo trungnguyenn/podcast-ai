@@ -1,0 +1,13 @@
+# Audio outputs
+podcast_studio/**/cache/
+podcast_studio/**/*.mp3
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/

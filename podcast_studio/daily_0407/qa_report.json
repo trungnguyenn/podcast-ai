@@ -1,0 +1,38 @@
+{
+  "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0407/exports/daily_0407_vi_final.mp3",
+  "audio_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "mp3",
+        "sample_rate": "48000",
+        "channels": 2,
+        "bit_rate": "128000"
+      }
+    ],
+    "format": {
+      "duration": "1028.836688",
+      "bit_rate": "128009"
+    }
+  },
+  "loudness": {
+    "input_integrated_lufs": -16.6,
+    "input_true_peak_dbtp": -1.9,
+    "input_lra": 2.7,
+    "output_integrated_lufs": -15.8,
+    "output_true_peak_dbtp": -1.5,
+    "output_lra": 2.6
+  },
+  "silence": {
+    "count": 378,
+    "sum_seconds": 180.731,
+    "avg_seconds": 0.478,
+    "max_seconds": 2.626
+  },
+  "risk_terms": {},
+  "speaker_counts": {
+    "HOST": 39
+  },
+  "generated_at": "2026-04-08T07:23:59"
+}

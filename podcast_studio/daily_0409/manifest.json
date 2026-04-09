@@ -1,0 +1,44 @@
+{
+  "episode": "daily_0409",
+  "title": "",
+  "tts_provider": "vieneu",
+  "vieneu_engine_mode": "standard",
+  "voices": {
+    "HOST": {
+      "voice_id": "Vinh",
+      "name": "Trung",
+      "profile": "host",
+      "region": "south",
+      "pace": "fast",
+      "energy": "warm_confident",
+      "vieneu_profile": "host_default",
+      "pace_profile": "host_broadcast_fast",
+      "vieneu_request": {
+        "temperature": 0.82,
+        "top_k": 40,
+        "max_chars": 145,
+        "silence_p": 0.08,
+        "crossfade_p": 0.035
+      },
+      "ref_audio": "",
+      "ref_text": "",
+      "ref_codes": null,
+      "selection_method": "config"
+    }
+  },
+  "segments": {
+    "speech": {
+      "total": 45,
+      "generated": 45,
+      "by_speaker": {
+        "HOST": 45
+      }
+    },
+    "music": 2,
+    "sfx": 10
+  },
+  "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/exports/daily_0409_vi_final.mp3",
+  "date": "2026-04-09",
+  "workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409",
+  "cache_segments_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments"
+}
