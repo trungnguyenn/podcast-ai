@@ -455,7 +455,27 @@ ctx_path.write_text(json.dumps(ctx, ensure_ascii=False, indent=2))
 print("Weekly series context updated.")
 ```
 
-### Step 7b — Delivery report
+### Step 7b — Copy to Google Drive
+
+After series memory is updated, copy the final MP3 to Google Drive. Read the path from `.env`:
+
+```bash
+GDRIVE=$(grep '^PODCAST_GDRIVE_PATH=' .env 2>/dev/null | cut -d'=' -f2-)
+FINAL_MP3=$(ls ./podcast_studio/[DATE_SLUG]/exports/*_final.mp3 2>/dev/null | head -1)
+
+if [ -z "$FINAL_MP3" ]; then
+  echo "WARNING: No final MP3 found in exports/ — skipping Google Drive copy"
+elif [ -z "$GDRIVE" ]; then
+  echo "WARNING: PODCAST_GDRIVE_PATH not set in .env — skipping"
+elif [ ! -d "$GDRIVE" ]; then
+  echo "WARNING: Google Drive folder not mounted — skipping"
+  echo "  Manually copy: $FINAL_MP3"
+else
+  cp "$FINAL_MP3" "$GDRIVE/" && echo "Copied to Google Drive: $(basename $FINAL_MP3)"
+fi
+```
+
+### Step 7c — Delivery report
 
 ```
 AI WEEKLY RADAR — EPISODE PRODUCTION COMPLETE

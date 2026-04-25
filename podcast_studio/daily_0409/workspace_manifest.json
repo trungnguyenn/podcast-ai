@@ -1,43 +1,43 @@
 {
-  "workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409",
+  "workspace": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409",
   "episode": "daily_0409",
   "request": "",
-  "episode_config": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/episode.json",
+  "episode_config": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/episode.json",
   "scripts": {
-    "selected": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/script_vi.txt",
-    "english": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/script_en.txt",
-    "vietnamese": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/script_vi.txt"
+    "selected": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/script_vi.txt",
+    "english": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/script_en.txt",
+    "vietnamese": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/script_vi.txt"
   },
   "research": {
-    "merged": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/research.json",
-    "dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/research"
+    "merged": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/research.json",
+    "dir": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/research"
   },
   "prompts_dir": "",
-  "logs_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/logs",
+  "logs_dir": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/logs",
   "cache": {
-    "segments_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments"
+    "segments_dir": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/cache/segments"
   },
   "shared_resources": {
-    "produce_audio_script": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/scripts/produce_audio.py",
-    "voice_config": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/voice_config.json",
-    "assets_dir": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets",
+    "produce_audio_script": "/Users/trungnguyen/Working/podcast-ai/.claude/skills/tech-radar-podcast/scripts/produce_audio.py",
+    "voice_config": "/Users/trungnguyen/Working/podcast-ai/.claude/skills/tech-radar-podcast/assets/voice_config.json",
+    "assets_dir": "/Users/trungnguyen/Working/podcast-ai/.claude/skills/tech-radar-podcast/assets",
     "music_assets": {
-      "intro": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/intro.mp3",
-      "outro": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/outro.mp3"
+      "outro": "/Users/trungnguyen/Working/podcast-ai/.claude/skills/tech-radar-podcast/assets/outro.mp3",
+      "intro": "/Users/trungnguyen/Working/podcast-ai/.claude/skills/tech-radar-podcast/assets/intro.mp3"
     },
-    "transition_asset": "/Users/trungnguyen/Working/PodcastAI/.agents/skills/tech-radar-podcast/assets/transition.mp3"
+    "transition_asset": "/Users/trungnguyen/Working/podcast-ai/.claude/skills/tech-radar-podcast/assets/transition.mp3"
   },
   "render": {
     "tts_provider": "vieneu",
     "vieneu_engine_mode": "standard",
-    "speech_total": 45,
-    "speech_generated": 45,
+    "speech_total": 40,
+    "speech_generated": 40,
     "speaker_counts": {
-      "HOST": 45
+      "HOST": 40
     },
-    "sfx_total": 10,
-    "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/exports/daily_0409_vi_final.mp3"
+    "sfx_total": 7,
+    "output": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/exports/daily_0409_vi_final.mp3"
   },
   "request_summary": {},
-  "updated_at": "2026-04-09T10:12:09"
+  "updated_at": "2026-04-09T21:46:25"
 }

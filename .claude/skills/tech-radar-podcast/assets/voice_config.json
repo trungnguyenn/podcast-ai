@@ -1,0 +1,220 @@
+{
+  "_readme": "Podcast Voice & Audio Configuration. Uses edge-tts for all TTS.",
+  "host": {
+    "voice_id": "vi-VN-NamMinhNeural",
+    "name": "Trung",
+    "gender": "male",
+    "role": "Director of Technology",
+    "region": "south",
+    "pace": "fast",
+    "energy": "warm_confident"
+  },
+  "guest_voices": [
+    {
+      "id": "male_analytical",
+      "voice_id": "en-US-BrianMultilingualNeural",
+      "gender": "male",
+      "description": "Calm, analytical, authoritative",
+      "region": "north",
+      "pace": "steady",
+      "energy": "low_medium",
+      "best_for_topics": [
+        "AI/ML",
+        "cloud infrastructure",
+        "data platforms",
+        "security",
+        "compliance"
+      ],
+      "best_for_styles": [
+        "deep_dive",
+        "serious",
+        "executive",
+        "research"
+      ]
+    },
+    {
+      "id": "female_expert",
+      "voice_id": "vi-VN-HoaiMyNeural",
+      "gender": "female",
+      "description": "Confident, expert, warm",
+      "region": "south",
+      "pace": "medium_fast",
+      "energy": "warm_firm",
+      "best_for_topics": [
+        "healthcare IT",
+        "compliance",
+        "legal",
+        "business strategy",
+        "executive"
+      ],
+      "best_for_styles": [
+        "business",
+        "boardroom",
+        "trustworthy",
+        "policy"
+      ]
+    },
+    {
+      "id": "female_researcher",
+      "voice_id": "en-US-EmmaMultilingualNeural",
+      "gender": "female",
+      "description": "Thoughtful, precise, methodical",
+      "region": "north",
+      "pace": "steady",
+      "energy": "low_medium",
+      "best_for_topics": [
+        "research",
+        "data science",
+        "machine learning",
+        "academic",
+        "analytics"
+      ],
+      "best_for_styles": [
+        "evidence",
+        "methodical",
+        "cautious",
+        "academic"
+      ]
+    }
+  ],
+  "audio": {
+    "output_format": "mp3",
+    "bitrate": "128k",
+    "playback_speed": 1.2,
+    "playback_speed_by_language": {
+      "vi": 1.2,
+      "en": 1.2
+    },
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "gap_turn_ms": 400,
+    "gap_segment_ms": 1200,
+    "gap_music_ms": 2000,
+    "gap_sfx_ms": 800,
+    "pause_rules": {
+      "default_turn_ms": 210,
+      "host_to_guest_ms": 200,
+      "guest_to_host_ms": 230,
+      "same_speaker_ms": 130,
+      "short_reaction_ms": 100,
+      "short_reaction_max_chars": 95,
+      "short_reaction_max_sentences": 1,
+      "after_generated_announcement_ms": 150,
+      "after_sfx_before_announcement_ms": 80,
+      "after_segment_break_ms": 560,
+      "after_music_ms": 1500,
+      "before_non_speech_ms": 0
+    },
+    "loudness_normalization": {
+      "enabled": true,
+      "integrated_lufs": -16,
+      "true_peak_dbtp": -1.5,
+      "lra": 8
+    },
+    "segment_title_announcement": {
+      "enabled": true,
+      "speaker": "HOST",
+      "template": {
+        "vi": "Bây giờ, chúng ta chuyển sang {title}.",
+        "en": "Now, let's move on to {title}."
+      },
+      "closing_template": {
+        "vi": "Trước khi khép lại, chúng ta đến với {title}.",
+        "en": "Before we wrap up, let's get to {title}."
+      }
+    }
+  },
+  "tts_polish": {
+    "enabled": true,
+    "general_replacements": {},
+    "domains": {
+      "ai_devtools": {
+        "keywords": [
+          "Claude",
+          "Anthropic",
+          "MCP",
+          "developer",
+          "agent",
+          "coding",
+          "Gemini",
+          "OpenAI"
+        ]
+      },
+      "security": {
+        "keywords": [
+          "security",
+          "OWASP",
+          "MCP",
+          "compliance",
+          "attack"
+        ]
+      },
+      "business_metrics": {
+        "keywords": [
+          "doanh thu",
+          "Fortune",
+          "pricing",
+          "enterprise",
+          "ngân sách"
+        ]
+      },
+      "platform_ops": {
+        "keywords": [
+          "cloud",
+          "CI",
+          "docs",
+          "IDE",
+          "platform",
+          "infrastructure"
+        ]
+      }
+    },
+    "risk_terms": [
+      "monthly downloads",
+      "USD",
+      "Fortune 10",
+      "workflow",
+      "leaderboard",
+      "tool poisoning",
+      "command injection",
+      "prompt injection",
+      "structured responses",
+      "frontier APIs",
+      "sandbox"
+    ]
+  },
+  "phonetic_normalization": {
+    "Google I/O": "Gu gồ Ai Ô",
+    "Google Cloud": "Gu gồ Cloud",
+    "Amazon Bedrock": "A ma dôn Bét rốc",
+    "Microsoft Foundry": "Mai crô sốp Phao đờ ri",
+    "GitHub Copilot": "Gít Hắp Cô pai lớt",
+    "Claude Code": "Clốt Cốt",
+    "Claude Design": "Clốt Đi zai",
+    "Vertex AI": "Vơ tex Ây Ai",
+    "OpenAI": "Ô pần Ây Ai",
+    "Anthropic": "An thờ rốp ịch",
+    "Android": "An droi",
+    "Chrome": "Crôm",
+    "GitHub": "Gít Hắp",
+    "Google": "Gu gồ",
+    "Claude": "Clốt",
+    "Gemini": "Jem mi nai",
+    "Bedrock": "Bét rốc",
+    "Foundry": "Phao đờ ri",
+    "Cursor": "Cơ sờ",
+    "Copilot": "Cô pai lớt",
+    "Vertex": "Vơ tex",
+    "Mistral": "Mít trồ",
+    "AWS": "Ây Đắp Bờ Liu Ét",
+    "Azure": "A giua",
+    "LLM": "En En Em",
+    "API": "Ây Pi Ai",
+    "MCP": "Em Si Pi",
+    "GPU": "Gi Pi Du",
+    "CPU": "Si Pi Du",
+    "CEO": "Si I Ô",
+    "CIO": "Si Ai Ô",
+    "AI": "Ây Ai"
+  }
+}

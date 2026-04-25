@@ -1,6 +1,126 @@
 {
   "_readme": "Series memory for weekly-ai-podcast. Written only by weekly-ai-podcast episodes. Safe to run in parallel with daily_series_context.json.",
-  "covered_stories": [],
-  "open_forecasts": [],
-  "running_themes": []
+  "covered_stories": [
+    {
+      "slug": "openai-turns-into-a-full-stack-conglomerate-gpt-rosalind-for",
+      "headline": "OpenAI turns into a full-stack conglomerate: GPT-Rosalind for life sciences, Codex-as-desktop-agent, ads to $100B by 2030, and two more dev-tool acquisitions",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "ai-backlash-turns-physically-violent-sam-altman-s-home-attac",
+      "headline": "AI backlash turns physically violent: Sam Altman's home attacked twice, Indianapolis councilman shot at over data-center vote",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "first-major-ai-agent-security-crisis-lands-openclaw-exposes-",
+      "headline": "First major AI-agent security crisis lands: OpenClaw exposes 21,000+ instances, Mercor confirms breach, Microsoft publishes AI incident-response playbook",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "the-pilot-to-roi-gap-gets-named-in-public-numbers-97-deploye",
+      "headline": "The pilot-to-ROI gap gets named in public numbers: 97% deployed agents, 29% see real ROI, 75% admit strategy is \"for show\"",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "forward-pivot-rhoda-ai-raises-450m-for-video-predictive-robo",
+      "headline": "Forward pivot: Rhoda AI raises $450M for video-predictive robotics; InnoEX 2026 showcases 100+ humanoids; Stanford open-sources TRACE for agent failure diagnosis",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "openai-says-enterprise-is-now-more-than-40-percent-of-revenu",
+      "headline": "OpenAI says enterprise is now more than 40 percent of revenue",
+      "date": "2026-04-13"
+    },
+    {
+      "slug": "anthropic-makes-cowork-generally-available-and-adds-role-bas",
+      "headline": "Anthropic makes Cowork generally available and adds role based enterprise controls",
+      "date": "2026-04-13"
+    },
+    {
+      "slug": "meta-launches-muse-spark-across-its-consumer-surfaces",
+      "headline": "Meta launches Muse Spark across its consumer surfaces",
+      "date": "2026-04-13"
+    },
+    {
+      "slug": "glm-5-1-lands-under-mit-and-edges-frontier-proprietary-model",
+      "headline": "GLM 5.1 lands under MIT and edges frontier proprietary models on SWE Bench Pro",
+      "date": "2026-04-13"
+    },
+    {
+      "slug": "ai-absorbs-80-percent-of-global-venture-funding-in-q1-2026",
+      "headline": "AI absorbs 80 percent of global venture funding in Q1 2026",
+      "date": "2026-04-13"
+    },
+    {
+      "slug": "anthropic-claude-opus-4-7-mythos-project-glasswing",
+      "headline": "Anthropic ships Claude Opus 4.7 publicly and confirms Mythos gated to 40 partners under Project Glasswing",
+      "date": "2026-04-17"
+    },
+    {
+      "slug": "stanford-ai-index-2026-benchmarks-saturated-trust-collapsing",
+      "headline": "Stanford AI Index 2026: SWE-bench near 100%, enterprise adoption 88%, transparency scores drop from 58 to 40",
+      "date": "2026-04-17"
+    },
+    {
+      "slug": "agentic-ai-enterprise-payroll-governance-gap",
+      "headline": "AI agents running payroll in production with no human in loop, 94% enterprises report governance crisis",
+      "date": "2026-04-17"
+    },
+    {
+      "slug": "us-tariff-25-percent-ai-chips-china-asean-ai-diplomacy",
+      "headline": "25% US tariff on AI chip imports reshapes startup landscape; China signs AI cooperation MoUs in ASEAN",
+      "date": "2026-04-17"
+    }
+  ],
+  "open_forecasts": [
+    {
+      "slug": "when-august-2-2026-arrives-in-europe-which-teams-will-discov",
+      "text": "When August 2, 2026 arrives in Europe, which teams will discover that their AI products were never truly deployment ready?",
+      "raised": "2026-04-13"
+    },
+    {
+      "slug": "when-tiered-model-access-becomes-standard-what-mechanism-pre",
+      "text": "When tiered model access becomes normal across all frontier labs, what mechanism if any prevents the most capable AI from becoming purely a tool of states and their preferred corporate partners?",
+      "raised": "2026-04-17"
+    },
+    {
+      "slug": "if-transparency-scores-keep-falling-what-does-ai-market-look",
+      "text": "The Foundation Model Transparency Index dropped from 58 to 40 in one year. If that trend continues, what does the AI market look like in 2027 when capability keeps rising and accountability keeps falling?",
+      "raised": "2026-04-17"
+    },
+    {
+      "slug": "agents-running-payroll-today-which-workflows-next-and-who-pa",
+      "text": "Agents run payroll today. In 12 months which workflows will they run that we currently consider too consequential — hiring, credit approval, medical triage — and which organization will be first to face major regulatory consequence?",
+      "raised": "2026-04-17"
+    },
+    {
+      "slug": "if-openai-now-competes-with-its-own-customers-on-dev-tooling",
+      "text": "If OpenAI now competes with its own customers on dev tooling (Promptfoo, Astral), vertical models (Rosalind), and desktop agents (Codex), which layer of the stack is still safe to build a company on?",
+      "raised": "2026-04-19"
+    },
+    {
+      "slug": "when-ai-is-making-your-job-worse-becomes-a-live-voter-issue-",
+      "text": "When \"AI is making your job worse\" becomes a live voter issue — with violence attached — which governments will be first to impose deployment-level friction (siting rules, disclosure, layoff review boards) rather than model-level rules, and how should procurement change to anticipate it?",
+      "raised": "2026-04-19"
+    },
+    {
+      "slug": "if-agents-in-production-can-already-leak-through-marketplace",
+      "text": "If agents in production can already leak through marketplace packages and training-data suppliers, what does the first truly catastrophic agent incident look like — and which industry will it happen in first?",
+      "raised": "2026-04-19"
+    }
+  ],
+  "running_themes": [
+    {
+      "date": "2026-04-19",
+      "theme": "This was the week \"capability without legitimacy\" became concrete. OpenAI expanded on every axis — vertical, horizontal, commercial, infrastructural — while society's immune response moved from X posts to Molotov cocktails, agents in production started leaking training data and prompt scopes, and three independent surveys showed that 97% of enterprises have shipped AI without the data, governance, or ROI to justify it. The story is no longer \"is AI capable.\" It is: can teams and companies earn the license — commercial, regulatory, and social — to actually deploy what's on their laptops."
+    },
+    {
+      "date": "2026-04-13",
+      "theme": "This week signals the shift from the model race to the operating model race. The companies gaining ground are not just shipping better intelligence. They are deciding who controls distribution, permissions, analytics, internal trust, and procurement gravity. The next two to four weeks matter because teams that still evaluate AI as a toy or isolated copilot are about to be outpaced by teams that treat it like infrastructure."
+    },
+    {
+      "date": "2026-04-17",
+      "theme": "Capability is no longer the open question. This week the frontier split into tiers, benchmarks were retired as solved, agents crossed into legally consequential workflows without governance, and geopolitics started drawing the compute map. The battle for the next phase of AI is about who controls access, who is accountable when it fails, and who gets locked out of the best of it. Builders and managers still evaluating AI as a capability question are one quarter behind."
+    }
+  ]
 }

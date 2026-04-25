@@ -2,6 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(source .env)",
+      "Bash(python3 scripts/x_search.py:*)",
       "Bash(python3 -c \"import requests, pydub; print\\(''deps: OK''\\)\")",
       "Bash(pip install:*)",
       "Bash(ffmpeg -version)",
@@ -22,7 +23,29 @@
       "Bash(PODCAST_LANG=en python3 produce_audio.py)",
       "Bash(rm -rf segments/)",
       "Bash(PODCAST_LANG=vi python3 produce_audio.py)",
-      "Bash(echo \"EXIT_CODE=$?\")"
+      "Bash(echo \"EXIT_CODE=$?\")",
+      "WebFetch(domain:securityboulevard.com)",
+      "WebFetch(domain:www.aiandnews.com)",
+      "WebFetch(domain:www.humai.blog)",
+      "WebFetch(domain:www.aicerts.ai)",
+      "WebFetch(domain:llm-stats.com)",
+      "WebFetch(domain:www.globenewswire.com)",
+      "WebFetch(domain:www.businesswire.com)",
+      "WebFetch(domain:blogs.nvidia.com)",
+      "WebFetch(domain:renovateqr.com)",
+      "WebFetch(domain:www.hklaw.com)",
+      "WebFetch(domain:www.theregreview.org)",
+      "WebFetch(domain:www.malwarebytes.com)",
+      "Bash(rm -rf cache/segments exports manifest.json qa_report.json benchmark_report.json)",
+      "Bash(mkdir -p cache/segments exports)",
+      "Bash(PODCAST_SKIP_DURATION_GUARD=1 python3 .claude/skills/tech-radar-podcast/scripts/produce_audio.py --workspace \"./podcast_studio/ep02_hiro_crew_managed_agents\" --benchmark)",
+      "Bash(ls /Users/trungnguyen/Working/podcast-ai/podcast_studio/ep02_hiro_crew_managed_agents/cache/segments/*.mp3)",
+      "Bash(git rm:*)",
+      "Bash(rm -f .claude/skills/tech-radar-podcast/scripts/vieneu_hq_server.py)",
+      "Bash(PODCAST_SKIP_DURATION_GUARD=1 python3 .claude/skills/tech-radar-podcast/scripts/produce_audio.py --workspace ./podcast_studio/test_edge_tts)",
+      "Bash(edge-tts --version)",
+      "Bash(edge-tts --voice vi-VN-NamMinhNeural --text \"Xin chao\" --write-media /tmp/test_direct.mp3)",
+      "Read(//tmp/**)"
     ],
     "additionalDirectories": [
       "/Users/trungnguyen/Working/PodcastAI/.claude/skills/tech-radar-podcast/scripts"

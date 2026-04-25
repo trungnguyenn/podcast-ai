@@ -2,6 +2,201 @@
   "_readme": "Series memory for daily-ai-podcast. Written only by daily-ai-podcast episodes. Safe to run in parallel with weekly_series_context.json.",
   "covered_stories": [
     {
+      "slug": "anthropic-aws-100b-5gw-trainium-compute-commitment",
+      "headline": "Anthropic commits more than $100B to AWS over 10 years and secures up to 5GW of Trainium capacity",
+      "date": "2026-04-23"
+    },
+    {
+      "slug": "anthropic-openai-record-q1-2026-lobbying-ai-procurement",
+      "headline": "Anthropic and OpenAI post record Q1 lobbying as AI procurement and acceptable use become policy fights",
+      "date": "2026-04-23"
+    },
+    {
+      "slug": "ai-agent-identity-security-confidence-paradox-delinea-2026",
+      "headline": "Delinea report flags AI identity security paradox and privileged agent traceability gaps",
+      "date": "2026-04-23"
+    },
+    {
+      "slug": "google-cloud-next-2026-agent-production-readiness",
+      "headline": "Google Cloud Next 2026 opens with agents shifting from demos to enterprise production readiness",
+      "date": "2026-04-22"
+    },
+    {
+      "slug": "anthropic-cloud-next-multi-agent-evals-enterprise-ai",
+      "headline": "Anthropic foregrounds multi-agent boundaries and evals at Google Cloud Next day one",
+      "date": "2026-04-22"
+    },
+    {
+      "slug": "meta-ai-support-enforcement-action-oriented-agents-scale",
+      "headline": "Meta AI support and enforcement rollout shows action-oriented agents at consumer scale",
+      "date": "2026-04-22"
+    },
+    {
+      "slug": "nvidia-hannover-messe-physical-ai-factory-agents-yield-rework",
+      "headline": "NVIDIA shows factory-scale AI agents and physical AI at Hannover Messe, with 3% yield and 10% rework signals",
+      "date": "2026-04-21"
+    },
+    {
+      "slug": "google-chrome-ai-mode-tabs-images-pdfs-context-layer",
+      "headline": "Google upgrades Chrome AI Mode into a side-by-side browser context layer for tabs, images, and PDFs",
+      "date": "2026-04-21"
+    },
+    {
+      "slug": "anthropic-novartis-ceo-board-regulated-ai-governance",
+      "headline": "Anthropic appoints Novartis CEO Vas Narasimhan, signaling regulated-industry governance as frontier AI strategy",
+      "date": "2026-04-21"
+    },
+    {
+      "slug": "jama-ai-scribes-peer-reviewed-0-49-visits-per-week-ambulatory",
+      "headline": "JAMA study: AI scribes save 16 min/week documentation and unlock 0.49 extra visits per week per clinician",
+      "date": "2026-04-20"
+    },
+    {
+      "slug": "butterfly-network-fda-blind-sweep-ultrasound-gestational-age",
+      "headline": "Butterfly Network wins first FDA clearance for fully autonomous blind-sweep ultrasound AI (gestational age)",
+      "date": "2026-04-20"
+    },
+    {
+      "slug": "google-turboquant-6x-inference-memory-no-retraining",
+      "headline": "Google TurboQuant cuts LLM inference memory 6x with zero accuracy loss and no retraining",
+      "date": "2026-04-20"
+    },
+    {
+      "slug": "novo-nordisk-goes-enterprise-wide-on-openai-the-cleanest-reg",
+      "headline": "Novo Nordisk goes enterprise-wide on OpenAI — the cleanest regulated-industry template yet",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "mount-sinai-embeds-openevidence-into-epic-for-physicians-nur",
+      "headline": "Mount Sinai embeds OpenEvidence into Epic for physicians, nurses, and pharmacists",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "openai-codex-gets-os-level-agent-powers-and-90-plugins-a-dir",
+      "headline": "OpenAI Codex gets OS-level agent powers and 90 plugins — a direct hit at Claude Code's developer mindshare",
+      "date": "2026-04-19"
+    },
+    {
+      "slug": "frontier-lab-capital-concentration-anthropic-at-800b-openai-",
+      "headline": "Frontier-lab capital concentration: Anthropic at $800B, OpenAI closes $122B round",
+      "date": "2026-04-17"
+    },
+    {
+      "slug": "litellm-supply-chain-breach-reaches-anthropic-openai-meta-cu",
+      "headline": "LiteLLM supply-chain breach reaches Anthropic, OpenAI, Meta customer data via Mercor",
+      "date": "2026-04-17"
+    },
+    {
+      "slug": "equinix-fabric-intelligence-launches-network-becomes-the-nex",
+      "headline": "Equinix Fabric Intelligence launches — network becomes the next procurement line item alongside GPUs",
+      "date": "2026-04-17"
+    },
+    {
+      "slug": "stanford-ai-index-2026-enterprise-adoption-78-percent-swe-bench-retired",
+      "headline": "Stanford AI Index 2026: Enterprise Adoption Hits 78%, SWE-bench Coding Scores Saturated at ~100%",
+      "date": "2026-04-15"
+    },
+    {
+      "slug": "vs-code-autopilot-cursor-3-agent-first-ide-era",
+      "headline": "VS Code 1.115 Ships Autopilot + Cursor 3 Hits $2B ARR — Agent-First IDE Era Arrives Simultaneously",
+      "date": "2026-04-15"
+    },
+    {
+      "slug": "mcp-97-million-downloads-linux-foundation-governance-all-vendors-endorse",
+      "headline": "MCP Crosses 97 Million Monthly Downloads — Linux Foundation Governance Removes Enterprise Lock-in Risk",
+      "date": "2026-04-15"
+    },
+    {
+      "slug": "harvey-ai-raises-200m-at-11b-autonomous-legal-agents-go-live",
+      "headline": "Harvey AI Raises $200M at $11B — Autonomous Legal Agents Go Live",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "openai-cro-memo-leak-anthropic-holds-70-of-new-enterprise-de",
+      "headline": "OpenAI CRO Memo Leak: Anthropic Holds 70% of New Enterprise Deals",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "claude-code-epitaxy-multi-repo-parallel-sub-agent-orchestrat",
+      "headline": "Claude Code 'Epitaxy': Multi-Repo Parallel Sub-Agent Orchestration",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "mythos-preview-lands-on-amazon-bedrock-the-most-capable-ai-m",
+      "headline": "Mythos Preview Lands on Amazon Bedrock — the Most Capable AI Model Now Has a Cloud Distribution Channel",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "96-of-enterprises-now-run-ai-agents-in-production-and-94-are",
+      "headline": "96% of Enterprises Now Run AI Agents in Production — and 94% Are Alarmed by the Sprawl They Created",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "q1-2026-vc-record-300-billion-globally-80-to-ai-four-compani",
+      "headline": "Q1 2026 VC Record: $300 Billion Globally, 80% to AI — Four Companies Took 65% of All Global Venture Capital",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "google-gemma-4-31b-beats-400b-rivals-apache-2-free",
+      "headline": "Google Gemma 4: 31B Model Beats 400B Rivals, Apache 2.0, Edge-Deployable",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "ai-chip-tariffs-25-percent-south-korea-75b-infrastructure-cost",
+      "headline": "AI Chip Tariffs: 25% on South Korean HBM, $75-100B Infrastructure Cost Impact",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "pwc-2026-ai-performance-74-percent-value-20-percent-companies",
+      "headline": "PwC 2026: 74% of AI Value to 20% of Companies — Growth Strategy Divides Winners",
+      "date": "2026-04-14"
+    },
+    {
+      "slug": "anthropic-turns-compute-into-a-strategic-moat-with-google-a",
+      "headline": "Anthropic Turns Compute Into a Strategic Moat With Google and Broadcom",
+      "date": "2026-04-12"
+    },
+    {
+      "slug": "google-tests-offline-first-ai-as-a-default-input-layer-on-th",
+      "headline": "Google Tests Offline First AI as a Default Input Layer on the Device",
+      "date": "2026-04-12"
+    },
+    {
+      "slug": "openai-extends-the-ai-war-into-media-by-buying-tbpn",
+      "headline": "OpenAI Extends the AI War Into Media by Buying TBPN",
+      "date": "2026-04-12"
+    },
+    {
+      "slug": "openai-slices-the-coding-market-with-a-100-chatgpt-pro-tier",
+      "headline": "OpenAI Slices the Coding Market With a $100 ChatGPT Pro Tier",
+      "date": "2026-04-10"
+    },
+    {
+      "slug": "meta-turns-muse-spark-into-consumer-demand-and-app-store-mome",
+      "headline": "Meta Turns Muse Spark Into Consumer Demand and App Store Momentum",
+      "date": "2026-04-10"
+    },
+    {
+      "slug": "google-and-intel-deepen-the-fight-for-the-ai-infrastructure-l",
+      "headline": "Google and Intel Deepen the Fight for the AI Infrastructure Layer",
+      "date": "2026-04-10"
+    },
+    {
+      "slug": "meta-enters-the-frontier-race-muse-spark-ranks-4th-globally",
+      "headline": "Meta Enters the Frontier Race: Muse Spark Ranks 4th Globally",
+      "date": "2026-04-09"
+    },
+    {
+      "slug": "anthropic-triples-revenue-to-30b-run-rate-launches-managed-a",
+      "headline": "Anthropic Triples Revenue to $30B Run Rate, Launches Managed Agents Platform",
+      "date": "2026-04-09"
+    },
+    {
+      "slug": "the-agent-security-crisis-97-of-enterprises-expect-a-materia",
+      "headline": "The Agent Security Crisis: 97% of Enterprises Expect a Material Incident, Only 6% Budget for It",
+      "date": "2026-04-09"
+    },
+    {
       "slug": "anthropic-mythos-preview-77-8-swe-bench-pro-too-dangerous-to",
       "headline": "Anthropic Mythos Preview: 77.8% SWE-Bench Pro, Too Dangerous to Release Publicly",
       "date": "2026-04-09"
@@ -19,20 +214,126 @@
   ],
   "open_forecasts": [
     {
-      "slug": "if-ai-can-find-vulnerabilities-that-humans-missed-for-27-yea",
-      "text": "If AI can find vulnerabilities that humans missed for 27 years, what does that imply about the security of every legacy system currently in production — and who bears liability when an AI-discovered vulnerability is exploited before it's patched?",
-      "raised": "2026-04-09"
+      "slug": "agent-identity-standard-buying-requirement-2026",
+      "text": "Agent identity control có trở thành yêu cầu mua hàng chuẩn trong năm 2026 không, hay doanh nghiệp sẽ đợi sự cố privilege lớn đầu tiên?",
+      "raised": "2026-04-23"
     },
     {
-      "slug": "in-healthcare-when-an-agentic-ai-makes-a-clinical-decision-b",
-      "text": "In healthcare, when an agentic AI makes a clinical decision based on data extracted from a legacy EHR system that hasn't been validated in 15 years, who is legally responsible — the AI vendor, the hospital, or the EHR manufacturer who stopped maintaining that interface?",
-      "raised": "2026-04-09"
+      "slug": "compute-moat-independent-ai-products-2026",
+      "text": "Nếu cam kết compute trở thành moat, sản phẩm AI độc lập còn có thể khác biệt bằng workflow và trust không, hay sẽ trở thành kênh phân phối cho các cloud lớn?",
+      "raised": "2026-04-23"
+    },
+    {
+      "slug": "agent-evals-standard-like-unit-tests-2026",
+      "text": "Agent eval sẽ trở nên phổ biến như unit test, hay vẫn là công việc tư vấn custom quanh từng dự án enterprise?",
+      "raised": "2026-04-22"
+    },
+    {
+      "slug": "security-launch-gate-production-agents-speed-vs-compliance-2026",
+      "text": "Nếu security team sở hữu launch gate cho production agent, product team sẽ đi nhanh hơn vì ranh giới trust rõ hơn, hay chậm hơn vì mỗi workflow trở thành một dự án compliance?",
+      "raised": "2026-04-22"
+    },
+    {
+      "slug": "ai-execution-layer-customer-relationship-2026",
+      "text": "Nếu AI execution cùng lúc đi vào trình duyệt, nhà máy, và control plane doanh nghiệp, lớp nào sẽ giữ quan hệ khách hàng thật sự: app đích, browser, system of record, hay agent orchestration layer?",
+      "raised": "2026-04-21"
+    },
+    {
+      "slug": "regulated-industries-governance-template-frontier-ai-2026",
+      "text": "Regulated industry sẽ làm chậm frontier AI, hay sẽ trở thành template governance giúp thị trường còn lại triển khai nhanh hơn?",
+      "raised": "2026-04-21"
+    },
+    {
+      "slug": "fda-blind-sweep-precedent-pace-vs-governance-2026",
+      "text": "Khi FDA đã cấp phép một phép đo hình ảnh hoàn toàn tự động, tốc độ các cấp phép blind sweep tiếp theo có vượt quá năng lực quản trị của các hệ thống y tế không, và ai sẽ trở thành cơ quan tiêu chuẩn de facto nếu CMS và ONC không theo kịp FDA?",
+      "raised": "2026-04-20"
+    },
+    {
+      "slug": "scribe-0-49-ceiling-health-it-growth-vs-cost-story-2026",
+      "text": "Nếu 0.49 visit mỗi tuần là trần trung thực cho ROI của AI scribe, và những người thắng trong AI hiện chiếm giá trị bằng tăng trưởng doanh thu chứ không cắt chi phí, ngành health IT có cần tự kể lại câu chuyện AI quanh tăng trưởng trước cuối 2026 không?",
+      "raised": "2026-04-20"
+    },
+    {
+      "slug": "if-four-companies-absorb-65-of-all-global-venture-capital-in",
+      "text": "If four companies absorb 65% of all global venture capital in a single quarter, what happens to the rest of the AI startup ecosystem — does the oxygen run out for mid-tier companies, or does cheap API access create a long tail of viable application-layer businesses?",
+      "raised": "2026-04-14"
+    },
+    {
+      "slug": "when-96-of-enterprises-are-running-ai-agents-but-fewer-than-",
+      "text": "When 96% of enterprises are running AI agents but fewer than 10% have centralized governance, what does the first major agent-driven enterprise breach look like — and does it trigger regulatory overcorrection that slows the entire agentic wave?",
+      "raised": "2026-04-14"
+    },
+    {
+      "slug": "when-autonomous-agents-handle-legal-execution-medical-imagin",
+      "text": "When autonomous agents handle legal execution, medical imaging, and software engineering simultaneously — and the first major agent-driven error occurs in one of these high-stakes contexts — does liability land on the AI vendor, the deploying organization, or the professional who signed off?",
+      "raised": "2026-04-14"
+    },
+    {
+      "slug": "if-anthropic-holds-70-of-new-enterprise-deals-while-openai-s",
+      "text": "If Anthropic holds 70% of new enterprise deals while OpenAI still dominates consumer mindshare, does the enterprise-versus-consumer split become the defining fracture line in the AI industry — and does it permanently separate the two markets?",
+      "raised": "2026-04-14"
+    },
+    {
+      "slug": "if-frontier-lab-capital-concentration-continues-at-this-pace",
+      "text": "If frontier-lab capital concentration continues at this pace — another $200B round in Q3 — does the model layer consolidate into a stable duopoly, or does one lab's pricing overreach crack the enterprise market open for Meta, Google, and the open-weight tier?",
+      "raised": "2026-04-17"
+    },
+    {
+      "slug": "when-the-next-supply-chain-breach-lands-on-agent-middleware-",
+      "text": "When the next supply-chain breach lands on agent middleware — and the evidence from LiteLLM suggests it will — does liability sit with the model lab, the proxy maintainer, or the enterprise that embedded it; and will the EU AI Act's August 2, 2026 enforcement moment force that answer into policy before the courts get there?",
+      "raised": "2026-04-17"
+    },
+    {
+      "slug": "ai-attributed-layoffs-political-backlash-us-midterm-2026",
+      "text": "Khi tỷ lệ AI-attributed layoffs tiếp tục tăng từ 48% lên 60-70% trong các quý tới, điều gì sẽ ngăn làn sóng phản ứng chính trị biến thành luật hạn chế AI tại Mỹ — nơi không có AI Act nhưng có bầu cử giữa kỳ 2026?",
+      "raised": "2026-04-18"
+    },
+    {
+      "slug": "eu-ai-act-compliance-standards-relevance-by-2027",
+      "text": "Nếu EU đã cần thêm 16 tháng để xây tiêu chuẩn tuân thủ cho AI của năm 2025, liệu bộ quy tắc đó có còn phù hợp khi đến tháng 12 năm 2027 — hay mô hình AI 2027 sẽ khác đến mức bộ quy tắc viết cho năm 2025 không còn áp dụng được?",
+      "raised": "2026-04-18"
+    },
+    {
+      "slug": "if-meta-has-abandoned-open-weights-and-qwen-and-mistral-are-",
+      "text": "If Meta has abandoned open weights and Qwen and Mistral are now the open frontier, does the healthcare-software self-hosted stack lean Chinese by default in 2026 — and does a US regulation in the next 12 months cut that path off?",
+      "raised": "2026-04-19"
+    },
+    {
+      "slug": "with-40-of-enterprise-agent-projects-projected-to-be-cancell",
+      "text": "With 40% of enterprise agent projects projected to be cancelled by 2027, which proposals on your desk this week are already on the wrong side of that line — and do you have the nerve to kill them before your customer does?",
+      "raised": "2026-04-19"
     }
   ],
   "running_themes": [
     {
-      "date": "2026-04-09",
-      "theme": "AI is crossing the threshold from \"tool for new code\" to \"autonomous agent for old code\" — and the implications cascade through every industry running on legacy infrastructure, from enterprise IT to healthcare. The common thread is that models like Mythos can now navigate, understand, and operate within systems that were built decades ago without documentation, while the regulatory and safety frameworks are racing to keep up. We are entering an era where the most valuable AI capability isn't generating new content — it's understanding the mess we already built."
+      "slug": "ai-controlled-infrastructure-compute-policy-identity",
+      "text": "AI is shifting from application demos to controlled infrastructure: compute commitments, procurement policy, and agent identity determine production viability.",
+      "updated": "2026-04-23"
+    },
+    {
+      "date": "2026-04-20",
+      "theme": "April 20, 2026 is the day healthcare AI's pilot-era claims got replaced by operating-era evidence. JAMA publishes the first peer-reviewed throughput number for ambient scribes (0.49 extra visits/week/clinician) — ending the satisfaction-survey ROI narrative. The FDA clears Butterfly Network's blind-sweep ultrasound — the first fully autonomous imaging measurement with no clinician in the loop. Google TurboQuant cuts inference memory 6x with no retraining — the largest no-migration capacity unlock of the year for on-prem deployments. Pattern: procurement, regulation, and infrastructure are all re-pricing against measurable comparables. The conversation shifts from 'what can AI do' to 'what does AI do in my workflow, at my cost, with my audit trail.'"
+    },
+    {
+      "date": "2026-04-19",
+      "theme": "Enterprise AI is no longer being decided by model choice — it is being decided by workflow integration depth. Novo Nordisk and Mount Sinai are winning by embedding AI into governed, audited production workflows instead of layering it on top. OpenAI's Codex move does the same thing on the developer side by taking over the OS rather than living in a terminal. Meanwhile Gartner reports 85% of enterprises plan agent deployments by end of 2026 but projects 40% of those projects will be cancelled by 2027 — the winners and losers will be separated by integration depth, not benchmark scores."
+    },
+    {
+      "date": "2026-04-17",
+      "theme": "April 17, 2026 is the day the AI industry's center of gravity visibly shifted from model capability to capital, security surface, and network topology. The winners of the next phase are being decided by who finances the next training run, who defends a multi-layer supply chain, and who owns the plumbing between enterprises and the labs. The benchmark-era playbook — pick the top model and ship — is no longer sufficient; the operating-era playbook requires treating procurement, security, and network as co-equal constraints with model choice."
+    },
+    {
+      "date": "2026-04-15",
+      "theme": "April 15, 2026 is the week the AI agent infrastructure stack achieved simultaneous maturity. Three separate developments — Stanford AI Index confirming 78% enterprise production adoption with SWE-bench retired, VS Code Autopilot and Cursor 3 both shipping autonomous agent sessions in the same week, and MCP reaching 97M downloads under Linux Foundation neutral governance — together define a stack convergence moment. The risk calculus has flipped: the risk of not building on agent-native infrastructure now exceeds the risk of building. The competitive advantage has also shifted: it no longer comes from having AI features but from having superior evaluation loops, agent reliability, and iteration speed. The benchmark era is over; the execution era has begun."
+    },
+    {
+      "date": "2026-04-14",
+      "theme": "April 14th, 2026 marks the day agentic AI simultaneously went live in three separate worlds at once: in law (Harvey), in enterprise sales (the Anthropic/OpenAI battle for deals), and in software engineering (Epitaxy). The common thread is not the models themselves but the infrastructure built around them — orchestration, distribution, and production deployment are the new moat. Capability benchmarks are no longer the differentiator; production architecture is."
+    },
+    {
+      "date": "2026-04-14",
+      "theme": "AI has crossed the deployment threshold simultaneously at three levels: the most powerful model ever built is now distributed through cloud infrastructure (Mythos on Bedrock), enterprise agent adoption is effectively universal (96%), and capital has hyper-concentrated around the four companies most likely to own the AI infrastructure layer. The competitive question is no longer \"who has the best model\" — it's \"who controls the distribution, the governance layer, and the capital to sustain the next round.\" April 2026 is the month where the AI industry stopped being about capability and started being about control."
     }
-  ]
+  ],
+  "last_updated": "2026-04-22"
 }

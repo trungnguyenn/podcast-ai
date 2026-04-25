@@ -4,28 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PodcastAI is an autonomous podcast production platform that generates Vietnamese tech podcasts. It combines Claude API (research, scripting) with VieNeu-TTS (Vietnamese text-to-speech) and ffmpeg/pydub (audio assembly) to produce broadcast-quality episodes with minimal manual intervention.
+PodcastAI is an autonomous podcast production platform that generates Vietnamese tech podcasts. It combines Claude API (research, scripting) with edge-tts (text-to-speech) and ffmpeg/pydub (audio assembly) to produce broadcast-quality episodes with minimal manual intervention.
 
 Three podcast skills are available:
 - **tech-radar-podcast** — Full-featured episodes (25-50 min) with host + guest(s)
 - **daily-ai-podcast** — Solo-host daily AI news briefing (~20 min)
 - **weekly-ai-podcast** — Two-host weekly recap with dialogue (~40-45 min)
 
+## Editorial principle for `daily-ai-podcast` and `weekly-ai-podcast`
+
+Both skills are built around a single **"Who we're making this for"** section inside their `SKILL.md`. That section is the source of truth for audience — software builders, managers, and consultants who move across legacy upkeep, modernization, feature enhancement, greenfield builds, and AI-agent proposals, with roughly half working in healthcare software. Every phase file (`references/PHASES.md`) and script guide (`references/SCRIPT_GUIDE.md`) points back to it rather than restating.
+
+When working on these two skills, **do not add fixed segments, quotas, checklists, scoring rules, or schema fields to enforce healthcare, legacy/greenfield, or short/mid/long-horizon framing.** The audience understanding is deliberately carried by prose — research, curation, and scripting are expected to re-read the audience section and let its specificity guide their choices. Force-fitting a healthcare reference or legacy-modernization callout when the story doesn't support it is worse than leaving it out. If content quality isn't landing, update the audience section first; only add structure if prose alone demonstrably fails.
+
+This principle applies to `daily-ai-podcast` and `weekly-ai-podcast` only. `tech-radar-podcast` is a different format and unaffected.
+
 ## Architecture
 
-### VieNeu-TTS (git submodule at `VieNeu-TTS/`)
+### TTS Engine
 
-Vietnamese TTS engine (v2.4.3) with a factory pattern for backend selection:
-
-```python
-from vieneu import Vieneu
-tts = Vieneu(mode="turbo")   # CPU GGUF — fast, lower quality
-tts = Vieneu(mode="standard") # PyTorch GPU — high quality
-tts = Vieneu(mode="fast")     # LMDeploy GPU — faster PyTorch
-tts = Vieneu(mode="remote", api_base="http://localhost:8001")  # API client
-```
-
-Core library lives in `VieNeu-TTS/src/vieneu/`. Base class (`base.py`) provides voice management, phoneme caching, codec loading (NeuCodec), and 24kHz audio output. Factory (`factory.py`) selects the backend. Each mode has its own module (`turbo.py`, `standard.py`, `fast.py`, `remote.py`).
+All text-to-speech is handled by **edge-tts** (Microsoft Edge cloud TTS, free, no local server needed). No local TTS server or submodule is required.
 
 ### Podcast Production Pipeline (`.agents/skills/`)
 
@@ -33,20 +31,16 @@ All three skills follow a 7-phase autonomous pipeline: **briefing -> research ->
 
 Key shared components live in `.agents/skills/tech-radar-podcast/`:
 - `scripts/produce_audio.py` — Audio orchestrator (TTS synthesis + merge), used by all skills
-- `scripts/vieneu_hq_server.py` — FastAPI wrapper around VieNeu for local serving
-- `assets/voice_config.json` — Voice profiles, TTS provider routing, audio gap config
+- `assets/voice_config.json` — Voice profiles, audio gap config
 - `assets/intro.mp3`, `outro.mp3`, `transition.mp3` — Fixed audio jingles
 
 Each episode gets an isolated workspace under `podcast_studio/` (e.g., `podcast_studio/daily_0409/`, `podcast_studio/ep05_topic_slug/`) containing scripts, research, audio cache, and final exports.
 
 ### TTS Provider Routing
 
-| Language | Primary Provider | Fallback |
-|----------|-----------------|----------|
-| Vietnamese (`vi`) | VieNeu (local server on :8001) | — |
-| English (`en`) | edge-tts (free) | macos-say |
-
-Routing is automatic based on `language` field in `episode.json`.
+| Language | Provider |
+|----------|----------|
+| All languages | edge-tts (free, no local server needed) |
 
 ### Script Format
 
@@ -60,33 +54,11 @@ No markdown formatting in spoken lines. No dashes (TTS reads them aloud).
 
 ## Common Commands
 
-### VieNeu-TTS Setup & Development
-
-```bash
-cd VieNeu-TTS
-make check              # Verify toolchain (python, uv, espeak, docker, GPU)
-make setup              # uv sync (CPU/turbo mode)
-uv sync --group gpu     # Include GPU dependencies
-uv run vieneu-web       # Gradio UI at http://127.0.0.1:7860
-uv run vieneu-stream    # Streaming web UI (CPU GGUF)
-uv run pytest tests/    # Run tests
-```
-
-### TTS Server for Podcast Production
-
-```bash
-# Start VieNeu FastAPI server (required before producing Vietnamese episodes)
-python3 .agents/skills/tech-radar-podcast/scripts/vieneu_hq_server.py
-# Health check: curl http://127.0.0.1:8001/health
-
-# Server endpoints: GET /voices, POST /stream, POST /set_model, POST /reset, GET /health
-```
-
 ### Audio Production
 
 ```bash
 # Ensure deps
-pip install requests pydub audioop-lts
+pip install edge-tts pydub audioop-lts
 ffmpeg -version  # must be available
 
 # Produce audio for an episode workspace
@@ -98,19 +70,9 @@ python3 .agents/skills/tech-radar-podcast/scripts/produce_audio.py \
   --workspace ./podcast_studio/ep01_slug --benchmark
 ```
 
-### Docker (GPU)
-
-```bash
-cd VieNeu-TTS
-make docker-gpu                    # docker compose with GPU profile
-make docker-build-serve            # Build serve image
-docker run --gpus all -p 23333:23333 pnnbao/vieneu-tts:serve --tunnel
-```
-
 ## Key Configuration
 
-- **VieNeu-TTS package config**: `VieNeu-TTS/pyproject.toml` — Python >=3.10, uses `uv` package manager
-- **Voice & audio tuning**: `.agents/skills/tech-radar-podcast/assets/voice_config.json` — voices, engine mode, pace profiles, playback speed (default 1.2x for Vietnamese), phonetic normalization rules
+- **Voice & audio tuning**: `.agents/skills/tech-radar-podcast/assets/voice_config.json` — voice profiles, playback speed (default 1.2x for Vietnamese), phonetic normalization rules
 - **Series continuity**: `podcast_studio/daily_series_context.json` and `weekly_series_context.json` — track covered stories to avoid duplicates
 
 ## Vietnamese Script Conventions

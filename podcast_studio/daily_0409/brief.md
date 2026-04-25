@@ -1,38 +1,36 @@
-# Daily Brief — April 9, 2026
+# Daily Brief — April 9th, 2026
 
 ## Top 3 Stories
 
-### 1. Anthropic Mythos Preview: 77.8% SWE-Bench Pro, Too Dangerous to Release Publicly
-Source: TechCrunch / VentureBeat / Anthropic | Key number: 77.8% SWE-Bench Pro (vs Opus 4.6's 53.4%)
-Analyst take: This is the largest single-generation jump in coding benchmarks ever recorded. But the real story isn't the benchmarks — it's that Anthropic explicitly withheld this model from the public because of its cybersecurity capabilities. It found thousands of zero-day vulnerabilities, some 10-27 years old, with a 72.4% exploit generation success rate versus essentially 0% for Opus 4.6. For engineering managers: this model represents a qualitative shift in what AI can do with undocumented, complex legacy systems. The fact that it autonomously developed ROP chains for a 17-year-old FreeBSD vulnerability means it can reason through multi-step exploits in code nobody alive fully understands. The competitive implication: organizations with early access partnerships (the 40+ in Project Glasswing) will have a 3-6 month head start. Building relationships with AI labs is now a strategic priority, not just procurement.
+### 1. Meta Enters the Frontier Race: Muse Spark Ranks 4th Globally
+Source: The Next Web | Key number: 77.4% SWE-bench Verified, 89.5% GPQA Diamond, 4th place on Artificial Analysis Intelligence Index
+Analyst take: Meta's Superintelligence Labs just gave enterprise teams a fourth tier-1 proprietary model option alongside GPT-5.4 Pro, Gemini 3.1 Pro, and Claude Opus 4.6. For engineering managers running model evaluation cycles, the competitive dynamics of API pricing and capability have fundamentally shifted — four frontier providers means significantly more negotiating leverage and lower switching costs within the next 60 days.
 
-### 2. Legacy System Modernization ROI Shifts: AI Teams Compress 6-Month Rewrites to 8-12 Weeks
-Source: UpdateCode.ai / IBM / AWS | Key number: 72% of enterprise IT budgets ($1.68 trillion globally) spent maintaining legacy systems
-Analyst take: The economics of legacy modernization have flipped. Traditional full rewrites had a 70% failure rate at $500K-$2M+. AI-first teams of 3 engineers now replace what previously needed 8, compressing 6-month rewrites to 8-12 weeks at 75% lower cost. Combined with Mythos-class reasoning that can navigate undocumented code, the risk/reward calculus for touching legacy code has fundamentally changed. For managers: audit your legacy portfolio this week. The systems costing you $150-300/hour in COBOL specialist maintenance while using 3-5x more server resources than modern equivalents are now candidates for AI-assisted modernization. For builders: start with dependency mapping and test suite generation — the two highest-ROI tasks for AI on legacy code.
+### 2. Anthropic Triples Revenue to $30B Run Rate, Launches Managed Agents Platform
+Source: TechCrunch, llm-stats.com | Key number: $30B annualized revenue (3x from $9B end-of-2025); 1,000+ enterprise customers at $1M+ annual spend; Managed Agents launched with Notion and Rakuten
+Analyst take: A 3x revenue jump in one quarter confirms enterprise AI spending has hit escape velocity — Anthropic is supply-constrained, not demand-constrained. The simultaneous launch of Managed Agents (competing directly with AWS Bedrock Agents, Google Vertex Agent Builder) signals that model providers are moving up the value stack from API to workflow-as-a-service. The build-vs-buy decision for agentic infrastructure just got materially harder.
 
-### 3. Healthcare Agentic AI: 61% of Leaders Building, HIPAA 2026 Creates New Compliance Frontier
-Source: Ajentik / Greenway Health / Simbo AI | Key number: 61% of healthcare leaders building or budgeted for agentic AI; $2.13M max penalty per violation category
-Analyst take: Healthcare is the domain where agentic AI's impact on legacy systems is most consequential. The industry runs on fragmented, decades-old software (Epic holds 36% of the US market), HL7 v2 interfaces, and paper-based workflows. Greenway's Novare platform shows concrete results: 14,000 hours saved annually, 5 fewer hours per clinician per day on EHR, up to $1M revenue cycle improvement. But the HIPAA 2026 Security Rule update now explicitly addresses AI agents processing PHI for the first time — requiring risk analyses for hallucination, prompt injection, training data leakage, and scope exceedance. The opportunity is massive but the regulatory surface area is 3-5x larger than traditional software. Builders in healthcare: compliance architecture is your moat, not just your obligation.
+### 3. The Agent Security Crisis: 97% of Enterprises Expect a Material Incident, Only 6% Budget for It
+Source: Security Boulevard, OutSystems/BusinessWire | Key number: 97% of enterprises expect a material AI agent security incident within 12 months; only 6% of security budgets allocated to AI agent risk; 94% report agent sprawl concern
+Analyst take: Enterprise AI agent deployment is racing ahead of the security infrastructure to manage it. Nearly every enterprise surveyed expects something to break — yet almost none are funding the teams or tools to prevent it. This is the most actionable gap in the current AI landscape: the first companies to build robust agent governance frameworks will have a durable competitive advantage in regulated verticals.
 
 ## Cross-story theme
-AI is crossing the threshold from "tool for new code" to "autonomous agent for old code" — and the implications cascade through every industry running on legacy infrastructure, from enterprise IT to healthcare. The common thread is that models like Mythos can now navigate, understand, and operate within systems that were built decades ago without documentation, while the regulatory and safety frameworks are racing to keep up. We are entering an era where the most valuable AI capability isn't generating new content — it's understanding the mess we already built.
+The AI industry is simultaneously accelerating and running into walls it didn't build for. In a single week: a new frontier competitor appears (Meta), enterprise revenue triples at the top provider (Anthropic), and yet 97% of the companies deploying agents expect a security incident they haven't budgeted to prevent. The pattern is a governance gap — the speed of capability deployment has decisively outpaced the speed of security, compliance, and operational governance. This is not a hypothetical risk; it's the defining tension of Q2 2026.
 
 ## Actionable takeaways
-- Manager: Audit your three oldest, most expensive legacy systems this week. Calculate their true cost (maintenance + specialist salaries + opportunity cost + security risk). With AI-accelerated modernization compressing timelines by 75%, projects you deferred in 2025 may now be viable in Q3 2026.
-- Builder: If you're in healthcare or any regulated industry, invest in compliance-first agentic architecture now. The HIPAA 2026 rules create a first-mover advantage for teams that build auditable AI wrappers around legacy systems — and a $2.13M-per-violation penalty for those who don't.
+- Manager: Run a model evaluation cycle that includes Muse Spark alongside your current provider. Four frontier options means you can negotiate harder on pricing and terms — but you need benchmark data on your specific workloads, not just public leaderboards. Separately, audit your AI agent security budget: if it's below 10% of your AI spend, you're in the 94% who will learn this lesson the hard way.
+- Builder: If you're building agentic workflows, evaluate Anthropic's Managed Agents vs. self-hosted orchestration before committing to either path. The managed option eliminates DevOps burden but creates vendor lock-in. For open-model builders, Gemma 4 on a single H100 with 256K context under Apache 2.0 is now the baseline to beat for self-hosted deployments.
 
 ## Closing questions
-1. If AI can find vulnerabilities that humans missed for 27 years, what does that imply about the security of every legacy system currently in production — and who bears liability when an AI-discovered vulnerability is exploited before it's patched?
-2. In healthcare, when an agentic AI makes a clinical decision based on data extracted from a legacy EHR system that hasn't been validated in 15 years, who is legally responsible — the AI vendor, the hospital, or the EHR manufacturer who stopped maintaining that interface?
+1. When four frontier providers are competing on price and capability simultaneously, does the model layer become a commodity faster than anyone projected — and if so, where does the real margin migrate to?
+2. If 97% of enterprises expect an agent security incident but only 6% fund prevention, what does the first major breach look like — and does it trigger a regulatory overcorrection that slows the entire industry?
 
 ## Sources used
-1. TechCrunch — https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/ — 2026-04-07
-2. VentureBeat — https://venturebeat.com/technology/anthropic-says-its-most-powerful-ai-cyber-model-is-too-dangerous-to-release — 2026-04-07
-3. The Register — https://www.theregister.com/2026/04/07/anthropic_all_your_zerodays_are_belong_to_us/ — 2026-04-07
-4. Anthropic — https://www.anthropic.com/glasswing — 2026-04-07
-5. Anthropic system card — https://www.anthropic.com/claude-mythos-preview-risk-report — 2026-04-07
-6. OfficeChai — https://officechai.com/ai/claude-mythos-preview-benchmarks-swe-bench-pro/ — 2026-04-07
-7. UpdateCode.ai — https://updatecode.ai/blog/roi-legacy-software-modernization-2026 — 2026-04
-8. Ajentik — https://www.ajentik.com/insights/hipaa-compliance-ai-agents-2026 — 2026-04
-9. Greenway Health — https://www.prnewswire.com/news-releases/greenway-health-launches-novare — 2026-04
-10. Simbo AI — https://www.simbo.ai/blog/integration-strategies-for-ai-agents-with-legacy-electronic-health-record-systems — 2026-04
+1. The Next Web — https://thenextweb.com/news/meta-muse-spark-msl-first-model — 2026-04-08 — Meta Muse Spark launch
+2. TechCrunch — https://techcrunch.com/2026/04/07/anthropic-compute-deal-google-broadcom-tpus/ — 2026-04-07 — Anthropic $30B revenue
+3. llm-stats.com — https://llm-stats.com/ai-news — 2026-04-09 — Claude Managed Agents launch
+4. Security Boulevard — https://securityboulevard.com/2026/04/97-of-enterprises-expect-a-major-ai-agent-security-incident-within-the-year/ — 2026-04 — Agent security survey
+5. OutSystems/BusinessWire — https://www.businesswire.com/news/home/20260407749542/en/ — 2026-04-07 — Agent sprawl survey (94%)
+6. Gartner — agentic AI spending $201.9B projection
+7. Crunchbase News — https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/ — Q1 2026 VC data
+8. Geeky Gadgets — https://www.geeky-gadgets.com/gemma-4-function-calling/ — 2026-04-02 — Gemma 4 release

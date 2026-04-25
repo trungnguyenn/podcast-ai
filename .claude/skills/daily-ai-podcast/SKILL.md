@@ -11,8 +11,7 @@ description: >
   AI news briefing request.
 license: MIT
 compatibility: >
-  Python 3.8+, ffmpeg, pip packages: requests pydub. Local VieNeu-TTS API server must
-  be running for Vietnamese episodes.
+  Python 3.8+, ffmpeg, pip packages: edge-tts pydub.
 metadata:
   author: h3tech
   version: "1.0"
@@ -38,47 +37,17 @@ Run each phase immediately, print a summary, continue — no user confirmation n
 Run once before producing any episode:
 
 ```bash
-python3 -c "import requests, pydub; print('deps: OK')" 2>/dev/null \
-  || pip install requests pydub --quiet
-python3 -c "import audioop" 2>/dev/null \
-  || pip install audioop-lts --quiet
+pip install edge-tts pydub audioop-lts --quiet
 ffmpeg -version 2>/dev/null | head -1 || echo "WARNING: ffmpeg missing — brew install ffmpeg"
 mkdir -p ./podcast_studio
 ```
 
-### Start the VieNeu TTS server (required for Vietnamese audio)
-
-VieNeu is used for all `language=vi` episodes. Start it once and leave it running:
-
-```bash
-python3 .agents/skills/tech-radar-podcast/scripts/vieneu_hq_server.py
-```
-
-Listens on `http://127.0.0.1:8001` by default. Verify it is up before producing audio:
-
-```bash
-curl http://127.0.0.1:8001/health
-# Expected: {"status":"ok", ...}
-```
-
-To use a different URL, set `VIENEU_URL` before running audio production:
-
-```bash
-export VIENEU_URL=http://127.0.0.1:8001
-```
-
-### TTS provider routing (automatic)
-
-| `language` in `episode.json` | TTS engine used |
-|------------------------------|----------------|
-| `vi` (default)               | VieNeu (local server) |
-| `en`                         | edge-tts, fallback macos-say |
-
-Voice profiles, VieNeu tuning, and audio gap settings are configured in
-`.agents/skills/tech-radar-podcast/assets/voice_config.json`.
+All audio uses **edge-tts** (free, no local server needed). Voice assignment, pronunciation
+normalization, pause tuning, and playback-speed defaults are centralized in
+`tech-radar-podcast` and reused here; do not duplicate those rules in the daily skill.
 
 Shared assets (`produce_audio.py`, `voice_config.json`, `intro.mp3`, `outro.mp3`,
-`transition.mp3`) live in `.agents/skills/tech-radar-podcast/`. This skill reads
+`transition.mp3`) live in the shared tech-radar skill directory. This skill reads
 them in place — no duplication into episode workspaces.
 
 ---
@@ -93,7 +62,7 @@ them in place — no duplication into episode workspaces.
 | 4 | Script | `script_en.txt` + `script_vi.txt` |
 | 5 | Audio | `cache/segments/`, `exports/` |
 | 6 | Merge | `exports/[slug]_vi_final.mp3` |
-| 7 | Delivery | `manifest.json`, `status.json` |
+| 7 | Delivery | series context updated + **MP3 copied to `PODCAST_GDRIVE_PATH`** + delivery report |
 
 Details: [PHASES.md](references/PHASES.md)
 
@@ -222,3 +191,21 @@ Each story's analysis must answer at least one of:
 - "Does this change the competitive landscape I'm operating in?"
 - "What risk does this create that I haven't priced in?"
 - "What opportunity window does this open, and how long is it?"
+
+---
+
+## DELIVERY CHECKLIST
+
+**Every episode MUST complete all steps before reporting done:**
+
+- [ ] `exports/daily_[MMdd]_vi_final.mp3` exists and duration > 15 min
+- [ ] `podcast_studio/daily_series_context.json` updated with new stories
+- [ ] **MP3 copied to `PODCAST_GDRIVE_PATH`** (read from `.env`, run the copy command, confirm output)
+- [ ] Delivery report printed with: duration, word count, stories covered, GDrive path
+
+**Google Drive copy command (run this — do not skip):**
+```bash
+GDRIVE=$(grep '^PODCAST_GDRIVE_PATH=' .env 2>/dev/null | cut -d'=' -f2-)
+FINAL_MP3=$(ls ./podcast_studio/daily_*/exports/*_final.mp3 2>/dev/null | tail -1)
+[ -d "$GDRIVE" ] && cp "$FINAL_MP3" "$GDRIVE/" && echo "✓ Copied: $(basename $FINAL_MP3) → $GDRIVE" || echo "WARNING: GDrive not mounted — copy manually: $FINAL_MP3"
+```

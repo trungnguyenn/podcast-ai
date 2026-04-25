@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""Tech Radar — Audio Production v6
-Pipeline: parse script → shared fixed assets → TTS → merge MP3
-Supports TTS providers: vieneu (local), elevenlabs (cloud), edge-tts (free), macos-say (free).
+"""Tech Radar — Audio Production v7
+Pipeline: parse script → shared fixed assets → TTS (edge-tts) → merge MP3
 Supports multiple guests: [GUEST] or [GUEST_1], [GUEST_2], ... in script.
-Select provider via TTS_PROVIDER env var or tts_provider in voice_config.json.
-Provider `auto` routes EN scripts to free community TTS (edge-tts, fallback say) and VI scripts to VieNeu.
 """
 
-import os, re, json, time, shutil, datetime, requests, subprocess, sys, argparse, threading, hashlib
+import os, re, json, time, shutil, datetime, subprocess, sys, argparse, threading, hashlib
 from pathlib import Path
 from pydub import AudioSegment
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -38,7 +35,8 @@ for d in [CACHE_DIR, SEGS_DIR, LOGS_DIR, EXPORTS_DIR]:
 def find_config() -> dict:
     """Search for voice_config.json — walks up from episode folder, then checks home."""
     skill_rels = [
-        ".agents/skills/tech-radar-podcast/assets/voice_config.json"
+        ".agents/skills/tech-radar-podcast/assets/voice_config.json",
+        ".claude/skills/tech-radar-podcast/assets/voice_config.json",
     ]
     ancestors = [Path(__file__).parent / "assets" / "voice_config.json"]
     p = Path(__file__).parent
@@ -57,7 +55,8 @@ def find_config() -> dict:
 def find_assets_dir() -> Path | None:
     """Search for the skill assets directory containing fixed audio files."""
     skill_rels = [
-        ".agents/skills/tech-radar-podcast/assets"
+        ".agents/skills/tech-radar-podcast/assets",
+        ".claude/skills/tech-radar-podcast/assets",
     ]
     p = Path(__file__).parent
     for _ in range(8):
@@ -77,14 +76,6 @@ def find_assets_dir() -> Path | None:
 CONFIG    = find_config()
 AUDIO_CFG = CONFIG.get("audio", {})
 PHONETIC  = CONFIG.get("phonetic_normalization", {})
-VIENEU_CFG = CONFIG.get("vieneu", {})
-VIENEU_DEFAULT_REQUEST = VIENEU_CFG.get("default_request", {})
-VIENEU_VOICE_PROFILES = VIENEU_CFG.get("profiles", {})
-VIENEU_PACE_PROFILES = VIENEU_CFG.get("pace_profiles", {})
-VIENEU_ENGINE_CFG = VIENEU_CFG.get("engine", {})
-VIENEU_FALLBACK_CFG = VIENEU_CFG.get("fallback_standard_to_turbo", {})
-VIENEU_TURBO_RETRY_REQUEST = VIENEU_CFG.get("turbo_retry_request", {})
-VIENEU_INTER_SEG_SLEEP = float(VIENEU_CFG.get("inter_segment_sleep_s", 0.0))
 POLISH_CFG = CONFIG.get("tts_polish", {})
 ASSETS_DIR = find_assets_dir()
 SEGMENT_TITLE_CFG = AUDIO_CFG.get("segment_title_announcement", {})
@@ -93,13 +84,9 @@ PAUSE_RULES = AUDIO_CFG.get("pause_rules", {})
 OUTPUT_BITRATE = AUDIO_CFG.get("bitrate", "128k")
 PLAYBACK_SPEED = float(AUDIO_CFG.get("playback_speed", 1.0))
 PLAYBACK_SPEED_BY_LANGUAGE = AUDIO_CFG.get("playback_speed_by_language", {})
-COMMUNITY_CFG = CONFIG.get("community_tts", {})
 RUN_BENCHMARK = os.environ.get("PODCAST_BENCHMARK", "").strip().lower() in {"1", "true", "yes"}
 BENCHMARK_RECORDS: list[dict] = []
 BENCH_LOCK = threading.Lock()
-
-_SERVER_ENGINE_MODE = ""
-_SERVER_ENGINE_LOCK = threading.Lock()
 
 STATUS_PATH = BASE / "status.json"
 WORKSPACE_MANIFEST_PATH = BASE / "workspace_manifest.json"
@@ -118,7 +105,6 @@ def _find_binary(name: str) -> str | None:
 FFMPEG_BIN = _find_binary("ffmpeg") or "ffmpeg"
 FFPROBE_BIN = _find_binary("ffprobe")
 EDGE_TTS_BIN = _find_binary("edge-tts")
-SAY_BIN = _find_binary("say")
 
 
 def _write_json(path: Path, data: dict) -> None:
@@ -281,9 +267,9 @@ def normalize_text(text: str, lang: str = "") -> str:
         p = re.escape(key)
         # Use \b for whole words if key is alphanumeric
         pattern = fr"\b{p}\b" if key[0].isalnum() else p
-        # Case insensitive for lowercase keys in config
-        flags = re.IGNORECASE if key[0].islower() else 0
-        fixed = re.sub(pattern, val, fixed, flags=flags)
+        # Case-insensitive matching makes the same normalization work across
+        # different script styles and capitalization choices.
+        fixed = re.sub(pattern, val, fixed, flags=re.IGNORECASE)
     return re.sub(r"\s+", " ", fixed).strip()
 
 
@@ -326,9 +312,9 @@ def polish_text(text: str, topic: str = "") -> str:
     return fixed
 
 
-# ── TTS provider selection ────────────────────────────────────────────────────
+# ── TTS provider (edge-tts only) ─────────────────────────────────────────────
 
-REQUESTED_TTS_PROVIDER = (os.environ.get("TTS_PROVIDER") or CONFIG.get("tts_provider", "vieneu")).lower()
+TTS_PROVIDER = "edge_tts"
 SCRIPT_LANGUAGE = (
     (os.environ.get("PODCAST_LANG") or "").strip().lower()
     or detect_episode_language(BASE / "episode.json")
@@ -339,96 +325,17 @@ if SCRIPT_LANGUAGE not in {"vi", "en"}:
 
 def resolve_script_path(base: Path, lang: str) -> Path:
     """Pick the right script file based on language, with fallbacks."""
-    # Prefer language-specific .txt files
     lang_file = base / f"script_{lang}.txt"
     if lang_file.exists():
         return lang_file
-    # Fallback: try the other language
     other = "en" if lang == "vi" else "vi"
     other_file = base / f"script_{other}.txt"
     if other_file.exists():
         return other_file
-    # Legacy fallback: script.md
     legacy = base / "script.md"
     if legacy.exists():
         return legacy
-    # Default (will fail with a clear error at parse time)
     return lang_file
-
-VIENEU_URL  = os.environ.get("VIENEU_URL") or VIENEU_CFG.get("url", "http://127.0.0.1:8001")
-
-ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY", "")
-EL_CFG      = CONFIG.get("elevenlabs", {})
-EL_MODEL    = EL_CFG.get("model", "eleven_multilingual_v2")
-EL_API_URL  = EL_CFG.get("api_url", "https://api.elevenlabs.io")
-EL_SETTINGS = EL_CFG.get("voice_settings", {
-    "stability": 0.50, "similarity_boost": 0.75,
-    "style": 0.35, "use_speaker_boost": True,
-})
-
-def _pick_auto_provider() -> str:
-    if SCRIPT_LANGUAGE == "en":
-        if EDGE_TTS_BIN:
-            return "edge_tts"
-        if SAY_BIN:
-            return "macos_say"
-        return "vieneu"
-    return "vieneu"
-
-if REQUESTED_TTS_PROVIDER == "auto":
-    TTS_PROVIDER = _pick_auto_provider()
-else:
-    TTS_PROVIDER = REQUESTED_TTS_PROVIDER
-
-
-def _normalize_engine_mode(mode: str) -> str:
-    m = (mode or "").strip().lower()
-    if m in {"standard", "turbo", "turbo_gpu", "auto"}:
-        return m
-    return "standard"
-
-
-def _extract_clone_fields(data: dict) -> dict:
-    clone = data.get("voice_clone", {}) if isinstance(data, dict) else {}
-    if not isinstance(clone, dict):
-        clone = {}
-    return {
-        "ref_audio": data.get("ref_audio", clone.get("ref_audio", "")),
-        "ref_text": data.get("ref_text", clone.get("ref_text", "")),
-        "ref_codes": data.get("ref_codes", clone.get("ref_codes")),
-    }
-
-
-def _episode_render_intent(ep: dict) -> set[str]:
-    intent_tokens: set[str] = set()
-    for key in ("render_purpose", "purpose", "mode", "stage", "intent"):
-        val = ep.get(key)
-        if not val:
-            continue
-        parts = re.split(r"[,/|_\s-]+", str(val).lower())
-        intent_tokens.update(p for p in parts if p)
-    return intent_tokens
-
-
-def resolve_vieneu_engine_mode(ep: dict) -> str:
-    requested = _normalize_engine_mode(
-        os.environ.get("VIENEU_ENGINE_MODE")
-        or VIENEU_ENGINE_CFG.get("mode", "standard")
-    )
-    if requested != "auto":
-        return requested
-
-    intents = _episode_render_intent(ep)
-    if intents & {"draft", "preview", "scratch", "fast"}:
-        auto_mode = _normalize_engine_mode(VIENEU_ENGINE_CFG.get("auto_draft_mode", "turbo"))
-        return "turbo" if auto_mode == "auto" else auto_mode
-    return _normalize_engine_mode(VIENEU_ENGINE_CFG.get("auto_final_mode", "standard"))
-
-TARGET_PLAYBACK_SPEED = float(
-    PLAYBACK_SPEED_BY_LANGUAGE.get(SCRIPT_LANGUAGE, PLAYBACK_SPEED)
-    if isinstance(PLAYBACK_SPEED_BY_LANGUAGE, dict)
-    else PLAYBACK_SPEED
-)
 
 GAP_TURN    = AUDIO_CFG.get("gap_turn_ms", 400)
 GAP_SEGMENT = AUDIO_CFG.get("gap_segment_ms", 1200)
@@ -468,13 +375,6 @@ SEGMENT_CLOSING_TEMPLATE = _resolve_template(
     fallback_en="Before we wrap up, let's get to {title}.",
 )
 
-PROVIDER_VOICE_KEY = {
-    "vieneu": "vieneu_voice_id",
-    "elevenlabs": "elevenlabs_voice_id",
-    "edge_tts": "edge_tts_voice_id",
-    "macos_say": "say_voice_id",
-}
-VKEY = PROVIDER_VOICE_KEY.get(TTS_PROVIDER, "vieneu_voice_id")
 
 
 # ── Episode data ──────────────────────────────────────────────────────────────
@@ -616,54 +516,6 @@ def _auto_select_profile(profiles: list[dict], topic: str, hints: dict[str, set[
     return best, f"auto ({reason_text})"
 
 
-def _resolve_vieneu_profile_request(profile_name: str | None) -> dict:
-    if not profile_name:
-        return {}
-    profile = VIENEU_VOICE_PROFILES.get(profile_name)
-    if isinstance(profile, dict):
-        return dict(profile)
-    print(f"    WARNING: VieNeu profile '{profile_name}' not found in config")
-    return {}
-
-
-def _resolve_vieneu_pace_request(profile_name: str | None) -> dict:
-    if not profile_name:
-        return {}
-    profile = VIENEU_PACE_PROFILES.get(profile_name)
-    if isinstance(profile, dict):
-        return dict(profile)
-    print(f"    WARNING: VieNeu pace profile '{profile_name}' not found in config")
-    return {}
-
-
-def _merge_request_layers(*layers: dict | None) -> dict:
-    merged: dict = {}
-    for layer in layers:
-        if not isinstance(layer, dict):
-            continue
-        for key, value in layer.items():
-            if value is None or value == "":
-                continue
-            merged[key] = value
-    return merged
-
-
-def _voice_request_from_config(cfg: dict) -> dict:
-    merged: dict = {}
-    for layer in (
-        _resolve_vieneu_profile_request(cfg.get("vieneu_profile", "")),
-        _resolve_vieneu_pace_request(cfg.get("pace_profile", "")),
-        cfg.get("vieneu_request", {}),
-    ):
-        if not isinstance(layer, dict):
-            continue
-        for key, value in layer.items():
-            if value is None or value == "":
-                continue
-            merged[key] = value
-    return merged
-
-
 def _record_benchmark(record: dict) -> None:
     if not RUN_BENCHMARK:
         return
@@ -671,227 +523,100 @@ def _record_benchmark(record: dict) -> None:
         BENCHMARK_RECORDS.append(record)
 
 
-def _default_voice_for_provider(provider: str, speaker: str, gender: str = "", profile_id: str = "") -> str:
-    """Return a sensible free-English fallback voice when provider-specific IDs are missing."""
-    provider_defaults = COMMUNITY_CFG.get("defaults", {}) if isinstance(COMMUNITY_CFG, dict) else {}
-    if provider == "edge_tts":
-        edge_cfg = provider_defaults.get("edge_tts", {})
-        if speaker == "HOST":
-            return edge_cfg.get("host") or "en-US-AndrewMultilingualNeural"
-        if (gender or "").lower().startswith("f"):
-            return edge_cfg.get("female_guest") or "en-US-AvaMultilingualNeural"
-        if (gender or "").lower().startswith("m"):
-            return edge_cfg.get("male_guest") or "en-US-BrianMultilingualNeural"
-        if "female" in profile_id:
-            return edge_cfg.get("female_guest") or "en-US-AvaMultilingualNeural"
-        return edge_cfg.get("male_guest") or "en-US-BrianMultilingualNeural"
-
-    if provider == "macos_say":
-        say_cfg = provider_defaults.get("macos_say", {})
-        if speaker == "HOST":
-            return say_cfg.get("host") or "Samantha"
-        if (gender or "").lower().startswith("f") or "female" in profile_id:
-            return say_cfg.get("female_guest") or "Samantha"
-        return say_cfg.get("male_guest") or "Alex"
-
-    return ""
-
-
 def resolve_all_voices(ep: dict) -> dict[str, dict]:
-    """
-    Returns {SPEAKER: voice_info} for HOST and all GUESTs.
-    Speaker keys: HOST, GUEST (=first guest), GUEST_2, GUEST_3, ...
-    Each voice_info: {voice_id, name, role?, profile_id?, profile_description?, selection_method}
-    """
-    guests     = episode_guests(ep)
-    topic      = ep.get("topic", "")
-    profiles   = CONFIG.get("guest_voices", [])
+    """Returns {SPEAKER: voice_info} for HOST and all GUESTs."""
+    guests   = episode_guests(ep)
+    topic    = ep.get("topic", "")
+    profiles = CONFIG.get("guest_voices", [])
     voices: dict[str, dict] = {}
 
     # ── HOST ──
     host_cfg = CONFIG.get("host", {})
-    host_clone = _extract_clone_fields(host_cfg)
-    host_voice = os.environ.get("HOST_VOICE_ID") or host_cfg.get(VKEY, "")
-    if not host_voice and TTS_PROVIDER in {"edge_tts", "macos_say"}:
-        host_voice = _default_voice_for_provider(TTS_PROVIDER, "HOST", host_cfg.get("gender", ""))
     voices["HOST"] = {
-        "voice_id":         host_voice,
+        "voice_id":         os.environ.get("HOST_VOICE_ID") or host_cfg.get("voice_id", "vi-VN-NamMinhNeural"),
         "name":             host_cfg.get("name", "Trung"),
-        "profile":          "host",
-        "region":           host_cfg.get("region", ""),
-        "pace":             host_cfg.get("pace", ""),
-        "energy":           host_cfg.get("energy", ""),
-        "vieneu_profile":   host_cfg.get("vieneu_profile", ""),
-        "pace_profile":     host_cfg.get("pace_profile", ""),
-        "vieneu_request":   _voice_request_from_config(host_cfg),
-        "ref_audio":        host_clone["ref_audio"],
-        "ref_text":         host_clone["ref_text"],
-        "ref_codes":        host_clone["ref_codes"],
         "selection_method": "config",
     }
 
     # ── GUESTs ──
     used_profile_ids: set[str] = set()
-
     for i, guest in enumerate(guests):
-        guest_clone = _extract_clone_fields(guest)
-        # Speaker key: GUEST for first, GUEST_2 / GUEST_3 ... for subsequent
-        speaker    = "GUEST" if i == 0 else f"GUEST_{i + 1}"
-        env_vid    = f"GUEST_VOICE_ID"    if i == 0 else f"GUEST_{i+1}_VOICE_ID"
-        env_prof   = f"GUEST_VOICE_PROFILE" if i == 0 else f"GUEST_{i+1}_VOICE_PROFILE"
+        speaker = "GUEST" if i == 0 else f"GUEST_{i + 1}"
+        env_vid = "GUEST_VOICE_ID" if i == 0 else f"GUEST_{i+1}_VOICE_ID"
 
-        # 1. Explicit voice ID override
         override_id = os.environ.get(env_vid, "")
         if override_id:
-            explicit_profile = os.environ.get(env_prof, "") or guest.get("voice_profile", "")
             voices[speaker] = {
-                "voice_id":         override_id,
-                "name":             guest.get("name", f"Guest {i + 1}"),
-                "role":             guest.get("role", ""),
-                "region":           guest.get("region", ""),
-                "pace":             guest.get("pace", ""),
-                "energy":           guest.get("energy", ""),
-                "vieneu_profile":   explicit_profile,
-                "pace_profile":     guest.get("pace_profile", ""),
-                "vieneu_request":   _merge_request_layers(
-                    _resolve_vieneu_profile_request(explicit_profile),
-                    _resolve_vieneu_pace_request(guest.get("pace_profile", "")),
-                    guest.get("vieneu_request", {}),
-                ),
-                "ref_audio":        guest_clone["ref_audio"],
-                "ref_text":         guest_clone["ref_text"],
-                "ref_codes":        guest_clone["ref_codes"],
+                "voice_id": override_id,
+                "name": guest.get("name", f"Guest {i + 1}"),
                 "selection_method": f"env:{env_vid}",
             }
             continue
 
-        # 2. Profile selection: explicit > topic auto-select > first unused > first overall
-        profile: dict | None = None
-        method = ""
+        # Profile selection: explicit > topic auto-select > first unused > first overall
+        profile, method = None, ""
         hints = _speaker_hint_values(ep, guest)
-
-        explicit_profile = os.environ.get(env_prof, "") or guest.get("voice_profile", "")
-        if explicit_profile:
-            profile = next((p for p in profiles if p.get("id") == explicit_profile), None)
+        explicit = guest.get("voice_profile", "")
+        if explicit and explicit != "auto":
+            profile = next((p for p in profiles if p.get("id") == explicit), None)
             if profile:
-                method = f"explicit:{explicit_profile}"
-            else:
-                print(f"    WARNING: voice_profile '{explicit_profile}' not found in config")
+                method = f"explicit:{explicit}"
 
         if not profile and topic:
             available = [p for p in profiles if p.get("id") not in used_profile_ids] or profiles
             profile, method = _auto_select_profile(available, topic, hints)
-            if profile:
-                pass
 
         if not profile:
-            fallback_pool = [p for p in profiles if p.get("id") not in used_profile_ids] or profiles
-            profile = fallback_pool[0] if fallback_pool else None
-            method = "fallback (first available)"
+            pool = [p for p in profiles if p.get("id") not in used_profile_ids] or profiles
+            profile = pool[0] if pool else None
+            method = "fallback"
 
         if profile:
             pid = profile.get("id", "")
-            profile_clone = _extract_clone_fields(profile)
             used_profile_ids.add(pid)
-            resolved_voice_id = profile.get(VKEY, "")
-            if not resolved_voice_id and TTS_PROVIDER in {"edge_tts", "macos_say"}:
-                resolved_voice_id = _default_voice_for_provider(
-                    TTS_PROVIDER,
-                    speaker,
-                    guest.get("gender") or profile.get("gender", ""),
-                    pid,
-                )
             voices[speaker] = {
-                "voice_id":           resolved_voice_id,
-                "name":               guest.get("name", f"Guest {i + 1}"),
-                "role":               guest.get("role", ""),
-                "profile_id":         pid,
-                "profile_description": profile.get("description", ""),
-                "region":             profile.get("region", guest.get("region", "")),
-                "pace":               profile.get("pace", guest.get("pace", "")),
-                "energy":             profile.get("energy", guest.get("energy", "")),
-                "vieneu_profile":     profile.get("vieneu_profile", ""),
-                "pace_profile":       guest.get("pace_profile", profile.get("pace_profile", "")),
-                "vieneu_request":     _merge_request_layers(
-                    _voice_request_from_config(profile),
-                    _resolve_vieneu_pace_request(guest.get("pace_profile", profile.get("pace_profile", ""))),
-                    guest.get("vieneu_request", {}),
-                ),
-                "ref_audio":          guest_clone["ref_audio"] or profile_clone["ref_audio"],
-                "ref_text":           guest_clone["ref_text"] or profile_clone["ref_text"],
-                "ref_codes":          guest_clone["ref_codes"] if guest_clone["ref_codes"] is not None else profile_clone["ref_codes"],
-                "selection_method":   method,
+                "voice_id":    profile.get("voice_id", ""),
+                "name":        guest.get("name", f"Guest {i + 1}"),
+                "profile_id":  pid,
+                "selection_method": method,
             }
         else:
-            fallback_voice_id = ""
-            if TTS_PROVIDER in {"edge_tts", "macos_say"}:
-                fallback_voice_id = _default_voice_for_provider(
-                    TTS_PROVIDER,
-                    speaker,
-                    guest.get("gender", ""),
-                    guest.get("voice_profile", ""),
-                )
             voices[speaker] = {
-                "voice_id":         fallback_voice_id,
-                "name":             guest.get("name", f"Guest {i + 1}"),
-                "role":             guest.get("role", ""),
-                "region":           guest.get("region", ""),
-                "pace":             guest.get("pace", ""),
-                "energy":           guest.get("energy", ""),
-                "vieneu_profile":   guest.get("voice_profile", ""),
-                "pace_profile":     guest.get("pace_profile", ""),
-                "vieneu_request":   _merge_request_layers(
-                    _resolve_vieneu_profile_request(guest.get("voice_profile", "")),
-                    _resolve_vieneu_pace_request(guest.get("pace_profile", "")),
-                    guest.get("vieneu_request", {}),
-                ),
-                "ref_audio":        guest_clone["ref_audio"],
-                "ref_text":         guest_clone["ref_text"],
-                "ref_codes":        guest_clone["ref_codes"],
-                "selection_method": "none (no profiles configured)",
+                "voice_id": "",
+                "name": guest.get("name", f"Guest {i + 1}"),
+                "selection_method": "none",
             }
 
     return voices
 
 
 EPISODE = load_episode()
-ACTIVE_VIENEU_ENGINE_MODE = resolve_vieneu_engine_mode(EPISODE)
+EPISODE_AUDIO = EPISODE.get("audio", {}) if isinstance(EPISODE.get("audio"), dict) else {}
+TARGET_PLAYBACK_SPEED = float(
+    EPISODE_AUDIO.get("playback_speed")
+    if EPISODE_AUDIO.get("playback_speed") is not None
+    else PLAYBACK_SPEED_BY_LANGUAGE.get(SCRIPT_LANGUAGE, PLAYBACK_SPEED)
+    if isinstance(PLAYBACK_SPEED_BY_LANGUAGE, dict)
+    else PLAYBACK_SPEED
+)
 VOICES  = resolve_all_voices(EPISODE)
 
 # Print voice resolution summary
 if not SUPPRESS_INIT_OUTPUT:
-    print(f"\nTTS Provider : {TTS_PROVIDER.upper()} (requested: {REQUESTED_TTS_PROVIDER.upper()}, lang: {SCRIPT_LANGUAGE}, speed: {TARGET_PLAYBACK_SPEED:.2f}x)")
-    if TTS_PROVIDER == "vieneu":
-        print(f"VieNeu Engine : {ACTIVE_VIENEU_ENGINE_MODE}")
+    print(f"\nTTS Provider : EDGE_TTS (lang: {SCRIPT_LANGUAGE}, speed: {TARGET_PLAYBACK_SPEED:.2f}x)")
     for spk, info in VOICES.items():
         vid  = info.get("voice_id", "(missing)")
         name = info.get("name", "")
         how  = info.get("selection_method", "")
-        vprof = info.get("vieneu_profile", "")
         prof = f"  [{info['profile_id']}]" if "profile_id" in info else ""
-        profile_note = f"  tune={vprof}" if vprof else ""
-        print(f"  {spk:<10} → {vid:<16} ({name}){prof}{profile_note}  via {how}")
+        print(f"  {spk:<10} → {vid:<16} ({name}){prof}  via {how}")
 
 _missing_voices = [spk for spk, info in VOICES.items() if not info.get("voice_id")]
-if _missing_voices:
-    if not SUPPRESS_INIT_OUTPUT:
-        print(f"\nWARNING: missing voice_id for: {', '.join(_missing_voices)}")
-        if TTS_PROVIDER == "elevenlabs":
-            print("  → Fill elevenlabs_voice_id in voice_config.json for each speaker.")
-        elif TTS_PROVIDER == "vieneu":
-            print("  → Fill vieneu_voice_id in voice_config.json for each speaker.")
-        else:
-            print(f"  → For {TTS_PROVIDER}, set explicit voice IDs or configure community_tts.defaults.")
-
-if TTS_PROVIDER == "elevenlabs" and not ELEVENLABS_API_KEY:
-    if not SUPPRESS_INIT_OUTPUT:
-        print("WARNING: TTS_PROVIDER=elevenlabs but ELEVENLABS_API_KEY is not set.")
-    _missing_voices.append("ELEVENLABS_API_KEY")
+if _missing_voices and not SUPPRESS_INIT_OUTPUT:
+    print(f"\nWARNING: missing voice_id for: {', '.join(_missing_voices)}")
+    print("  → Set voice_id in voice_config.json for each speaker.")
 
 AUDIO_ENABLED = not _missing_voices
-VIENEU_FALLBACK_ENABLED = bool(VIENEU_FALLBACK_CFG.get("enabled", True))
-VIENEU_FALLBACK_RETRY_ON_SLOW = bool(VIENEU_FALLBACK_CFG.get("retry_on_slow", True))
-VIENEU_FALLBACK_SLOW_SECONDS = float(VIENEU_FALLBACK_CFG.get("slow_segment_seconds", 7.5))
 
 # ── Script parser ─────────────────────────────────────────────────────────────
 
@@ -981,275 +706,14 @@ def parse_script(path: Path) -> list[dict]:
     return out
 
 
-# ── TTS: server management ───────────────────────────────────────────────────
-
-def is_server_alive(url: str) -> bool:
-    try:
-        r = requests.get(f"{url}/health", timeout=1)
-        if r.status_code != 200:
-            return False
-        return r.json().get("status") == "ok"
-    except:
-        return False
-
-
-def get_server_health(url: str) -> dict:
-    try:
-        r = requests.get(f"{url}/health", timeout=2)
-        if r.status_code != 200:
-            return {}
-        data = r.json()
-        if not isinstance(data, dict):
-            return {}
-        return data
-    except Exception:
-        return {}
-
-
-def get_server_engine_mode(url: str) -> str:
-    global _SERVER_ENGINE_MODE
-    info = get_server_health(url)
-    raw_mode = str(info.get("engine_mode", "")).strip().lower()
-    mode = raw_mode if raw_mode in {"standard", "turbo", "turbo_gpu"} else ""
-    if mode:
-        with _SERVER_ENGINE_LOCK:
-            _SERVER_ENGINE_MODE = mode
-        return mode
-    with _SERVER_ENGINE_LOCK:
-        return _SERVER_ENGINE_MODE
-
-
-def set_server_engine_mode(url: str, mode: str) -> bool:
-    global _SERVER_ENGINE_MODE
-    normalized = _normalize_engine_mode(mode)
-    if normalized not in {"standard", "turbo", "turbo_gpu"}:
-        return False
-
-    payload = {"engine_mode": normalized}
-    try:
-        r = requests.post(f"{url}/set_model", json=payload, timeout=30)
-    except Exception as e:
-        print(f"    ⚠ could not switch server engine to {normalized}: {e}")
-        return False
-    if r.status_code != 200:
-        print(f"    ⚠ engine switch failed ({r.status_code}): {r.text[:180]}")
-        return False
-    with _SERVER_ENGINE_LOCK:
-        _SERVER_ENGINE_MODE = normalized
-    print(f"    Server engine switched to {normalized}")
-    return True
-
-def _warmup_vieneu_server() -> None:
-    """Probe VieNeu /stream until the model is fully loaded and returns real audio.
-
-    The /health endpoint reports the engine_mode as soon as the model switch is
-    *initiated*, but the model can take 60–120 s to fully load.  Only a real
-    /stream request tells us the model is warm.  We poll up to ~5 min (30 × 10 s).
-    """
-    probe_voice = next(iter(VOICES.values()), {}).get("voice_id", "") if VOICES else ""
-    if not probe_voice:
-        return
-    probe_body = {
-        "text": "Xin chào, đây là kiểm tra.",
-        "voice": probe_voice,
-        "render_mode": "stream",
-    }
-    print("    Warming up VieNeu model — waiting for first real audio response…")
-    url = f"{VIENEU_URL}/stream"
-    headers = {"Content-Type": "application/json"}
-    for attempt in range(30):
-        data = _post_with_retry(url, headers, probe_body, timeout=120)
-        if data and len(data) >= 1024:
-            print(f"    Model warm ✓ (attempt {attempt+1}, {len(data)} bytes)")
-            return
-        wait = 10
-        print(f"    Warmup attempt {attempt+1}/30: model not ready ({len(data) if data else 0} bytes) — waiting {wait}s…")
-        time.sleep(wait)
-    print("    ⚠ Warmup did not confirm model ready after 5 min — proceeding anyway")
-
-
-def ensure_tts_server():
-    """Start local VieNeu-TTS server if it's selected and not running."""
-    if TTS_PROVIDER != "vieneu":
-        return
-
-    print(f"  Checking VieNeu-TTS server at {VIENEU_URL}…")
-    if is_server_alive(VIENEU_URL):
-        running_mode = get_server_engine_mode(VIENEU_URL)
-        if ACTIVE_VIENEU_ENGINE_MODE in {"standard", "turbo", "turbo_gpu"} and running_mode != ACTIVE_VIENEU_ENGINE_MODE:
-            print(f"    Server running with engine={running_mode or 'unknown'}; switching to {ACTIVE_VIENEU_ENGINE_MODE}…")
-            set_server_engine_mode(VIENEU_URL, ACTIVE_VIENEU_ENGINE_MODE)
-            print(f"    Waiting for engine reload (max 60s)…")
-            for _ in range(60):
-                time.sleep(1)
-                if get_server_engine_mode(VIENEU_URL) == ACTIVE_VIENEU_ENGINE_MODE:
-                    print(f"    Engine ready: {ACTIVE_VIENEU_ENGINE_MODE} ✓")
-                    break
-            else:
-                print(f"    ⚠ Engine switch not confirmed after 60s — proceeding anyway")
-        print("    Server is already running ✓")
-        _warmup_vieneu_server()
-        return
-
-    # Search for server script: first next to this file (skill scripts/), then walk up
-    # to find it under .agents/skills/tech-radar-podcast/scripts/
-    server_script = Path(__file__).parent / "vieneu_hq_server.py"
-    if not server_script.exists():
-        p = Path(__file__).parent
-        for _ in range(8):
-            p = p.parent
-            candidate = p / ".agents" / "skills" / "tech-radar-podcast" / "scripts" / "vieneu_hq_server.py"
-            if candidate.exists():
-                server_script = candidate
-                break
-    if not server_script.exists():
-        print(f"    ⚠ Server script not found — skipping auto-start")
-        return
-
-    print(f"    Server stopped — starting {server_script.name}…")
-    # Use the VieNeu-TTS submodule venv from project root
-    project_root = server_script.parent.parent.parent.parent.parent  # scripts/ → skill/ → skills/ → .agents/ → root
-    venv_python = project_root / "VieNeu-TTS" / ".venv" / "bin" / "python"
-    python_exec = str(venv_python) if venv_python.exists() else sys.executable
-    if venv_python.exists():
-        print(f"    Using venv interpreter: {python_exec}")
-
-    log_path = Path("/tmp/tts_server.log")
-    print(f"    Logging to {log_path}…")
-    log_file = open(log_path, "w")
-
-    env = os.environ.copy()
-    env.setdefault("VIENEU_ENGINE_MODE", ACTIVE_VIENEU_ENGINE_MODE)
-
-    subprocess.Popen(
-        [python_exec, str(server_script)],
-        stdout=log_file,
-        stderr=log_file,
-        start_new_session=True,
-        env=env,
-    )
-
-    # Wait for ready
-    print("    Waiting for model to load into GPU (max 180s)…")
-    for _ in range(180):
-        time.sleep(1)
-        if is_server_alive(VIENEU_URL):
-            get_server_engine_mode(VIENEU_URL)
-            print("    Server ready! ✓")
-            return
-    print("    ⚠ Server failed to start within 180s — TTS requests might fail.")
-
-
-# ── TTS: shared retry helper ──────────────────────────────────────────────────
-
-def _post_with_retry(url: str, headers: dict, body: dict, timeout: int = 90) -> bytes | None:
-    for attempt in range(3):
-        try:
-            r = requests.post(url, headers=headers, json=body, timeout=timeout)
-            if r.status_code == 200:
-                return r.content
-            if r.status_code == 429:
-                wait = int(r.headers.get("Retry-After", 15))
-                print(f"    rate-limited — waiting {wait}s…")
-                time.sleep(wait)
-            else:
-                print(f"    API error {r.status_code}: {r.text[:200]}")
-                return None
-        except Exception as e:
-            print(f"    attempt {attempt + 1} failed: {e}")
-            time.sleep(3)
-    return None
-
-
-def build_vieneu_request(seg: dict, speaker_info: dict, voice_id: str, text: str) -> dict:
-    profile_name = seg.get("tts_profile") or speaker_info.get("vieneu_profile", "")
-    pace_profile_name = seg.get("pace_profile") or speaker_info.get("pace_profile", "")
-    profile_request = _resolve_vieneu_profile_request(profile_name)
-    pace_request = _resolve_vieneu_pace_request(pace_profile_name)
-    speaker_request = speaker_info.get("vieneu_request", {})
-    request = _merge_request_layers(
-        VIENEU_DEFAULT_REQUEST,
-        speaker_request,
-        profile_request,
-        pace_request,
-        seg.get("vieneu_request", {}),
-    )
-    request["text"] = text
-    request["voice_id"] = voice_id or None
-
-    seg_clone = _extract_clone_fields(seg)
-    for key in ("ref_audio", "ref_text", "ref_codes"):
-        value = speaker_info.get(key)
-        if seg_clone.get(key):
-            value = seg_clone.get(key)
-        if value:
-            request[key] = value
-
-    request.setdefault("phonetic_normalize", False)
-    return request
-
-
-# ── TTS: VieNeu (local) ───────────────────────────────────────────────────────
-
-def tts_vieneu(request_body: dict, out_path: Path) -> bool:
-    """VieNeu-TTS streaming endpoint: POST /stream → streaming WAV → ffmpeg → MP3."""
-    import subprocess, tempfile
-    url     = f"{VIENEU_URL}/stream"
-    headers = {"Content-Type": "application/json"}
-    timeout = max(120, min(360, int(len(request_body.get("text", "")) * 0.45)))
-    data    = _post_with_retry(url, headers, request_body, timeout=timeout)
-    if not data or len(data) < 1024:
-        if data:
-            print(f"    ⚠ VieNeu returned suspicious {len(data)}-byte response — server may be reloading")
-        return False
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
-        f.write(data)
-        wav_path = f.name
-    try:
-        result = subprocess.run(
-            [FFMPEG_BIN, "-y", "-i", wav_path, "-acodec", "libmp3lame", "-ab", OUTPUT_BITRATE, str(out_path)],
-            capture_output=True, timeout=30,
-        )
-        return result.returncode == 0
-    except Exception as e:
-        print(f"    ffmpeg conversion failed: {e}")
-        return False
-    finally:
-        os.unlink(wav_path)
-
-
-# ── TTS: ElevenLabs (cloud) ───────────────────────────────────────────────────
-
-def tts_elevenlabs(text: str, voice_id: str, out_path: Path) -> bool:
-    """ElevenLabs TTS: POST /v1/text-to-speech/{voice_id} → MP3 directly."""
-    if not ELEVENLABS_API_KEY:
-        print("    ⚠ ELEVENLABS_API_KEY not set — skipping")
-        return False
-    url = f"{EL_API_URL}/v1/text-to-speech/{voice_id}"
-    headers = {
-        "xi-api-key": ELEVENLABS_API_KEY,
-        "Content-Type": "application/json",
-        "Accept": "audio/mpeg",
-    }
-    body = {"text": text, "model_id": EL_MODEL, "voice_settings": EL_SETTINGS}
-    data = _post_with_retry(url, headers, body, timeout=60)
-    if data:
-        out_path.write_bytes(data)
-        return True
-    return False
-
+# ── TTS: edge-tts ────────────────────────────────────────────────────────────
 
 def tts_edge_tts(text: str, voice_id: str, out_path: Path) -> bool:
-    """Free community TTS using edge-tts CLI."""
+    """Free TTS using edge-tts CLI."""
     if not EDGE_TTS_BIN:
-        print("    ⚠ edge-tts not found in PATH")
+        print("    edge-tts not found in PATH")
         return False
-    cmd = [
-        EDGE_TTS_BIN,
-        "--voice", voice_id,
-        "--text", text,
-        "--write-media", str(out_path),
-    ]
+    cmd = [EDGE_TTS_BIN, "--voice", voice_id, "--text", text, "--write-media", str(out_path)]
     for attempt in range(3):
         try:
             result = subprocess.run(cmd, capture_output=True, text=True, check=False, timeout=60)
@@ -1273,99 +737,11 @@ def tts_edge_tts(text: str, voice_id: str, out_path: Path) -> bool:
     return False
 
 
-def tts_macos_say(text: str, voice_id: str, out_path: Path) -> bool:
-    """Offline free TTS using macOS say, then convert to MP3."""
-    import tempfile
-    if not SAY_BIN:
-        print("    ⚠ macOS say not available")
-        return False
-    with tempfile.NamedTemporaryFile(suffix=".aiff", delete=False) as f:
-        aiff_path = f.name
-    try:
-        say_cmd = [SAY_BIN, "-v", voice_id, "-o", aiff_path, text]
-        say_res = subprocess.run(say_cmd, capture_output=True, text=True, check=False)
-        if say_res.returncode != 0:
-            print(f"    say failed: {say_res.stderr[:200]}")
-            return False
-
-        conv = subprocess.run(
-            [FFMPEG_BIN, "-y", "-i", aiff_path, "-acodec", "libmp3lame", "-ab", OUTPUT_BITRATE, str(out_path)],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if conv.returncode != 0:
-            print(f"    ffmpeg conversion failed after say: {conv.stderr[:200]}")
-            return False
-        return True
-    except Exception as e:
-        print(f"    say error: {e}")
-        return False
-    finally:
-        if os.path.exists(aiff_path):
-            os.unlink(aiff_path)
-
-
-# ── TTS: provider dispatch ────────────────────────────────────────────────────
-
-def tts(text: str, voice_id: str, out_path: Path, speaker_info: dict | None = None, seg: dict | None = None) -> tuple[bool, list[dict]]:
-    if TTS_PROVIDER == "elevenlabs":
-        t0 = time.time()
-        ok = tts_elevenlabs(text, voice_id, out_path)
-        return ok, [{"engine_mode": "elevenlabs", "ok": ok, "elapsed_s": round(time.time() - t0, 3)}]
-    if TTS_PROVIDER == "edge_tts":
-        t0 = time.time()
-        ok = tts_edge_tts(text, voice_id, out_path)
-        return ok, [{"engine_mode": "edge_tts", "ok": ok, "elapsed_s": round(time.time() - t0, 3)}]
-    if TTS_PROVIDER == "macos_say":
-        t0 = time.time()
-        ok = tts_macos_say(text, voice_id, out_path)
-        return ok, [{"engine_mode": "macos_say", "ok": ok, "elapsed_s": round(time.time() - t0, 3)}]
-
-    request_body = build_vieneu_request(seg or {}, speaker_info or {}, voice_id, text)
-    attempts: list[dict] = []
-
-    current_mode = get_server_engine_mode(VIENEU_URL) or ACTIVE_VIENEU_ENGINE_MODE
+def tts(text: str, voice_id: str, out_path: Path, **_kw) -> tuple[bool, list[dict]]:
+    """Generate TTS audio via edge-tts."""
     t0 = time.time()
-    ok = tts_vieneu(request_body, out_path)
-    elapsed = round(time.time() - t0, 3)
-    attempts.append({"engine_mode": current_mode or "unknown", "ok": ok, "elapsed_s": elapsed})
-
-    if not VIENEU_FALLBACK_ENABLED:
-        return ok, attempts
-
-    can_retry_turbo = (current_mode == "standard")
-    if not can_retry_turbo:
-        return ok, attempts
-
-    retry_reason = ""
-    if not ok:
-        retry_reason = "failed"
-    elif VIENEU_FALLBACK_RETRY_ON_SLOW and elapsed >= VIENEU_FALLBACK_SLOW_SECONDS:
-        retry_reason = f"slow ({elapsed}s >= {VIENEU_FALLBACK_SLOW_SECONDS}s)"
-
-    if not retry_reason:
-        return ok, attempts
-
-    print(f"    fallback trigger: {retry_reason} — retrying this segment in turbo")
-    if not set_server_engine_mode(VIENEU_URL, "turbo"):
-        return ok, attempts
-
-    turbo_body = _merge_request_layers(request_body, VIENEU_TURBO_RETRY_REQUEST)
-    turbo_out = out_path if not ok else out_path.with_suffix(".turbo_tmp.mp3")
-    t1 = time.time()
-    ok_turbo = tts_vieneu(turbo_body, turbo_out)
-    elapsed_turbo = round(time.time() - t1, 3)
-    attempts.append({"engine_mode": "turbo", "ok": ok_turbo, "elapsed_s": elapsed_turbo, "retry_reason": retry_reason})
-
-    if ok and ok_turbo and turbo_out != out_path and turbo_out.exists():
-        turbo_out.replace(out_path)
-        return True, attempts
-    if (not ok) and ok_turbo:
-        return True, attempts
-    if turbo_out != out_path and turbo_out.exists():
-        turbo_out.unlink(missing_ok=True)
-    return ok, attempts
+    ok = tts_edge_tts(text, voice_id, out_path)
+    return ok, [{"ok": ok, "elapsed_s": round(time.time() - t0, 3)}]
 
 
 def _atempo_chain(speed: float) -> list[str]:
@@ -1466,7 +842,7 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
         info     = VOICES.get(speaker) or VOICES.get("GUEST", {})
         voice_id = info.get("voice_id", "")
         label    = f"{speaker} ({info.get('name', '')})"
-        profile_label = seg.get("tts_profile") or info.get("vieneu_profile", "")
+        profile_label = info.get("profile_id", "")
         out_path = SEGS_DIR / f"seg_{seg['idx']:04d}_{speaker}_{provider_tag}_{speed_tag}.mp3"
 
         # Content-hash cache: derive a stable path from (text, voice_id, profile, speed)
@@ -1512,9 +888,7 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
             text = normalize_text(text)
         else:
             text = seg["text"]
-        if TTS_PROVIDER == "vieneu" and profile_label:
-            print(f"  [{i+1:>3}/{len(speech_segs)}] {label} — profile {profile_label}")
-        ok, attempts = tts(text, voice_id, out_path, info, seg)
+        ok, attempts = tts(text, voice_id, out_path)
         if ok and TARGET_PLAYBACK_SPEED > 0 and abs(TARGET_PLAYBACK_SPEED - 1.0) > 1e-3:
             ok = apply_playback_speed_to_speech(out_path, TARGET_PLAYBACK_SPEED)
         # Move the rendered file to the content-hash path (canonical) and
@@ -1526,10 +900,6 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
                 out_path.symlink_to(hash_path.name)
             except Exception:
                 pass
-        # Inter-segment cool-down: pause briefly between VieNeu inferences to reduce
-        # MPS thermal throttle on Apple Silicon during long episode renders.
-        if ok and TTS_PROVIDER == "vieneu" and VIENEU_INTER_SEG_SLEEP > 0:
-            time.sleep(VIENEU_INTER_SEG_SLEEP)
         _record_benchmark({
             "idx": seg["idx"],
             "speaker": speaker,
@@ -1541,16 +911,7 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
         })
         return seg["idx"], ok, out_path
 
-    if TTS_PROVIDER == "vieneu":
-        # VieNeu standard model on Apple Silicon (MPS) processes one request at a time.
-        # Concurrency > 1 causes GPU contention, making each segment slower.
-        max_workers = 1
-    elif TTS_PROVIDER == "macos_say":
-        max_workers = 2
-    else:
-        max_workers = 5
-
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+    with ThreadPoolExecutor(max_workers=5) as executor:
         futures = {executor.submit(_process_seg, i, seg): (i, seg) for i, seg in enumerate(speech_segs)}
         for future in as_completed(futures):
             idx, ok, out_path = future.result()
@@ -1780,7 +1141,7 @@ def write_benchmark_report(out_path: Path) -> None:
     summary = {
         "enabled": True,
         "provider": TTS_PROVIDER,
-        "engine_mode_requested": ACTIVE_VIENEU_ENGINE_MODE if TTS_PROVIDER == "vieneu" else "",
+        "engine_mode_requested": "",
         "segments_total": len(records),
         "segments_generated": len(active),
         "attempt_count": attempt_count,
@@ -1834,7 +1195,6 @@ def write_workspace_manifest(
         },
         "render": {
             "tts_provider": TTS_PROVIDER,
-            "vieneu_engine_mode": ACTIVE_VIENEU_ENGINE_MODE if TTS_PROVIDER == "vieneu" else "",
             "speech_total": speech_total,
             "speech_generated": speech_generated,
             "speaker_counts": speaker_counts,
@@ -1916,7 +1276,7 @@ def main() -> None:
     script_path = resolve_script_path(BASE, SCRIPT_LANGUAGE)
     final_mp3   = EXPORTS_DIR / f"{BASE.name}_{SCRIPT_LANGUAGE}_final.mp3"
 
-    print(f"\nTech Radar — Audio Production v6")
+    print(f"\nTech Radar — Audio Production v7 (edge-tts)")
     print(f"  Workspace: {BASE}")
     print(f"  Script   : {script_path}")
     print(f"  Output   : {final_mp3}")
@@ -1951,8 +1311,7 @@ def main() -> None:
     print("\nPHASE B — Transition asset")
     resolve_sfx_assets(segments)
 
-    print("\nPHASE C — TTS speech generation")
-    ensure_tts_server()
+    print("\nPHASE C — TTS speech generation (edge-tts)")
     audio_map = prepare_speech(segments)
 
     generated = len(audio_map)
@@ -1971,7 +1330,6 @@ def main() -> None:
         "episode":   BASE.name,
         "title":     episode_title,
         "tts_provider": TTS_PROVIDER,
-        "vieneu_engine_mode": ACTIVE_VIENEU_ENGINE_MODE if TTS_PROVIDER == "vieneu" else "",
         "voices":    VOICES,
         "segments": {
             "speech": {"total": speech_count, "generated": generated, "by_speaker": speaker_counts},

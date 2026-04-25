@@ -411,6 +411,28 @@ if files:
 
 ## PHASE 7 — DELIVERY REPORT
 
+### Step 7a — Copy to Google Drive
+
+After audio merge, copy the final MP3 to Google Drive. Read the path from `.env`:
+
+```bash
+GDRIVE=$(grep '^PODCAST_GDRIVE_PATH=' .env 2>/dev/null | cut -d'=' -f2-)
+FINAL_MP3=$(ls ./podcast_studio/[WORKSPACE_SLUG]/exports/*_final.mp3 2>/dev/null | head -1)
+
+if [ -z "$FINAL_MP3" ]; then
+  echo "WARNING: No final MP3 found in exports/ — skipping Google Drive copy"
+elif [ -z "$GDRIVE" ]; then
+  echo "WARNING: PODCAST_GDRIVE_PATH not set in .env — skipping"
+elif [ ! -d "$GDRIVE" ]; then
+  echo "WARNING: Google Drive folder not mounted — skipping"
+  echo "  Manually copy: $FINAL_MP3"
+else
+  cp "$FINAL_MP3" "$GDRIVE/" && echo "Copied to Google Drive: $(basename $FINAL_MP3)"
+fi
+```
+
+### Step 7b — Delivery report
+
 ```
 TECH RADAR — EPISODE PRODUCTION COMPLETE
 Episode:   Episode #[N] — [TITLE]

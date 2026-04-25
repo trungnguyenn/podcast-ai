@@ -1,7 +1,3 @@
-# Audio outputs
-podcast_studio/**/cache/
-podcast_studio/**/*.mp3
-
 # macOS
 .DS_Store
 **/.DS_Store
@@ -11,3 +7,11 @@ __pycache__/
 *.pyc
 *.pyo
 .venv/
+
+# Secrets
+.env
+
+# Podcast Studio
+podcast_studio/
+
+.claude/settings.local.json

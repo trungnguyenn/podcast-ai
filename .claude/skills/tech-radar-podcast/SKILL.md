@@ -6,17 +6,17 @@ description: >
   and one or more guest experts per episode. All workflow steps (research, outline, script)
   are conducted in English. The script phase produces two versions: script_en.txt (original
   English) and script_vi.txt (Vietnamese translation). Audio production picks the right
-  script based on episode.json language setting (default: Vietnamese). Uses VieNeu-TTS for
-  Vietnamese speech, edge-tts/macos-say for English; intro, outro, and transitions are
+  script based on episode.json language setting (default: Vietnamese). All audio uses
+  edge-tts (free, no server needed); intro, outro, and transitions are
   fixed MP3 assets. Activate when the user requests: "create podcast about X",
   "make episode about Y", "record podcast X", or any podcast production request with a
   technology topic.
 license: MIT
 compatibility: >
-  Python 3.8+, ffmpeg, pip packages: requests pydub. Local VieNeu-TTS API server must be running for Vietnamese episodes. macOS and Linux supported.
+  Python 3.8+, ffmpeg, pip packages: edge-tts pydub. macOS and Linux supported.
 metadata:
   author: h3tech
-  version: "4.0"
+  version: "4.1"
   language: English (workflow) / Vietnamese + English (scripts)
 allowed-tools: Bash Read Write WebSearch Agent
 ---
@@ -40,22 +40,14 @@ field in `episode.json` (default: `vi`).
 Run once before any episode:
 
 ```bash
-python3 -c "import requests, pydub; print('deps: OK')" 2>/dev/null \
-  || pip install requests pydub --quiet
-python3 -c "import audioop" 2>/dev/null \
-  || pip install audioop-lts --quiet
-ffmpeg -version 2>/dev/null | head -1 \
-  || echo "WARNING: ffmpeg missing — brew install ffmpeg"
-echo "VieNeu URL=${VIENEU_URL:-http://127.0.0.1:8001}"
+pip install edge-tts pydub audioop-lts --quiet
+ffmpeg -version 2>/dev/null | head -1 || echo "WARNING: ffmpeg missing"
 mkdir -p ./podcast_studio
 ```
 
 **Voice config — stored in `assets/voice_config.json`:**
 | Env var | Description |
 |---------|-------------|
-| `TTS_PROVIDER` | `auto` (default), `vieneu`, `edge_tts`, `macos_say`, or `elevenlabs` |
-| `VIENEU_URL` | Override local VieNeu-TTS server URL |
-| `ELEVENLABS_API_KEY` | Required for ElevenLabs provider |
 | `HOST_VOICE_ID` | Override host voice ID |
 | `GUEST_VOICE_ID` | Override first guest voice ID |
 | `GUEST_VOICE_PROFILE` | Force a specific profile for first guest |
@@ -65,19 +57,56 @@ mkdir -p ./podcast_studio
 **Guest voices are auto-selected** from `voice_config.json` using topic, plus any available hints for
 region, pace, energy, and style written into `episode.json`. When multiple guests are present, each gets
 a **different** profile when possible. No manual `export` needed — `produce_audio.py` handles all
-resolution and prints the chosen voice plus VieNeu tuning profile at startup.
+resolution and prints the chosen voice at startup.
 
-**Provider auto-routing (default):**
-- English script (`language=en` in episode.json): `edge_tts` first, fallback `macos_say`
-- Vietnamese script (`language=vi` in episode.json, or unset): `vieneu`
+**All audio uses edge-tts** (free, no server needed). Both Vietnamese and English episodes use edge-tts voices.
 
-**Edit `assets/voice_config.json` to configure voices, VieNeu engine strategy in
-`vieneu.engine.mode` (`standard`, `turbo`, `turbo_gpu`, `auto`), fallback policy in
-`vieneu.fallback_standard_to_turbo`, base request tuning in `vieneu.default_request`, per-profile
-tuning in `vieneu.profiles`, pace tuning in `vieneu.pace_profiles`, `tts_polish`, adaptive pause
+**Edit `assets/voice_config.json` to configure voices, `tts_polish`, adaptive pause
 rules, loudness normalization, final `audio.playback_speed` (default `1.2`), and
-`phonetic_normalization` (to fix pronunciation like "AI" or ".com" without restarting the server).**
+`phonetic_normalization` (to fix pronunciation like "AI" or ".com").**
 See [references/AUDIO_GUIDE.md](references/AUDIO_GUIDE.md) for full audio documentation.
+
+---
+
+## LIVE AUDIO POLISH (shared defaults)
+
+These are the shared production defaults for *all* podcast variants derived from this skill
+(`daily-ai-podcast`, `weekly-ai-podcast`, `break-news-podcast`). Keep the detailed tuning here
+so the other skills can stay small and only describe their format-specific structure.
+
+### Core goal
+- Sound like a person speaking live, not like text being read line by line.
+- Keep using `edge-tts`; the improvement comes from script rhythm, pronunciation normalization,
+  and pause discipline, not from changing engines.
+
+### Script rhythm
+- Favor short, spoken-first turns: 1 idea per line, usually 1–3 sentences.
+- Vary sentence length so the audio has motion.
+- Add natural bridge phrases like "nói thẳng thì", "quay lại chỗ này", "điểm đáng chú ý là",
+  and "nếu nhìn thực dụng thì".
+- Avoid making every paragraph sound equally polished; leave a little conversational edge.
+
+### Breaks and transitions
+- Use `[SEGMENT_BREAK]` only for real resets.
+- Do not announce every title or subheading if it makes the episode feel segmented.
+- Prefer fewer, cleaner transitions over frequent hard resets.
+- If a section only adds a tiny tangent, fold it into the previous turn instead of creating a new break.
+
+### Pronunciation and mixed-language handling
+- Keep English/tech term normalization centralized in `assets/voice_config.json`.
+- Expand pronunciation coverage for mixed Vietnamese/English scripts before render.
+- Prefer case-insensitive matching for normalization rules.
+- When a term is spoken often, normalize it once in the shared config rather than patching it per episode.
+
+### Pause and speed guidance
+- Keep the pause profile natural and compact; long silence chains make the episode sound staged.
+- If the result feels stiff, tighten the script and reduce break frequency before changing speed.
+- Default `audio.playback_speed` should stay at `1.0` unless a specific episode needs a small nudge.
+- For a slightly more live feel, only consider a modest increase after the script already sounds conversational.
+
+### Shared rule for derived skills
+- The daily, weekly, and break-news skills should reference these defaults instead of duplicating them.
+- They should only add format-specific constraints, length targets, and episode structure.
 
 ---
 

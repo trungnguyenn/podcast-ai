@@ -28,17 +28,17 @@
   },
   "segments": {
     "speech": {
-      "total": 45,
-      "generated": 45,
+      "total": 40,
+      "generated": 40,
       "by_speaker": {
-        "HOST": 45
+        "HOST": 40
       }
     },
     "music": 2,
-    "sfx": 10
+    "sfx": 7
   },
-  "output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/exports/daily_0409_vi_final.mp3",
+  "output": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/exports/daily_0409_vi_final.mp3",
   "date": "2026-04-09",
-  "workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409",
-  "cache_segments_dir": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_0409/cache/segments"
+  "workspace": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409",
+  "cache_segments_dir": "/Users/trungnguyen/Working/podcast-ai/podcast_studio/daily_0409/cache/segments"
 }
