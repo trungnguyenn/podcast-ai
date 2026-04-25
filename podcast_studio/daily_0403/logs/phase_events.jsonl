@@ -1,4 +1,0 @@
-{"time": "2026-04-03T21:21:53", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_2026_04_03"}}
-{"time": "2026-04-03T21:22:18", "phase": "audio_render", "status": "running", "details": {"workspace": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_2026_04_03"}}
-{"time": "2026-04-03T21:44:38", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_2026_04_03/exports/daily_2026_04_03_vi_final.mp3", "speech_generated": 42}}
-{"time": "2026-04-03T21:44:38", "phase": "audio_render", "status": "completed", "details": {"output": "/Users/trungnguyen/Working/PodcastAI/podcast_studio/daily_2026_04_03/exports/daily_2026_04_03_vi_final.mp3", "speech_generated": 42}}
