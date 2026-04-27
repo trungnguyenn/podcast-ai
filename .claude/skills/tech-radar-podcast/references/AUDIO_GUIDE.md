@@ -297,8 +297,3 @@ VieNeu, ensure the local server is running. For ElevenLabs, check your account q
 `.agents/skills/tech-radar-podcast/assets/`. The script searches up the directory tree from
 the episode folder to locate them.
 
-**VieNeu — Voice not found:** Ensure the requested `voice_id` exists in your VieNeu-TTS
-configuration. Run `curl -s http://127.0.0.1:8001/voices` to list available voices.
-
-**ElevenLabs — Voice not found:** Verify `elevenlabs_voice_id` in `voice_config.json` matches
-an actual voice ID in your ElevenLabs account. Voice IDs are UUIDs like `pNInz6obpgDQGcFmaJgB`.

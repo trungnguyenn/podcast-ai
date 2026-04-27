@@ -19,6 +19,29 @@ When working on these two skills, **do not add fixed segments, quotas, checklist
 
 This principle applies to `daily-ai-podcast` and `weekly-ai-podcast` only. `tech-radar-podcast` is a different format and unaffected.
 
+## H3Tech hiro-crew Context
+
+H3Tech and Trung are developing **hiro-crew**, an internal agentic software-delivery control plane. When podcast work touches agentic software delivery, multi-agent engineering workflows, AI coding governance, runtime harnesses, MCP/tool safety, delivery evidence, gates, receipts, or control-plane patterns, treat hiro-crew as an important internal reference point.
+
+Primary hiro-crew references:
+- BRD: `/Users/trungnguyen/Working/H3Tech/hiro-crew/docs/brd/brd-all.md`
+- v3.0 spec: `/Users/trungnguyen/Working/H3Tech/hiro-crew/docs/v3.0/v3-spec.md`
+
+Current hiro-crew product frame:
+- hiro-crew is H3Tech's internal agentic software-delivery control plane, built first around Claude Code.
+- The product combines a delivery control plane with an agent runtime harness.
+- The durable control-plane layer owns project identity, specs, task graph, policy, gates, evidence, receipts, audit, cost telemetry, domain packs, and dashboards.
+- The runtime harness executes agents against those contracts. Claude Code is the v3.0 harness; future versions should support additional runtime adapters.
+- v3.0 shifts the product from "agents run work" to "agents produce governed, spec-driven, evidence-backed delivery."
+
+For any **tech-radar-podcast** episode related to agentic software-delivery control planes, AI coding governance, MCP/tool integration safety, autonomous delivery workflows, or production-grade agent operations:
+
+1. Read the hiro-crew BRD and v3.0 spec before finalizing the outline.
+2. Add a short editorial lens that connects the topic back to hiro-crew: what the episode implies for specs, gates, policy, tool profiles, evidence, receipts, audit, runtime adapters, or dashboard workflows.
+3. Identify any hiro-crew coverage gaps revealed by the episode topic. Examples include destructive-tool approval, production blast-radius control, scoped agent identities, backup/recovery evidence, MCP trust boundaries, runtime-level tool enforcement, or incident-response evidence.
+4. Suggest concrete enhancements for `/Users/trungnguyen/Working/H3Tech/hiro-crew/docs/v3.0/v3-spec.md`. Do not edit that external file unless the user explicitly asks for the spec update in the current turn; otherwise, include the proposed v3-spec additions in the episode workspace notes or final delivery summary.
+5. Keep the podcast audience-first. The hiro-crew linkage should sharpen the analysis and product feedback; it should not turn the episode into an internal product pitch unless the user asks for that framing.
+
 ## Architecture
 
 ### TTS Engine

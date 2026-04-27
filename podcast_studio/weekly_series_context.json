@@ -2,6 +2,31 @@
   "_readme": "Series memory for weekly-ai-podcast. Written only by weekly-ai-podcast episodes. Safe to run in parallel with daily_series_context.json.",
   "covered_stories": [
     {
+      "slug": "week-0425-gpt-5-5-completed-work-codex-api",
+      "headline": "GPT-5.5 shifts frontier competition toward completed work across ChatGPT, Codex, and API",
+      "date": "2026-04-25"
+    },
+    {
+      "slug": "week-0425-google-cloud-next-gemini-enterprise-agent-control-plane",
+      "headline": "Google Cloud Next 26 packages Gemini Enterprise Agent Platform, security agents, TPUs, and data cloud as the enterprise agent control plane",
+      "date": "2026-04-25"
+    },
+    {
+      "slug": "week-0425-anthropic-aws-100b-5gw-compute-moat",
+      "headline": "Anthropic and AWS turn compute into strategic moat with more than $100B commitment and up to 5GW Trainium capacity",
+      "date": "2026-04-25"
+    },
+    {
+      "slug": "week-0425-measurable-safety-election-bio-bounty",
+      "headline": "Anthropic election safeguards and OpenAI GPT-5.5 bio bounty make sensitive-domain safety measurable",
+      "date": "2026-04-25"
+    },
+    {
+      "slug": "week-0425-kpmg-ai-pulse-orchestration-value-gap",
+      "headline": "KPMG Global AI Pulse shows orchestration, not adoption, separates AI activity from enterprise value",
+      "date": "2026-04-25"
+    },
+    {
       "slug": "openai-turns-into-a-full-stack-conglomerate-gpt-rosalind-for",
       "headline": "OpenAI turns into a full-stack conglomerate: GPT-Rosalind for life sciences, Codex-as-desktop-agent, ads to $100B by 2030, and two more dev-tool acquisitions",
       "date": "2026-04-19"
@@ -74,6 +99,21 @@
   ],
   "open_forecasts": [
     {
+      "slug": "agent-control-plane-value-capture-2026",
+      "text": "If agents become the operating layer, who captures the value: model lab, cloud platform, security vendor, or system of record?",
+      "raised": "2026-04-25"
+    },
+    {
+      "slug": "measurable-safety-procurement-requirement-before-incident-2026",
+      "text": "Will measurable safety evidence become a real buying requirement in 2026 before the first major agent incident forces it?",
+      "raised": "2026-04-25"
+    },
+    {
+      "slug": "compute-commitments-independent-ai-neutrality-2026",
+      "text": "If compute commitments decide model availability, how can independent AI products stay strategically neutral?",
+      "raised": "2026-04-25"
+    },
+    {
       "slug": "when-august-2-2026-arrives-in-europe-which-teams-will-discov",
       "text": "When August 2, 2026 arrives in Europe, which teams will discover that their AI products were never truly deployment ready?",
       "raised": "2026-04-13"
@@ -111,6 +151,10 @@
   ],
   "running_themes": [
     {
+      "date": "2026-04-25",
+      "theme": "This was the week agent institutionalization became the weekly pattern. GPT-5.5 shifted competition toward completed work, Google Cloud packaged agents as a governed enterprise control plane, Anthropic and AWS made compute commitment a strategic moat, safety moved into measurable election and bio-risk artifacts, and KPMG showed that enterprise value depends on orchestration rather than adoption count."
+    },
+    {
       "date": "2026-04-19",
       "theme": "This was the week \"capability without legitimacy\" became concrete. OpenAI expanded on every axis — vertical, horizontal, commercial, infrastructural — while society's immune response moved from X posts to Molotov cocktails, agents in production started leaking training data and prompt scopes, and three independent surveys showed that 97% of enterprises have shipped AI without the data, governance, or ROI to justify it. The story is no longer \"is AI capable.\" It is: can teams and companies earn the license — commercial, regulatory, and social — to actually deploy what's on their laptops."
     },
@@ -122,5 +166,6 @@
       "date": "2026-04-17",
       "theme": "Capability is no longer the open question. This week the frontier split into tiers, benchmarks were retired as solved, agents crossed into legally consequential workflows without governance, and geopolitics started drawing the compute map. The battle for the next phase of AI is about who controls access, who is accountable when it fails, and who gets locked out of the best of it. Builders and managers still evaluating AI as a capability question are one quarter behind."
     }
-  ]
+  ],
+  "last_updated": "2026-04-25"
 }

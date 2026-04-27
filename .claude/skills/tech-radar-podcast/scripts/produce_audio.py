@@ -77,13 +77,40 @@ CONFIG    = find_config()
 AUDIO_CFG = CONFIG.get("audio", {})
 PHONETIC  = CONFIG.get("phonetic_normalization", {})
 POLISH_CFG = CONFIG.get("tts_polish", {})
+DISABLE_PHONETIC_NORMALIZATION = os.environ.get("PODCAST_DISABLE_PHONETIC_NORMALIZATION", "").strip().lower() in {"1", "true", "yes"}
 ASSETS_DIR = find_assets_dir()
 SEGMENT_TITLE_CFG = AUDIO_CFG.get("segment_title_announcement", {})
 LOUDNESS_CFG = AUDIO_CFG.get("loudness_normalization", {})
 PAUSE_RULES = AUDIO_CFG.get("pause_rules", {})
-OUTPUT_BITRATE = AUDIO_CFG.get("bitrate", "128k")
+OUTPUT_BITRATE = AUDIO_CFG.get("bitrate", "192k")
 PLAYBACK_SPEED = float(AUDIO_CFG.get("playback_speed", 1.0))
 PLAYBACK_SPEED_BY_LANGUAGE = AUDIO_CFG.get("playback_speed_by_language", {})
+
+# Working sample rate / channels for the in-pipeline PCM bus.
+# Edge-tts emits 24 kHz mono MP3 internally but ffmpeg presents it at 48 kHz —
+# we keep the whole pipeline at 48 kHz stereo so the final encode does not
+# silently resample (which was the case before: 44.1k WAV → 48k MP3 default).
+WORK_SAMPLE_RATE = int(AUDIO_CFG.get("sample_rate_hz", 48000))
+WORK_CHANNELS = int(AUDIO_CFG.get("channels", 2))
+
+# Per-segment leading/trailing silence trim (Tier 3). Edge-tts pads each
+# utterance, which compounded with pause_rules produced the "ghép" feeling.
+_TRIM_CFG = AUDIO_CFG.get("segment_silence_trim", {})
+SEG_TRIM_ENABLED = bool(_TRIM_CFG.get("enabled", True))
+SEG_TRIM_THRESHOLD_DB = float(_TRIM_CFG.get("threshold_db", -45))
+SEG_TRIM_KEEP_MS = int(_TRIM_CFG.get("keep_ms", 50))
+
+# Music / transition crossfade lengths (Tier 4). pydub `append(crossfade=N)`.
+_XF_CFG = AUDIO_CFG.get("crossfades", {})
+XF_INTRO_MS = int(_XF_CFG.get("intro_to_speech_ms", 400))
+XF_OUTRO_MS = int(_XF_CFG.get("speech_to_outro_ms", 600))
+XF_TRANSITION_MS = int(_XF_CFG.get("transition_each_side_ms", 150))
+INTRO_FADE_IN_MS = int(_XF_CFG.get("intro_fade_in_ms", 200))
+OUTRO_FADE_OUT_MS = int(_XF_CFG.get("outro_fade_out_ms", 400))
+
+# Cache version: bump to invalidate old MP3-based segment caches when the
+# pipeline format changes (currently v2: WAV cache).
+SEGMENT_CACHE_VERSION = "v2wav"
 RUN_BENCHMARK = os.environ.get("PODCAST_BENCHMARK", "").strip().lower() in {"1", "true", "yes"}
 BENCHMARK_RECORDS: list[dict] = []
 BENCH_LOCK = threading.Lock()
@@ -252,24 +279,42 @@ def enforce_duration_guardrails(segments: list[dict], episode: dict, lang: str) 
                 f"(target {target}m). Append one more script chunk and retry."
             )
 
+def _build_phonetic_pattern(phonetic: dict[str, str]):
+    """Compile a single longest-match alternation regex for phonetic_normalization.
+
+    A naive loop (`for key, val in phonetic.items(): re.sub(...)`) cascades —
+    e.g. "OpenAI" → "Ô pưn Ây Ai" gets its trailing "Ai" matched again by the
+    standalone "AI" entry, producing "Ô pưn Ây Ây Ai". One pass with an
+    alternation sorted by descending length avoids this entirely: each input
+    char position matches at most once, and the longest key wins.
+    """
+    if not phonetic:
+        return None, {}
+    keys = sorted(phonetic.keys(), key=len, reverse=True)
+    parts: list[str] = []
+    case_insensitive_map: dict[str, str] = {k.lower(): v for k, v in phonetic.items()}
+    for k in keys:
+        esc = re.escape(k)
+        # Word-boundary keys (alphanumeric start) only match whole words; symbol
+        # keys (e.g. "Google I/O") match anywhere because `\b` is undefined
+        # next to punctuation.
+        parts.append(fr"\b{esc}\b" if k[:1].isalnum() else esc)
+    return re.compile("|".join(parts), flags=re.IGNORECASE), case_insensitive_map
+
+
+_PHONETIC_PATTERN, _PHONETIC_LOWER = _build_phonetic_pattern(PHONETIC)
+
+
 def normalize_text(text: str, lang: str = "") -> str:
     """Apply phonetic replacement rules for tech terms and acronyms (Vietnamese only)."""
+    if DISABLE_PHONETIC_NORMALIZATION:
+        return text
     effective_lang = lang or SCRIPT_LANGUAGE
     if effective_lang != "vi":
         return text
-    if not text or not PHONETIC:
+    if not text or _PHONETIC_PATTERN is None:
         return text
-    fixed = text
-    # Apply replacements using regex for word boundaries
-    import re
-    for key, val in PHONETIC.items():
-        # Escape key for regex safety
-        p = re.escape(key)
-        # Use \b for whole words if key is alphanumeric
-        pattern = fr"\b{p}\b" if key[0].isalnum() else p
-        # Case-insensitive matching makes the same normalization work across
-        # different script styles and capitalization choices.
-        fixed = re.sub(pattern, val, fixed, flags=re.IGNORECASE)
+    fixed = _PHONETIC_PATTERN.sub(lambda m: _PHONETIC_LOWER[m.group(0).lower()], text)
     return re.sub(r"\s+", " ", fixed).strip()
 
 
@@ -709,36 +754,75 @@ def parse_script(path: Path) -> list[dict]:
 # ── TTS: edge-tts ────────────────────────────────────────────────────────────
 
 def tts_edge_tts(text: str, voice_id: str, out_path: Path) -> bool:
-    """Free TTS using edge-tts CLI."""
+    """Free TTS using edge-tts CLI.
+
+    edge-tts emits MP3; we decode it once to WAV (pcm_s16le @ WORK_SAMPLE_RATE Hz)
+    so all downstream processing (atempo, silence trim, merge) stays in PCM —
+    eliminating the cascading lossy MP3 re-encodes that were dulling sibilance.
+    """
     if not EDGE_TTS_BIN:
         print("    edge-tts not found in PATH")
         return False
-    cmd = [EDGE_TTS_BIN, "--voice", voice_id, "--text", text, "--write-media", str(out_path)]
-    for attempt in range(3):
-        try:
-            result = subprocess.run(cmd, capture_output=True, text=True, check=False, timeout=60)
-            if result.returncode == 0 and out_path.exists() and out_path.stat().st_size > 0:
-                return True
-            if out_path.exists():
-                out_path.unlink(missing_ok=True)
-            err = result.stderr[:200] if result.stderr else "(no stderr)"
-            print(f"    edge-tts attempt {attempt+1}/3 failed (rc={result.returncode}): {err}")
-            if attempt < 2:
-                time.sleep(2 ** attempt)
-        except subprocess.TimeoutExpired:
-            print(f"    edge-tts attempt {attempt+1}/3 timed out (60s) — retrying")
-            if out_path.exists():
-                out_path.unlink(missing_ok=True)
-            if attempt < 2:
-                time.sleep(2 ** attempt)
-        except Exception as e:
-            print(f"    edge-tts error: {e}")
-            return False
-    return False
+
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as f:
+        tmp_mp3 = Path(f.name)
+
+    cmd = [EDGE_TTS_BIN, "--voice", voice_id, "--text", text, "--write-media", str(tmp_mp3)]
+    try:
+        for attempt in range(3):
+            try:
+                result = subprocess.run(cmd, capture_output=True, text=True, check=False, timeout=60)
+                if result.returncode == 0 and tmp_mp3.exists() and tmp_mp3.stat().st_size > 0:
+                    if not _decode_mp3_to_wav(tmp_mp3, out_path):
+                        out_path.unlink(missing_ok=True)
+                        return False
+                    return True
+                if tmp_mp3.exists():
+                    tmp_mp3.unlink(missing_ok=True)
+                err = result.stderr[:200] if result.stderr else "(no stderr)"
+                print(f"    edge-tts attempt {attempt+1}/3 failed (rc={result.returncode}): {err}")
+                if attempt < 2:
+                    time.sleep(2 ** attempt)
+            except subprocess.TimeoutExpired:
+                print(f"    edge-tts attempt {attempt+1}/3 timed out (60s) — retrying")
+                if tmp_mp3.exists():
+                    tmp_mp3.unlink(missing_ok=True)
+                if attempt < 2:
+                    time.sleep(2 ** attempt)
+            except Exception as e:
+                print(f"    edge-tts error: {e}")
+                return False
+        return False
+    finally:
+        if tmp_mp3.exists():
+            try:
+                tmp_mp3.unlink()
+            except Exception:
+                pass
+
+
+def _decode_mp3_to_wav(src_mp3: Path, out_wav: Path) -> bool:
+    """Decode edge-tts MP3 to PCM WAV at WORK_SAMPLE_RATE Hz, stereo, 16-bit."""
+    if not FFMPEG_BIN:
+        return False
+    cmd = [
+        FFMPEG_BIN, "-y",
+        "-i", str(src_mp3),
+        "-ar", str(WORK_SAMPLE_RATE),
+        "-ac", str(WORK_CHANNELS),
+        "-c:a", "pcm_s16le",
+        str(out_wav),
+    ]
+    run = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    if run.returncode != 0 or not out_wav.exists() or out_wav.stat().st_size <= 0:
+        print(f"    ⚠ mp3→wav decode failed: {run.stderr[:200]}")
+        return False
+    return True
 
 
 def tts(text: str, voice_id: str, out_path: Path, **_kw) -> tuple[bool, list[dict]]:
-    """Generate TTS audio via edge-tts."""
+    """Generate TTS audio via edge-tts (cached as WAV)."""
     t0 = time.time()
     ok = tts_edge_tts(text, voice_id, out_path)
     return ok, [{"ok": ok, "elapsed_s": round(time.time() - t0, 3)}]
@@ -760,14 +844,17 @@ def _atempo_chain(speed: float) -> list[str]:
 
 
 def apply_playback_speed_to_speech(path: Path, speed: float) -> bool:
-    """Apply speed change to one speech segment only, preserving pitch."""
+    """Apply atempo speed change to one segment, preserving pitch.
+
+    WAV→WAV (pcm_s16le) so we never re-encode MP3 mid-pipeline.
+    """
     if not path.exists() or speed <= 0 or abs(speed - 1.0) <= 1e-3:
         return True
     if not FFMPEG_BIN:
         return False
 
     import tempfile
-    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as f:
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
         temp_out = Path(f.name)
     try:
         af = ",".join(_atempo_chain(speed))
@@ -775,14 +862,61 @@ def apply_playback_speed_to_speech(path: Path, speed: float) -> bool:
             FFMPEG_BIN, "-y",
             "-i", str(path),
             "-af", af,
-            "-codec:a", "libmp3lame",
-            "-b:a", OUTPUT_BITRATE,
+            "-ar", str(WORK_SAMPLE_RATE),
+            "-ac", str(WORK_CHANNELS),
+            "-c:a", "pcm_s16le",
             str(temp_out),
         ]
         run = subprocess.run(cmd, capture_output=True, text=True, check=False)
         if run.returncode != 0:
             print(f"    ⚠ speech speed transform failed: {run.stderr[:200]}")
             return False
+        temp_out.replace(path)
+        return True
+    finally:
+        if temp_out.exists():
+            try:
+                temp_out.unlink()
+            except Exception:
+                pass
+
+
+def trim_segment_silence(path: Path) -> bool:
+    """Strip leading/trailing near-silence from a TTS segment.
+
+    Edge-tts pads every utterance with ~150–300 ms of dead air at head and tail.
+    We strip below SEG_TRIM_THRESHOLD_DB, leaving SEG_TRIM_KEEP_MS of natural decay
+    so consonants don't get clipped. WAV→WAV.
+    """
+    if not path.exists() or not FFMPEG_BIN or not SEG_TRIM_ENABLED:
+        return True
+
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
+        temp_out = Path(f.name)
+    try:
+        keep_s = max(SEG_TRIM_KEEP_MS, 0) / 1000.0
+        thresh = f"{SEG_TRIM_THRESHOLD_DB}dB"
+        af = (
+            f"silenceremove=start_periods=1:start_silence={keep_s}:start_threshold={thresh},"
+            f"areverse,"
+            f"silenceremove=start_periods=1:start_silence={keep_s}:start_threshold={thresh},"
+            f"areverse"
+        )
+        cmd = [
+            FFMPEG_BIN, "-y",
+            "-i", str(path),
+            "-af", af,
+            "-ar", str(WORK_SAMPLE_RATE),
+            "-ac", str(WORK_CHANNELS),
+            "-c:a", "pcm_s16le",
+            str(temp_out),
+        ]
+        run = subprocess.run(cmd, capture_output=True, text=True, check=False)
+        if run.returncode != 0 or not temp_out.exists() or temp_out.stat().st_size <= 0:
+            # Trim is best-effort; on failure leave the original segment alone.
+            print(f"    ⚠ silence trim skipped: {run.stderr[:160]}")
+            return True
         temp_out.replace(path)
         return True
     finally:
@@ -843,13 +977,18 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
         voice_id = info.get("voice_id", "")
         label    = f"{speaker} ({info.get('name', '')})"
         profile_label = info.get("profile_id", "")
-        out_path = SEGS_DIR / f"seg_{seg['idx']:04d}_{speaker}_{provider_tag}_{speed_tag}.mp3"
+        out_path = SEGS_DIR / f"seg_{seg['idx']:04d}_{speaker}_{provider_tag}_{speed_tag}.wav"
 
-        # Content-hash cache: derive a stable path from (text, voice_id, profile, speed)
+        # Content-hash cache: derive a stable path from (text, voice_id, profile, speed, cache version)
         # so segments survive episode re-runs when text is unchanged regardless of idx shift.
-        _cache_src = f"{seg.get('text','')}\x00{voice_id}\x00{profile_label}\x00{TARGET_PLAYBACK_SPEED}"
+        # SEGMENT_CACHE_VERSION participates in the hash so a pipeline format change
+        # (e.g. MP3→WAV cache) invalidates old segments cleanly.
+        _cache_src = (
+            f"{seg.get('text','')}\x00{voice_id}\x00{profile_label}"
+            f"\x00{TARGET_PLAYBACK_SPEED}\x00{SEGMENT_CACHE_VERSION}"
+        )
         _content_hash = hashlib.md5(_cache_src.encode()).hexdigest()[:10]
-        hash_path = SEGS_DIR / f"seg_{seg['idx']:04d}_{speaker}_{provider_tag}_{speed_tag}_{_content_hash}.mp3"
+        hash_path = SEGS_DIR / f"seg_{seg['idx']:04d}_{speaker}_{provider_tag}_{speed_tag}_{_content_hash}.wav"
 
         # 1) Check content-hash path first (canonical cache file)
         if hash_path.exists() and hash_path.stat().st_size > 2048:
@@ -891,6 +1030,10 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
         ok, attempts = tts(text, voice_id, out_path)
         if ok and TARGET_PLAYBACK_SPEED > 0 and abs(TARGET_PLAYBACK_SPEED - 1.0) > 1e-3:
             ok = apply_playback_speed_to_speech(out_path, TARGET_PLAYBACK_SPEED)
+        if ok:
+            # Trim leading/trailing edge-tts padding so pause_rules govern the
+            # silence between turns instead of accidentally compounding with it.
+            trim_segment_silence(out_path)
         # Move the rendered file to the content-hash path (canonical) and
         # symlink the index-based path to it.  This avoids storing two
         # identical copies of every segment on disk.
@@ -911,7 +1054,8 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
         })
         return seg["idx"], ok, out_path
 
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    max_workers = int(os.environ.get("PODCAST_TTS_WORKERS", "5"))
+    with ThreadPoolExecutor(max_workers=max(1, max_workers)) as executor:
         futures = {executor.submit(_process_seg, i, seg): (i, seg) for i, seg in enumerate(speech_segs)}
         for future in as_completed(futures):
             idx, ok, out_path = future.result()
@@ -927,7 +1071,12 @@ def prepare_speech(segments: list[dict]) -> dict[int, Path]:
 
 def load_audio(path: Path) -> AudioSegment | None:
     try:
-        return AudioSegment.from_mp3(str(path))
+        suffix = path.suffix.lower()
+        if suffix == ".wav":
+            return AudioSegment.from_wav(str(path))
+        if suffix == ".mp3":
+            return AudioSegment.from_mp3(str(path))
+        return AudioSegment.from_file(str(path))
     except Exception as e:
         print(f"    ⚠ could not load {path.name}: {e}")
         return None
@@ -979,7 +1128,7 @@ def gap_after(seg: dict, next_seg: dict | None) -> int:
 def export_mp3_with_loudness(result: AudioSegment, out_path: Path, tags: dict[str, str]) -> None:
     import tempfile
 
-    working = result.set_frame_rate(AUDIO_CFG.get("sample_rate_hz", 44100)).set_channels(AUDIO_CFG.get("channels", 2))
+    working = result.set_frame_rate(WORK_SAMPLE_RATE).set_channels(WORK_CHANNELS)
     metadata_args: list[str] = []
     for key, value in tags.items():
         metadata_args.extend(["-metadata", f"{key}={value}"])
@@ -1000,6 +1149,8 @@ def export_mp3_with_loudness(result: AudioSegment, out_path: Path, tags: dict[st
             cmd = [
                 FFMPEG_BIN, "-y", "-i", temp_in_path,
                 "-af", filter_str,
+                "-ar", str(WORK_SAMPLE_RATE),
+                "-ac", str(WORK_CHANNELS),
                 "-codec:a", "libmp3lame",
                 "-b:a", OUTPUT_BITRATE,
                 *metadata_args,
@@ -1010,7 +1161,13 @@ def export_mp3_with_loudness(result: AudioSegment, out_path: Path, tags: dict[st
                 return
             print(f"    ⚠ loudnorm export failed, falling back to plain MP3: {result_ffmpeg.stderr[:200]}")
 
-        working.export(str(out_path), format="mp3", bitrate=OUTPUT_BITRATE, tags=tags)
+        working.export(
+            str(out_path),
+            format="mp3",
+            bitrate=OUTPUT_BITRATE,
+            tags=tags,
+            parameters=["-ar", str(WORK_SAMPLE_RATE), "-ac", str(WORK_CHANNELS)],
+        )
     finally:
         os.unlink(temp_in_path)
 
@@ -1217,27 +1374,57 @@ def merge(segments: list[dict], audio_map: dict[int, Path], music_map: dict[str,
             sil_cache[ms] = AudioSegment.silent(duration=ms)
         return sil_cache[ms]
 
+    def join(current: AudioSegment, incoming: AudioSegment, crossfade_ms: int) -> AudioSegment:
+        # pydub requires both sides to be at least crossfade_ms long; the safety
+        # cap below prevents AssertionError on very short tails (e.g. a 100 ms
+        # silence followed by an 800 ms intro music tail).
+        if crossfade_ms <= 0:
+            return current + incoming
+        cf = min(crossfade_ms, len(current), len(incoming))
+        if cf <= 0:
+            return current + incoming
+        return current.append(incoming, crossfade=cf)
+
     for idx, seg in enumerate(segments):
         next_seg = segments[idx + 1] if idx + 1 < len(segments) else None
         stype = seg["type"]
+        crossfade_ms = 0
+        audio: AudioSegment | None = None
+
         if stype == "music":
             p = music_map.get(seg["music_type"])
             if p and p.exists():
                 audio = load_audio(p)
                 if audio:
-                    result += audio
+                    if seg["music_type"] == "intro" and INTRO_FADE_IN_MS > 0:
+                        audio = audio.fade_in(min(INTRO_FADE_IN_MS, len(audio)))
+                    elif seg["music_type"] == "outro" and OUTRO_FADE_OUT_MS > 0:
+                        audio = audio.fade_out(min(OUTRO_FADE_OUT_MS, len(audio)))
+                    # Outro crossfades INTO the result tail (speech → outro).
+                    if seg["music_type"] == "outro":
+                        crossfade_ms = XF_OUTRO_MS
         elif stype == "sfx":
             sfx_path = seg.get("_sfx_path")
             if sfx_path and sfx_path.exists():
                 audio = load_audio(sfx_path)
                 if audio:
-                    result += audio
+                    crossfade_ms = XF_TRANSITION_MS
         elif stype == "speech":
             p = audio_map.get(seg["idx"])
             if p and p.exists():
                 audio = load_audio(p)
                 if audio:
-                    result += audio
+                    # First speech after an intro music head crossfades in;
+                    # speech immediately after an SFX transition crossfades in.
+                    prev_seg = segments[idx - 1] if idx > 0 else None
+                    if prev_seg and prev_seg["type"] == "music" and prev_seg.get("music_type") == "intro":
+                        crossfade_ms = XF_INTRO_MS
+                    elif prev_seg and prev_seg["type"] == "sfx":
+                        crossfade_ms = XF_TRANSITION_MS
+
+        if audio is not None:
+            result = join(result, audio, crossfade_ms)
+
         pause_ms = gap_after(seg, next_seg)
         if pause_ms > 0:
             result += sil(pause_ms)

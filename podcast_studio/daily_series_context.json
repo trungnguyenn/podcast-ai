@@ -2,6 +2,41 @@
   "_readme": "Series memory for daily-ai-podcast. Written only by daily-ai-podcast episodes. Safe to run in parallel with weekly_series_context.json.",
   "covered_stories": [
     {
+      "slug": "cisco-85-percent-agent-pilots-5-percent-production-trust",
+      "headline": "Cisco signal: 85% of enterprises run AI agent pilots, but only 5% trust them enough for production",
+      "date": "2026-04-26"
+    },
+    {
+      "slug": "kpmg-agent-accountability-operational-control-2026",
+      "headline": "KPMG frames AI agent accountability as an operating control problem as more than half of organizations deploy agents",
+      "date": "2026-04-26"
+    },
+    {
+      "slug": "apple-google-gemini-siri-invisible-consumer-ai-distribution-2026",
+      "headline": "Google confirms Gemini-powered next-generation Apple Intelligence and Siri later in 2026",
+      "date": "2026-04-26"
+    },
+    {
+      "slug": "anthropic-mythos-contractor-access-frontier-model-security-boundary",
+      "headline": "Anthropic Mythos Preview access report turns contractor paths into a frontier-model security boundary",
+      "date": "2026-04-26"
+    },
+    {
+      "slug": "openai-gpt-5-5-real-work-api-terminal-bench-bio-bounty",
+      "headline": "OpenAI releases GPT-5.5 for real work, updates API availability, and opens a bio bug bounty",
+      "date": "2026-04-25"
+    },
+    {
+      "slug": "google-cloud-next-26-gemini-enterprise-agent-platform-control-plane",
+      "headline": "Google Cloud Next 26 packages Gemini Enterprise Agent Platform, TPUs, and security agents into an enterprise agent control plane",
+      "date": "2026-04-25"
+    },
+    {
+      "slug": "anthropic-election-safeguards-project-deal-measurable-agent-trust",
+      "headline": "Anthropic election safeguards and Project Deal show safety and authority becoming measurable agent product surfaces",
+      "date": "2026-04-25"
+    },
+    {
       "slug": "anthropic-aws-100b-5gw-trainium-compute-commitment",
       "headline": "Anthropic commits more than $100B to AWS over 10 years and secures up to 5GW of Trainium capacity",
       "date": "2026-04-23"
@@ -214,6 +249,26 @@
   ],
   "open_forecasts": [
     {
+      "slug": "agent-pilot-count-vs-trusted-delegation-2026",
+      "text": "Khi nào doanh nghiệp sẽ ngừng khoe số lượng agent pilot và bắt đầu công bố tỷ lệ trusted delegation thật sự?",
+      "raised": "2026-04-26"
+    },
+    {
+      "slug": "os-level-ai-app-customer-relationship-loss-2026",
+      "text": "Nếu consumer AI đi vào hệ điều hành, app category nào sẽ mất quan hệ trực tiếp với người dùng trước tiên?",
+      "raised": "2026-04-26"
+    },
+    {
+      "slug": "agent-control-plane-owner-2026",
+      "text": "Nếu frontier model có thể vận hành phần mềm trong thời gian dài, ai sẽ sở hữu control plane thật sự: model vendor, cloud platform, security vendor, hay chính ứng dụng doanh nghiệp nơi workflow bắt đầu?",
+      "raised": "2026-04-25"
+    },
+    {
+      "slug": "measurable-ai-safety-procurement-filter-2026",
+      "text": "Safety đo được có trở thành tiêu chí mua hàng thật trong năm 2026 không, hay thị trường sẽ tiếp tục chấp nhận tuyên bố chính sách cho đến khi một sự cố agent lớn buộc mọi người thay đổi?",
+      "raised": "2026-04-25"
+    },
+    {
       "slug": "agent-identity-standard-buying-requirement-2026",
       "text": "Agent identity control có trở thành yêu cầu mua hàng chuẩn trong năm 2026 không, hay doanh nghiệp sẽ đợi sự cố privilege lớn đầu tiên?",
       "raised": "2026-04-23"
@@ -306,6 +361,14 @@
   ],
   "running_themes": [
     {
+      "date": "2026-04-26",
+      "theme": "April 26, 2026 reframes the AI agent market around trust readiness. Cisco reports a gap between 85% enterprise agent pilots and 5% production trust, KPMG turns agent accountability into an operating-control question, Apple and Google point toward invisible OS-level AI distribution, and Mythos access reporting shows contractor paths are part of frontier-model security boundaries. The theme moves from agent capability to trusted delegation."
+    },
+    {
+      "date": "2026-04-25",
+      "theme": "April 25, 2026 shows agent institutionalization: GPT-5.5 pushes long-horizon tool work, Google Cloud packages Gemini Enterprise Agent Platform and security agents as a control plane, and Anthropic plus OpenAI make sensitive-domain safeguards measurable. The market is moving from raw model intelligence to accountable operation: identity, evals, logs, lifecycle governance, and procurement-grade safety evidence."
+    },
+    {
       "slug": "ai-controlled-infrastructure-compute-policy-identity",
       "text": "AI is shifting from application demos to controlled infrastructure: compute commitments, procurement policy, and agent identity determine production viability.",
       "updated": "2026-04-23"
@@ -335,5 +398,5 @@
       "theme": "AI has crossed the deployment threshold simultaneously at three levels: the most powerful model ever built is now distributed through cloud infrastructure (Mythos on Bedrock), enterprise agent adoption is effectively universal (96%), and capital has hyper-concentrated around the four companies most likely to own the AI infrastructure layer. The competitive question is no longer \"who has the best model\" — it's \"who controls the distribution, the governance layer, and the capital to sustain the next round.\" April 2026 is the month where the AI industry stopped being about capability and started being about control."
     }
   ],
-  "last_updated": "2026-04-22"
+  "last_updated": "2026-04-26"
 }
